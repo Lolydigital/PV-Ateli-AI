@@ -183,12 +183,56 @@
                         <label>Garantia (Dias)</label>
                         <input type="number" id="warranty" value="15">
                     </div>
+                    <div class="form-group">
+                        <label>Facebook Pixel ID 1</label>
+                        <input type="text" id="pixel_1" placeholder="Ex: 1234567890">
+                    </div>
+                    <div class="form-group">
+                        <label>Facebook Pixel ID 2 (Opcional)</label>
+                        <input type="text" id="pixel_2" placeholder="Ex: 0987654321">
+                    </div>
                     <button class="btn-save" onclick="saveChanges()">Salvar Alterações</button>
                     <p id="saveMsg" style="margin-top: 10px; font-size: 12px; color: #10b981; display: none;">Sincronizando com o site...</p>
                 </div>
             </div>
         </div>
+
+        <!-- SQL SETUP INSTRUCTIONS -->
+        <div class="card" style="margin-top: 24px;">
+            <div class="card-title">Configuração Supabase (SQL) <i class="fas fa-database"></i></div>
+            <p style="font-size: 13px; color: var(--text-muted); margin-bottom: 16px;">
+                Copie o código abaixo e cole no <strong>SQL Editor</strong> do seu Supabase para criar as tabelas necessárias:
+            </p>
+            <textarea id="sqlCode" rows="10" readonly style="width: 100%; background: #000; color: #10b981; font-family: monospace; padding: 12px; border-radius: 8px;">
+-- Tabela para Configurações do Site
+CREATE TABLE site_settings (
+    id SERIAL PRIMARY KEY,
+    headline TEXT,
+    sub_headline TEXT,
+    checkout_link TEXT,
+    price DECIMAL,
+    warranty INTEGER,
+    pixels TEXT[] -- Array para múltiplos pixels
+);
+
+-- Tabela para Eventos de Rastreamento (Funil e Heatmap)
+CREATE TABLE analytics_events (
+    id SERIAL PRIMARY KEY,
+    event_type TEXT, -- 'visit', 'click', 'scroll'
+    page_url TEXT,
+    coordinates JSONB, -- Para o heatmap {x, y}
+    user_agent TEXT,
+    created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
+);
+
+-- Inserir configurações iniciais
+INSERT INTO site_settings (headline, sub_headline, checkout_link, price, warranty)
+VALUES ('A sua obra é linda. Merece ser vista assim.', 'O Ateliê Criativo transforma fotos...', 'https://pay.hotmart.com/XXXXX', 97, 15);
+            </textarea>
+            <button class="btn-save" style="background: #334155; margin-top: 12px;" onclick="copySQL()">Copiar Código SQL</button>
+        </div>
     </div>
+
 
     <script>
         const ctx = document.getElementById('funnelChart').getContext('2d');
@@ -212,6 +256,13 @@
                 }
             }
         });
+
+        function copySQL() {
+            const copyText = document.getElementById("sqlCode");
+            copyText.select();
+            document.execCommand("copy");
+            alert("Código SQL copiado! Cole no Supabase.");
+        }
 
         function saveChanges() {
             const btn = document.querySelector('.btn-save');
