@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard Admin | Ateliê Criativo Pro</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+        :root {
+            --bg: #0f172a;
+            --card: #1e293b;
+            --primary: #C8365A;
+            --accent: #38bdf8;
+            --text: #f8fafc;
+            --text-muted: #94a3b8;
+            --border: rgba(255, 255, 255, 0.1);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--text); display: flex; min-height: 100vh; }
+
+        /* Sidebar */
+        .sidebar {
+            width: 260px; background: var(--card); border-right: 1px solid var(--border);
+            display: flex; flex-direction: column; padding: 24px;
+        }
+        .logo { font-weight: 700; font-size: 20px; color: var(--primary); margin-bottom: 40px; display: flex; align-items: center; gap: 10px; }
+        .nav-link { 
+            padding: 12px 16px; border-radius: 8px; color: var(--text-muted); 
+            text-decoration: none; display: flex; align-items: center; gap: 12px; margin-bottom: 8px;
+            transition: all 0.2s;
+        }
+        .nav-link:hover, .nav-link.active { background: rgba(200, 54, 90, 0.1); color: var(--text); }
+        .nav-link i { font-size: 18px; }
+
+        /* Main Content */
+        .main { flex: 1; padding: 40px; overflow-y: auto; }
+        .header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 32px; }
+        .header h1 { font-size: 24px; font-weight: 600; }
+
+        /* Stats Grid */
+        .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 24px; margin-bottom: 40px; }
+        .stat-card { 
+            background: var(--card); padding: 24px; border-radius: 16px; border: 1px solid var(--border);
+            display: flex; flex-direction: column; gap: 8px;
+        }
+        .stat-label { color: var(--text-muted); font-size: 14px; text-transform: uppercase; letter-spacing: 0.05em; }
+        .stat-value { font-size: 32px; font-weight: 700; }
+        .stat-change { font-size: 12px; font-weight: 500; }
+        .up { color: #10b981; }
+        .down { color: #ef4444; }
+
+        /* Chart Section */
+        .chart-row { display: grid; grid-template-columns: 2fr 1fr; gap: 24px; margin-bottom: 40px; }
+        .card { background: var(--card); border-radius: 16px; border: 1px solid var(--border); padding: 24px; }
+        .card-title { font-size: 18px; font-weight: 600; margin-bottom: 24px; display: flex; justify-content: space-between; }
+
+        /* CMS Form */
+        .cms-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+        .form-group { margin-bottom: 16px; }
+        .form-group label { display: block; color: var(--text-muted); font-size: 12px; margin-bottom: 8px; }
+        .form-group input, .form-group textarea {
+            width: 100%; background: var(--bg); border: 1px solid var(--border); 
+            padding: 12px; border-radius: 8px; color: var(--text); font-family: inherit;
+        }
+        .btn-save { 
+            background: var(--primary); color: white; border: none; padding: 12px 24px; 
+            border-radius: 8px; font-weight: 600; cursor: pointer; transition: transform 0.2s;
+        }
+        .btn-save:hover { transform: translateY(-2px); }
+
+        /* Heatmap Placeholder */
+        .heatmap-viz {
+            height: 300px; background: #000; border-radius: 12px; position: relative;
+            background-image: url('https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&q=80&w=1000');
+            background-size: cover; overflow: hidden; opacity: 0.8;
+        }
+        .heat-dot {
+            position: absolute; width: 40px; height: 40px; border-radius: 50%;
+            background: radial-gradient(circle, rgba(255,0,0,0.6) 0%, rgba(255,255,0,0) 70%);
+            pointer-events: none;
+        }
+
+        @media (max-width: 1024px) {
+            .chart-row { grid-template-columns: 1fr; }
+            .sidebar { width: 80px; padding: 16px; }
+            .logo span, .nav-link span { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="sidebar">
+        <div class="logo">
+            <i class="fas fa-magic"></i> <span>Ateliê Pro</span>
+        </div>
+        <nav>
+            <a href="#" class="nav-link active"><i class="fas fa-chart-line"></i> <span>Overview</span></a>
+            <a href="#cms" class="nav-link"><i class="fas fa-edit"></i> <span>Editar Página</span></a>
+            <a href="#" class="nav-link"><i class="fas fa-fire"></i> <span>Heatmap</span></a>
+            <a href="#" class="nav-link"><i class="fas fa-users"></i> <span>Leads</span></a>
+            <a href="#" class="nav-link" style="margin-top: 40px;"><i class="fas fa-cog"></i> <span>Configurações</span></a>
+        </nav>
+    </div>
+
+    <div class="main">
+        <div class="header">
+            <h1>Dashboard Administrativo</h1>
+            <div style="color: var(--text-muted)">Bem-vinda, Tamara 👋</div>
+        </div>
+
+        <!-- STATS -->
+        <div class="stats-grid">
+            <div class="stat-card">
+                <span class="stat-label">Visitas Hoje</span>
+                <div class="stat-value">1.284</div>
+                <span class="stat-change up"><i class="fas fa-arrow-up"></i> 12% vs ontem</span>
+            </div>
+            <div class="stat-card">
+                <span class="stat-label">Cliques no Botão</span>
+                <div class="stat-value">342</div>
+                <span class="stat-change up"><i class="fas fa-arrow-up"></i> 8% vs ontem</span>
+            </div>
+            <div class="stat-card">
+                <span class="stat-label">Taxa de Conversão</span>
+                <div class="stat-value">26.6%</div>
+                <span class="stat-change down"><i class="fas fa-arrow-down"></i> 2% vs ontem</span>
+            </div>
+            <div class="stat-card" style="border-color: var(--primary)">
+                <span class="stat-label">Faturamento Est.</span>
+                <div class="stat-value">€2.640</div>
+                <span class="stat-change up"><i class="fas fa-coins"></i> Hotmart Sync</span>
+            </div>
+        </div>
+
+        <!-- CHARTS & HEATMAP -->
+        <div class="chart-row">
+            <div class="card">
+                <div class="card-title">Fluxo do Funil <i class="fas fa-filter"></i></div>
+                <canvas id="funnelChart"></canvas>
+            </div>
+            <div class="card">
+                <div class="card-title">Zonas de Calor <i class="fas fa-fire"></i></div>
+                <div class="heatmap-viz">
+                    <!-- Dots simulados -->
+                    <div class="heat-dot" style="top: 20%; left: 30%;"></div>
+                    <div class="heat-dot" style="top: 25%; left: 35%; width: 60px; height: 60px;"></div>
+                    <div class="heat-dot" style="top: 70%; left: 50%; background: radial-gradient(circle, rgba(56,189,248,0.6) 0%, rgba(255,255,0,0) 70%);"></div>
+                </div>
+                <p style="font-size: 12px; color: var(--text-muted); margin-top: 16px;">
+                    Cliques concentrados no botão de CTA e no Carrossel.
+                </p>
+            </div>
+        </div>
+
+        <!-- CMS SECTION -->
+        <div class="card" id="cms">
+            <div class="card-title">Editor de Página (CMS) <i class="fas fa-pencil-alt"></i></div>
+            <div class="cms-grid">
+                <div>
+                    <div class="form-group">
+                        <label>Headline Principal</label>
+                        <input type="text" id="h1_text" value="A sua obra é linda. Merece ser vista assim.">
+                    </div>
+                    <div class="form-group">
+                        <label>Sub-headline</label>
+                        <textarea id="sub_text" rows="3">O Ateliê Criativo transforma fotos caseiras em imagens de catálogo profissional — e organiza todo o seu negócio.</textarea>
+                    </div>
+                    <div class="form-group">
+                        <label>Link de Checkout (Vitalício)</label>
+                        <input type="text" id="checkout_link" value="https://pay.hotmart.com/XXXXX">
+                    </div>
+                </div>
+                <div>
+                    <div class="form-group">
+                        <label>Preço Oferta (€)</label>
+                        <input type="number" id="price" value="97">
+                    </div>
+                    <div class="form-group">
+                        <label>Garantia (Dias)</label>
+                        <input type="number" id="warranty" value="15">
+                    </div>
+                    <button class="btn-save" onclick="saveChanges()">Salvar Alterações</button>
+                    <p id="saveMsg" style="margin-top: 10px; font-size: 12px; color: #10b981; display: none;">Sincronizando com o site...</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const ctx = document.getElementById('funnelChart').getContext('2d');
+        new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: ['Visitas', 'Viram Vídeo', 'Clicaram Botão', 'Checkout'],
+                datasets: [{
+                    label: 'Usuários',
+                    data: [1284, 850, 342, 86],
+                    backgroundColor: ['#1e293b', '#38bdf8', '#C8365A', '#10b981'],
+                    borderRadius: 8
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: { legend: { display: false } },
+                scales: { 
+                    y: { beginAtZero: true, grid: { color: 'rgba(255,255,255,0.05)' }, ticks: { color: '#94a3b8' } },
+                    x: { ticks: { color: '#94a3b8' } }
+                }
+            }
+        });
+
+        function saveChanges() {
+            const btn = document.querySelector('.btn-save');
+            const msg = document.getElementById('saveMsg');
+            btn.innerText = "Salvando...";
+            
+            // Simulação de salvamento
+            setTimeout(() => {
+                btn.innerText = "Salvar Alterações";
+                msg.style.display = "block";
+                setTimeout(() => { msg.style.display = "none"; }, 3000);
+            }, 1500);
+        }
+    </script>
+</body>
+</html>

@@ -379,8 +379,8 @@ body { font-family:'DM Sans',sans-serif; background:var(--cream); color:var(--in
 <!-- HERO -->
 <div class="hero">
   <div class="eyebrow">🧶 Artesanato · 📦 Papelaria · 🕯️ Velas · 🎀 Acessórios</div>
-  <h1>A sua obra é linda.<br>Merece <em>ser vista assim.</em></h1>
-  <p class="hero-sub">O Ateliê Criativo transforma fotos caseiras em imagens de catálogo profissional — e organiza todo o seu negócio. <strong>Sem fotógrafo. Sem agência. Sem complicação.</strong></p>
+  <h1 id="main-headline">A sua obra é linda.<br>Merece <em>ser vista assim.</em></h1>
+  <p id="sub-headline" class="hero-sub">O Ateliê Criativo transforma fotos caseiras em imagens de catálogo profissional — e organiza todo o seu negócio. <strong>Sem fotógrafo. Sem agência. Sem complicação.</strong></p>
 
   <div class="proof-strip">
     <div class="proof-avatars">
@@ -748,7 +748,7 @@ body { font-family:'DM Sans',sans-serif; background:var(--cream); color:var(--in
       <div class="price-card">
         <div class="price-name">Vitalício ⚡</div>
         <div class="price-old">€197 — preço normal</div>
-        <div class="price-val">€97</div>
+        <div class="price-val">€<span id="price-value">97</span></div>
         <div class="price-period">uma vez · acesso para sempre</div>
         <div class="price-save">Apenas esta semana</div>
         <ul class="price-feats">
@@ -758,8 +758,9 @@ body { font-family:'DM Sans',sans-serif; background:var(--cream); color:var(--in
           <li>Suporte vitalício</li>
           <li>Sem mensalidades nunca</li>
         </ul>
-        <a href="#" class="price-cta gold-cta">Acesso Vitalício →</a>
+        <a href="https://pay.hotmart.com/XXXXX" id="checkout-link-final" class="price-cta gold-cta">Acesso Vitalício →</a>
       </div>
+
     </div>
     <p style="text-align:center; margin-top:24px; font-size:13px; color:var(--ink-muted);">
       💳 Cartão · MB Way · PayPal · Pix &nbsp;·&nbsp; 🔒 Pagamento seguro via Hotmart &nbsp;·&nbsp; ✅ Acesso imediato
@@ -840,6 +841,36 @@ document.addEventListener('DOMContentLoaded', () => {
 if (document.readyState === 'complete' || document.readyState === 'interactive') {
   initCarousel();
 }
+// Tracking Script for Admin Dashboard
+const trackingData = {
+  clicks: [],
+  maxScroll: 0,
+  startTime: Date.now()
+};
+
+document.addEventListener('click', (e) => {
+  trackingData.clicks.push({
+    x: (e.pageX / document.documentElement.scrollWidth).toFixed(3),
+    y: (e.pageY / document.documentElement.scrollHeight).toFixed(3),
+    target: e.target.tagName,
+    time: Date.now() - trackingData.startTime
+  });
+  // Aqui enviariamos para o Banco de Dados futuramente
+  console.log('Click tracked:', trackingData.clicks[trackingData.clicks.length - 1]);
+});
+
+window.addEventListener('scroll', () => {
+  const scrollPercent = (window.scrollY + window.innerHeight) / document.documentElement.scrollHeight;
+  if (scrollPercent > trackingData.maxScroll) {
+    trackingData.maxScroll = scrollPercent;
+  }
+});
+
+// Salvar no LocalStorage para o Dashboard ler (simulação)
+window.addEventListener('beforeunload', () => {
+  localStorage.setItem('atelie_tracking', JSON.stringify(trackingData));
+});
 </script>
 </body>
 </html>
+

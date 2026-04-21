@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta charset="UTF-8">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=DM+Sans:wght@300;400;500;600&display=swap');
+
+:root {
+  --rose: #C8365A; --rose-light: #F9EDF1; --rose-mid: #F0C4D0;
+  --rose-dark: #8B1A35; --gold: #B8860B; --gold-warm: #D4A017;
+  --cream: #FBF8F4; --white: #FFFFFF;
+  --ink: #1A1410; --ink-soft: #4A3F38; --ink-muted: #9A8D85;
+  --border: rgba(200,54,90,0.12);
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+body { font-family:'DM Sans',sans-serif; background:var(--cream); color:var(--ink); }
+
+.section-wrap { padding:56px 20px; max-width:860px; margin:0 auto; }
+
+.sec-title {
+  font-family:'Playfair Display',serif;
+  font-size:clamp(22px,4vw,36px); font-weight:700; text-align:center; margin-bottom:10px;
+}
+.sec-title em { font-style:italic; color:var(--rose); }
+.sec-sub { text-align:center; color:var(--ink-muted); font-size:15px; margin-bottom:40px; font-weight:300; }
+
+/* CAROUSEL */
+.carousel-outer { position:relative; }
+.carousel-track-wrap { overflow:hidden; border-radius:20px; }
+.carousel-track {
+  display:flex; transition:transform 0.45s cubic-bezier(.4,0,.2,1);
+}
+
+/* CARD */
+.ba-card {
+  min-width:100%; padding:0;
+  display:flex; flex-direction:column;
+}
+.ba-images {
+  display:flex; gap:0; border-radius:20px; overflow:hidden;
+  border:1px solid var(--border);
+  box-shadow:0 8px 40px rgba(200,54,90,0.10);
+}
+.ba-side { flex:1; position:relative; }
+.ba-side img {
+  width:100%; height:360px; object-fit:cover; display:block;
+}
+.ba-label-img {
+  position:absolute; top:14px;
+  font-size:11px; font-weight:700; letter-spacing:0.1em; text-transform:uppercase;
+  padding:5px 14px; border-radius:100px;
+}
+.ba-side.before-side .ba-label-img {
+  left:14px; background:rgba(0,0,0,0.55); color:white;
+}
+.ba-side.after-side .ba-label-img {
+  right:14px; background:var(--rose); color:white;
+}
+.ba-divider {
+  width:4px; background:white; position:relative; z-index:2; flex-shrink:0;
+  display:flex; align-items:center; justify-content:center;
+}
+.ba-divider-icon {
+  width:32px; height:32px; background:white; border-radius:50%;
+  display:flex; align-items:center; justify-content:center;
+  font-size:16px; box-shadow:0 2px 12px rgba(0,0,0,0.18);
+  position:absolute; left:50%; top:50%; transform:translate(-50%,-50%);
+  z-index:3; color:var(--rose); font-weight:900;
+}
+
+/* CAPTION */
+.ba-caption {
+  display:flex; justify-content:space-between; align-items:flex-start;
+  padding:20px 4px 0; gap:12px;
+}
+.ba-caption-side { flex:1; }
+.ba-caption-label { font-size:10px; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; margin-bottom:4px; }
+.ba-caption-side.cap-before .ba-caption-label { color:var(--ink-muted); }
+.ba-caption-side.cap-after .ba-caption-label { color:var(--rose); }
+.ba-caption-text { font-size:13px; color:var(--ink-soft); line-height:1.5; }
+.ba-nicho {
+  text-align:center; flex-shrink:0;
+  font-family:'Playfair Display',serif; font-size:14px; font-weight:700; color:var(--ink);
+  padding:0 8px;
+}
+.ba-nicho span { display:block; font-size:22px; margin-bottom:2px; }
+
+/* DOTS & ARROWS */
+.carousel-dots {
+  display:flex; justify-content:center; gap:8px; margin-top:28px;
+}
+.dot {
+  width:8px; height:8px; border-radius:50%; background:var(--rose-mid);
+  cursor:pointer; transition:all 0.25s; border:none;
+}
+.dot.active { width:24px; border-radius:100px; background:var(--rose); }
+
+.carousel-arrows {
+  display:flex; justify-content:center; gap:12px; margin-top:16px;
+}
+.arrow-btn {
+  width:42px; height:42px; border-radius:50%;
+  background:var(--white); border:1.5px solid var(--rose-mid);
+  color:var(--rose); font-size:18px; cursor:pointer;
+  display:flex; align-items:center; justify-content:center;
+  transition:all 0.2s;
+}
+.arrow-btn:hover { background:var(--rose); color:white; border-color:var(--rose); }
+
+/* SOCIAL PROOF BAR */
+.proof-bar {
+  background:var(--white); border:1px solid var(--border); border-radius:16px;
+  padding:20px 28px; margin-top:36px;
+  display:flex; align-items:center; justify-content:center;
+  gap:24px; flex-wrap:wrap; text-align:center;
+}
+.proof-item { }
+.proof-num { font-family:'Playfair Display',serif; font-size:26px; font-weight:900; color:var(--rose); }
+.proof-desc { font-size:12px; color:var(--ink-muted); margin-top:2px; }
+.proof-sep { width:1px; height:40px; background:var(--border); flex-shrink:0; }
+
+/* CTA after gallery */
+.gallery-cta { text-align:center; margin-top:36px; }
+.cta-btn {
+  display:inline-block;
+  background:linear-gradient(135deg, var(--rose), var(--rose-dark));
+  color:white; font-family:'DM Sans',sans-serif; font-size:16px; font-weight:700;
+  padding:17px 44px; border-radius:100px; border:none; cursor:pointer;
+  text-decoration:none; box-shadow:0 8px 32px rgba(200,54,90,0.38);
+  transition:transform 0.2s, box-shadow 0.2s;
+}
+.cta-btn:hover { transform:translateY(-2px); box-shadow:0 14px 44px rgba(200,54,90,0.48); }
+.cta-sub { font-size:12px; color:var(--ink-muted); margin-top:10px; }
+
+@media(max-width:560px){
+  .ba-side img { height:200px; }
+  .ba-caption { flex-direction:column; align-items:center; text-align:center; }
+  .proof-sep { display:none; }
+  .proof-bar { gap:16px; }
+}
+</style>
+
+<div class="section-wrap">
+  <p class="sec-title">Veja a <em>magia acontecer</em> nos seus produtos</p>
+  <p class="sec-sub">Fotos reais tiradas com telemóvel — transformadas pelo Ateliê Criativo em segundos</p>
+
+  <div class="carousel-outer">
+    <div class="carousel-track-wrap">
+      <div class="carousel-track" id="track">
+
+        <!-- SLIDE 1: Papelaria borboleta -->
+        <div class="ba-card">
+          <div class="ba-images">
+            <div class="ba-side before-side">
+              <img src="/mnt/user-data/uploads/1.png" alt="Antes - Papelaria" style="object-position:left center;">
+              <span class="ba-label-img">Antes</span>
+            </div>
+            <div class="ba-divider"><div class="ba-divider-icon">↔</div></div>
+            <div class="ba-side after-side">
+              <img src="/mnt/user-data/uploads/1.png" alt="Depois - Papelaria" style="object-position:right center;">
+              <span class="ba-label-img">✨ Depois</span>
+            </div>
+          </div>
+          <div class="ba-caption">
+            <div class="ba-caption-side cap-before">
+              <div class="ba-caption-label">Antes</div>
+              <div class="ba-caption-text">Fundo de trabalho, luz irregular, cenário bagunçado</div>
+            </div>
+            <div class="ba-nicho"><span>📦</span>Papelaria</div>
+            <div class="ba-caption-side cap-after" style="text-align:right;">
+              <div class="ba-caption-label">✨ Depois</div>
+              <div class="ba-caption-text">Fundo limpo, luz profissional, pronta para vender</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- SLIDE 2: Boneco crochê -->
+        <div class="ba-card">
+          <div class="ba-images">
+            <div class="ba-side before-side">
+              <img src="/mnt/user-data/uploads/antes_e_depois_artesnato_montagem_boneco.png" alt="Antes - Crochê" style="object-position:left center;">
+              <span class="ba-label-img">Antes</span>
+            </div>
+            <div class="ba-divider"><div class="ba-divider-icon">↔</div></div>
+            <div class="ba-side after-side">
+              <img src="/mnt/user-data/uploads/antes_e_depois_artesnato_montagem_boneco.png" alt="Depois - Crochê" style="object-position:right center;">
+              <span class="ba-label-img">✨ Depois</span>
+            </div>
+          </div>
+          <div class="ba-caption">
+            <div class="ba-caption-side cap-before">
+              <div class="ba-caption-label">Antes</div>
+              <div class="ba-caption-text">Fundo de jardim, distração, contexto amador</div>
+            </div>
+            <div class="ba-nicho"><span>🧶</span>Crochê</div>
+            <div class="ba-caption-side cap-after" style="text-align:right;">
+              <div class="ba-caption-label">✨ Depois</div>
+              <div class="ba-caption-text">Cenário nórdico limpo, digno de loja online premium</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- SLIDE 3: Vela -->
+        <div class="ba-card">
+          <div class="ba-images">
+            <div class="ba-side before-side">
+              <img src="/mnt/user-data/uploads/3.png" alt="Antes - Vela" style="object-position:left center;">
+              <span class="ba-label-img">Antes</span>
+            </div>
+            <div class="ba-divider"><div class="ba-divider-icon">↔</div></div>
+            <div class="ba-side after-side">
+              <img src="/mnt/user-data/uploads/3.png" alt="Depois - Vela" style="object-position:right center;">
+              <span class="ba-label-img">✨ Depois</span>
+            </div>
+          </div>
+          <div class="ba-caption">
+            <div class="ba-caption-side cap-before">
+              <div class="ba-caption-label">Antes</div>
+              <div class="ba-caption-text">Fundo de tapete, luz artificial, sem ambiente</div>
+            </div>
+            <div class="ba-nicho"><span>🕯️</span>Velas</div>
+            <div class="ba-caption-side cap-after" style="text-align:right;">
+              <div class="ba-caption-label">✨ Depois</div>
+              <div class="ba-caption-text">Cenário zen, luz natural, parece produto de spa</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- SLIDE 4: Amigo Gourmet / caixa -->
+        <div class="ba-card">
+          <div class="ba-images">
+            <div class="ba-side before-side">
+              <img src="/mnt/user-data/uploads/4.png" alt="Antes - Caixa" style="object-position:left center;">
+              <span class="ba-label-img">Antes</span>
+            </div>
+            <div class="ba-divider"><div class="ba-divider-icon">↔</div></div>
+            <div class="ba-side after-side">
+              <img src="/mnt/user-data/uploads/4.png" alt="Depois - Caixa" style="object-position:right center;">
+              <span class="ba-label-img">✨ Depois</span>
+            </div>
+          </div>
+          <div class="ba-caption">
+            <div class="ba-caption-side cap-before">
+              <div class="ba-caption-label">Antes</div>
+              <div class="ba-caption-text">Mesa escura, fundo de cozinha, produto perde-se</div>
+            </div>
+            <div class="ba-nicho"><span>🎀</span>Personalizado</div>
+            <div class="ba-caption-side cap-after" style="text-align:right;">
+              <div class="ba-caption-label">✨ Depois</div>
+              <div class="ba-caption-text">Fundo neutro, produto em destaque, cenário de presente premium</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- SLIDE 5: Amigurumi roxo -->
+        <div class="ba-card">
+          <div class="ba-images">
+            <div class="ba-side before-side">
+              <img src="/mnt/user-data/uploads/5.png" alt="Antes - Amigurumi" style="object-position:left center;">
+              <span class="ba-label-img">Antes</span>
+            </div>
+            <div class="ba-divider"><div class="ba-divider-icon">↔</div></div>
+            <div class="ba-side after-side">
+              <img src="/mnt/user-data/uploads/5.png" alt="Depois - Amigurumi" style="object-position:right center;">
+              <span class="ba-label-img">✨ Depois</span>
+            </div>
+          </div>
+          <div class="ba-caption">
+            <div class="ba-caption-side cap-before">
+              <div class="ba-caption-label">Antes</div>
+              <div class="ba-caption-text">Fundo escuro, foto noturna, produto esconde-se na sombra</div>
+            </div>
+            <div class="ba-nicho"><span>🧶</span>Amigurumi</div>
+            <div class="ba-caption-side cap-after" style="text-align:right;">
+              <div class="ba-caption-label">✨ Depois</div>
+              <div class="ba-caption-text">Cenário artesanal limpo, cores vivas, produto irresistível</div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ARROWS -->
+    <div class="carousel-arrows">
+      <button class="arrow-btn" id="prevBtn" onclick="move(-1)">←</button>
+      <button class="arrow-btn" id="nextBtn" onclick="move(1)">→</button>
+    </div>
+
+    <!-- DOTS -->
+    <div class="carousel-dots" id="dots"></div>
+  </div>
+
+  <!-- PROOF BAR -->
+  <div class="proof-bar">
+    <div class="proof-item"><div class="proof-num">+500</div><div class="proof-desc">artesãs já usam o app</div></div>
+    <div class="proof-sep"></div>
+    <div class="proof-item"><div class="proof-num">€0</div><div class="proof-desc">gasto em fotógrafo</div></div>
+    <div class="proof-sep"></div>
+    <div class="proof-item"><div class="proof-num">30s</div><div class="proof-desc">por foto transformada</div></div>
+    <div class="proof-sep"></div>
+    <div class="proof-item"><div class="proof-num">+3x</div><div class="proof-desc">mais interação nas redes</div></div>
+  </div>
+
+  <!-- CTA -->
+  <div class="gallery-cta">
+    <a href="#precos" class="cta-btn">Quero fazer isto com as minhas fotos →</a>
+    <p class="cta-sub">Acesso imediato · Garantia 7 dias · Hotmart</p>
+  </div>
+</div>
+
+<script>
+let current = 0;
+const total = 5;
+const track = document.getElementById('track');
+const dotsWrap = document.getElementById('dots');
+
+// Create dots
+for(let i=0;i<total;i++){
+  const d = document.createElement('button');
+  d.className = 'dot' + (i===0?' active':'');
+  d.onclick = ()=>goTo(i);
+  dotsWrap.appendChild(d);
+}
+
+function goTo(n){
+  current = (n+total)%total;
+  track.style.transform = `translateX(-${current*100}%)`;
+  document.querySelectorAll('.dot').forEach((d,i)=>d.classList.toggle('active',i===current));
+}
+
+function move(dir){ goTo(current+dir); }
+
+// Auto-play
+let auto = setInterval(()=>move(1), 3800);
+track.parentElement.addEventListener('mouseenter',()=>clearInterval(auto));
+track.parentElement.addEventListener('mouseleave',()=>{ auto=setInterval(()=>move(1),3800); });
+</script>
