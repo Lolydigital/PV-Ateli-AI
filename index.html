@@ -351,12 +351,22 @@ body { font-family:'DM Sans',sans-serif; background:var(--cream); color:var(--in
 .mockup-laptop { width: 100%; height: auto; display: block; }
 .mockup-phone { position: absolute; bottom: -20px; right: -10px; width: 25%; z-index: 10; border: 4px solid var(--ink); border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.3); }
 
+/* AJUSTE RESPONSIVIDADE CARROSSEL */
+.ba-side-slide img { 
+  width:100%; 
+  height: clamp(240px, 60vh, 500px); /* Altura fluida para não cortar no PC */
+  object-fit: contain; /* Garante que a imagem inteira apareça */
+  background: #f8f8f8; /* Fundo neutro para preencher se necessário */
+  display:block; 
+}
+
 @media(max-width:560px){
-  .ba-side-slide img { height:240px; }
+  .ba-side-slide img { height: 280px; object-fit: cover; } /* No celular mantemos o cover para preencher a tela */
   .ba-caption-slide { flex-direction:column; align-items:center; text-align:center; }
   .cap-after-slide { text-align: center !important; }
   .mockup-phone { width: 35%; right: 0; }
 }
+
 
 </style>
 
@@ -498,8 +508,8 @@ body { font-family:'DM Sans',sans-serif; background:var(--cream); color:var(--in
   </div>
 
 
-  <a href="#precos" class="cta-btn">Quero o meu Ateliê Criativo agora →</a>
-  <p class="cta-sub-text">Acesso imediato · Garantia de 7 dias · Pagamento seguro via Hotmart</p>
+  <a href="#demonstracao" class="cta-btn">Quero o meu Ateliê Criativo agora →</a>
+  <p class="cta-sub-text">Acesso imediato · Garantia de 15 dias · Pagamento seguro via Hotmart</p>
 </div>
 
 
@@ -522,7 +532,7 @@ body { font-family:'DM Sans',sans-serif; background:var(--cream); color:var(--in
     </div>
 
     <!-- VÍDEO MOCKUP - A SOLUÇÃO -->
-    <div class="video-mockup-wrap">
+    <div id="demonstracao" class="video-mockup-wrap">
       <p class="sec-title" style="margin-bottom: 20px;">Veja como é <em>simples e rápido</em></p>
       <div class="mockup-container">
         <!-- Notebook Mockup -->
@@ -611,8 +621,14 @@ body { font-family:'DM Sans',sans-serif; background:var(--cream); color:var(--in
       <div class="step-num">3</div>
       <div><div class="step-title">Publique, orce e venda mais</div><div class="step-text">Fotos que param o scroll nas redes sociais. Orçamentos PDF que fecham vendas. Negócio organizado que finalmente cresce.</div></div>
     </div>
+    
+    <div style="text-align:center; margin-top:40px;">
+      <a href="#precos" class="cta-btn">Escolher meu plano e começar →</a>
+      <p class="cta-sub-text">Garantia incondicional de 15 dias</p>
+    </div>
   </div>
 </div>
+
 
 <!-- DEPOIMENTOS -->
 <div style="background:var(--cream); border-bottom:1px solid var(--border);">
@@ -636,8 +652,14 @@ body { font-family:'DM Sans',sans-serif; background:var(--cream); color:var(--in
         <div class="testi-author"><div class="testi-av">LP</div><div><div class="testi-name">Luciana Pires</div><div class="testi-role">Velas artesanais · Porto</div></div></div>
       </div>
     </div>
+
+    <div style="text-align:center; margin-top:40px;">
+      <a href="#precos" class="cta-btn">Quero os resultados dessas artesãs →</a>
+      <p class="cta-sub-text">Acesso vitalício disponível por tempo limitado</p>
+    </div>
   </div>
 </div>
+
 
 <!-- ANCORAGEM DE PREÇO — GATILHO MENTAL -->
 <div style="background:var(--white); border-bottom:1px solid var(--border);">
@@ -748,8 +770,8 @@ body { font-family:'DM Sans',sans-serif; background:var(--cream); color:var(--in
   <div class="sec">
     <div class="guarantee">
       <span class="guarantee-icon">🛡️</span>
-      <div class="guarantee-title">Garantia total de 7 dias — sem perguntas</div>
-      <p class="guarantee-text">Experimente o Ateliê Criativo durante 7 dias completos. Se por qualquer razão não ficar satisfeita — um e-mail e devolvemos tudo na hora. Sem perguntas, sem formulários, sem esperas. <strong>O risco é nosso. O ganho é seu.</strong></p>
+      <div class="guarantee-title">Garantia total de 15 dias — sem perguntas</div>
+      <p class="guarantee-text">Experimente o Ateliê Criativo durante 15 dias completos. Se por qualquer razão não ficar satisfeita — um e-mail e devolvemos tudo na hora. Sem perguntas, sem formulários, sem esperas. <strong>O risco é nosso. O ganho é seu.</strong></p>
     </div>
   </div>
 </div>
@@ -764,7 +786,7 @@ body { font-family:'DM Sans',sans-serif; background:var(--cream); color:var(--in
     <div class="faq-item"><div class="faq-q">Quantas fotos posso fazer?</div><div class="faq-a">Generosas para o uso normal de uma artesã ativa. Muito acima do que os concorrentes oferecem (alguns limitam a 4 fotos por dia mesmo cobrando mensalidade). No plano vitalício o limite é consideravelmente maior.</div></div>
     <div class="faq-item"><div class="faq-q">Funciona para o tipo de artesanato que eu faço?</div><div class="faq-a">Sim — macramê, bordados, crochê, sousplats, velas, sabonetes, papelaria, bijuteria, joias, presentes personalizados, MDF, guirlandas, cestos, acessórios. Se é feito com as mãos e com amor, o app foi feito para si.</div></div>
     <div class="faq-item"><div class="faq-q">Estou em Portugal — o pagamento funciona?</div><div class="faq-a">Sim, perfeitamente. Cartão de débito e crédito, MB Way e PayPal. Valores em euros. Fatura emitida automaticamente pela Hotmart.</div></div>
-    <div class="faq-item"><div class="faq-q">Posso cancelar a qualquer momento?</div><div class="faq-a">No plano mensal, cancela quando quiser sem qualquer penalização. No anual e vitalício tem sempre a garantia de 7 dias. Sem letra pequena.</div></div>
+    <div class="faq-item"><div class="faq-q">Posso cancelar a qualquer momento?</div><div class="faq-a">No plano mensal, cancela quando quiser sem qualquer penalização. No anual e vitalício tem sempre a garantia de 15 dias. Sem letra pequena.</div></div>
   </div>
 </div>
 
@@ -773,7 +795,7 @@ body { font-family:'DM Sans',sans-serif; background:var(--cream); color:var(--in
   <h2>O seu talento merece<br>uma vitrine <em>à sua altura.</em></h2>
   <p>Junte-se a centenas de artesãs que já pararam de trabalhar no escuro.<br>Fotos profissionais. Negócio organizado. Lucro visível. Hoje.</p>
   <a href="#precos" class="cta-btn">Quero começar agora →</a>
-  <p style="margin-top:18px; font-size:13px; color:var(--ink-muted);">✅ Acesso imediato · 🛡️ Garantia 7 dias · 💳 Pagamento seguro Hotmart</p>
+  <p style="margin-top:18px; font-size:13px; color:var(--ink-muted);">✅ Acesso imediato · 🛡️ Garantia 15 dias · 💳 Pagamento seguro Hotmart</p>
 </div>
 <script>
 let current = 0;
