@@ -198,10 +198,11 @@ body { font-family:'DM Sans',sans-serif; background:var(--cream); color:var(--in
 .testi-text { font-size:14px; color:var(--ink-soft); line-height:1.65; margin-bottom:18px; font-style:italic; }
 .testi-author { display:flex; align-items:center; gap:10px; }
 .testi-av {
-  width:40px; height:40px; border-radius:50%; background:var(--rose-light); flex-shrink:0;
-  display:flex; align-items:center; justify-content:center;
-  font-weight:700; font-size:14px; color:var(--rose-dark);
+  width:50px; height:50px; border-radius:50%; background:var(--rose-light); flex-shrink:0;
+  overflow: hidden; border: 2px solid var(--rose-mid);
 }
+.testi-av img { width: 100%; height: 100%; object-fit: cover; }
+
 .testi-name { font-weight:700; font-size:14px; }
 .testi-role { font-size:12px; color:var(--ink-muted); }
 
@@ -639,18 +640,19 @@ body { font-family:'DM Sans',sans-serif; background:var(--cream); color:var(--in
       <div class="testi-card">
         <div class="testi-stars">★★★★★</div>
         <p class="testi-text">"Tirei uma foto do meu sousplat em cima da mesa da cozinha e ficou uma imagem de revista. As clientes perguntam se contratei fotógrafo. Respondo que sim — a inteligência artificial!"</p>
-        <div class="testi-author"><div class="testi-av">MA</div><div><div class="testi-name">Maria Amélia</div><div class="testi-role">Sousplats & cestaria · Braga</div></div></div>
+        <div class="testi-author"><div class="testi-av"><img src="img/testi_1.png" alt="Maria Amélia"></div><div><div class="testi-name">Maria Amélia</div><div class="testi-role">Sousplats & cestaria · Braga</div></div></div>
       </div>
       <div class="testi-card">
         <div class="testi-stars">★★★★★</div>
         <p class="testi-text">"Mandei o orçamento em PDF com a minha logo pela primeira vez. A cliente respondeu de imediato: 'parece tão profissional, vou confirmar já.' Nunca mais voltei ao WhatsApp simples."</p>
-        <div class="testi-author"><div class="testi-av">CS</div><div><div class="testi-name">Carla Santos</div><div class="testi-role">Papelaria personalizada · Lisboa</div></div></div>
+        <div class="testi-author"><div class="testi-av"><img src="img/testi_2.png" alt="Carla Santos"></div><div><div class="testi-name">Carla Santos</div><div class="testi-role">Papelaria personalizada · Lisboa</div></div></div>
       </div>
       <div class="testi-card">
         <div class="testi-stars">★★★★★</div>
         <p class="testi-text">"Descobri que cobrava quase 30% abaixo do que devia. A calculadora mostrou isso em 5 minutos. Ajustei os preços — e as clientes nem pestanejaram. Agora sei que estou a lucrar de verdade."</p>
-        <div class="testi-author"><div class="testi-av">LP</div><div><div class="testi-name">Luciana Pires</div><div class="testi-role">Velas artesanais · Porto</div></div></div>
+        <div class="testi-author"><div class="testi-av"><img src="img/testi_3.png" alt="Luciana Pires"></div><div><div class="testi-name">Luciana Pires</div><div class="testi-role">Velas artesanais · Porto</div></div></div>
       </div>
+
     </div>
 
     <div style="text-align:center; margin-top:40px;">
