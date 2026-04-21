@@ -893,8 +893,37 @@ function initTracking() {
         page_url: window.location.href,
         user_agent: navigator.userAgent
     }]);
+
+    // Carregar Configurações Dinâmicas (CMS)
+    async function applySettings() {
+        const { data: settings } = await supabaseClient.from('site_settings').select('*').eq('id', 1).single();
+        if (settings) {
+            if (settings.headline) document.getElementById('main-headline').innerHTML = settings.headline;
+            if (settings.sub_headline) document.getElementById('sub-headline').innerText = settings.sub_headline;
+            if (settings.checkout_link) {
+                // Atualizar todos os links de checkout
+                document.querySelectorAll('a[href="#precos"], #checkout-link-final').forEach(link => {
+                    if (link.id === 'checkout-link-final') link.href = settings.checkout_link;
+                });
+            }
+            if (settings.price) document.getElementById('price-value').innerText = settings.price;
+            
+            // Injetar Pixels
+            if (settings.pixels) {
+                settings.pixels.forEach(id => {
+                    if (id) {
+                        const script = document.createElement('script');
+                        script.innerHTML = `!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window, document,'script','https://connect.facebook.net/en_US/fbevents.js');fbq('init', '${id}');fbq('track', 'PageView');`;
+                        document.head.appendChild(script);
+                    }
+                });
+            }
+        }
+    }
+    applySettings();
 }
 </script>
+
 
 </body>
 </html>

@@ -257,8 +257,69 @@ VALUES ('A sua obra é linda. Merece ser vista assim.', 'O Ateliê Criativo tran
             window.location.href = 'login.html';
         }
 
+        // Carregar Dados Iniciais
+        async function loadData() {
+            // 1. Carregar Configurações (CMS)
+            const { data: settings } = await supabaseClient.from('site_settings').select('*').eq('id', 1).single();
+            if (settings) {
+                document.getElementById('h1_text').value = settings.headline;
+                document.getElementById('sub_text').value = settings.sub_headline;
+                document.getElementById('checkout_link').value = settings.checkout_link;
+                document.getElementById('price').value = settings.price;
+                document.getElementById('warranty').value = settings.warranty;
+                if (settings.pixels) {
+                    document.getElementById('pixel_1').value = settings.pixels[0] || '';
+                    document.getElementById('pixel_2').value = settings.pixels[1] || '';
+                }
+            }
+
+            // 2. Carregar Analytics
+            const { data: events } = await supabaseClient.from('analytics_events').select('*');
+            if (events) {
+                const visits = events.filter(e => e.event_type === 'visit').length;
+                const clicks = events.filter(e => e.event_type === 'click').length;
+                const convRate = visits > 0 ? ((clicks / visits) * 100).toFixed(1) : 0;
+
+                document.querySelectorAll('.stat-value')[0].innerText = visits;
+                document.querySelectorAll('.stat-value')[1].innerText = clicks;
+                document.querySelectorAll('.stat-value')[2].innerText = convRate + '%';
+                
+                updateCharts(visits, clicks);
+            }
+        }
+
+        async function saveChanges() {
+            const btn = document.querySelector('.btn-save');
+            const msg = document.getElementById('saveMsg');
+            btn.innerText = "Salvando...";
+
+            const updates = {
+                headline: document.getElementById('h1_text').value,
+                sub_headline: document.getElementById('sub_text').value,
+                checkout_link: document.getElementById('checkout_link').value,
+                price: document.getElementById('price').value,
+                warranty: document.getElementById('warranty').value,
+                pixels: [document.getElementById('pixel_1').value, document.getElementById('pixel_2').value]
+            };
+
+            const { error } = await supabaseClient.from('site_settings').update(updates).eq('id', 1);
+
+            if (error) {
+                alert("Erro ao salvar: " + error.message);
+            } else {
+                btn.innerText = "Salvar Alterações";
+                msg.style.display = "block";
+                setTimeout(() => { msg.style.display = "none"; }, 3000);
+            }
+        }
+
+        function updateCharts(visits, clicks) {
+            funnelChart.data.datasets[0].data = [visits, Math.round(visits*0.7), clicks, Math.round(clicks*0.2)];
+            funnelChart.update();
+        }
+
         const ctx = document.getElementById('funnelChart').getContext('2d');
-        new Chart(ctx, {
+        const funnelChart = new Chart(ctx, {
             type: 'bar',
             data: {
                 labels: ['Visitas', 'Viram Vídeo', 'Clicaram Botão', 'Checkout'],
@@ -298,6 +359,8 @@ VALUES ('A sua obra é linda. Merece ser vista assim.', 'O Ateliê Criativo tran
                 setTimeout(() => { msg.style.display = "none"; }, 3000);
             }, 1500);
         }
+        loadData();
     </script>
 </body>
 </html>
+
