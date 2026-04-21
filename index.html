@@ -842,35 +842,60 @@ if (document.readyState === 'complete' || document.readyState === 'interactive')
   initCarousel();
 }
 // Tracking Script for Admin Dashboard
-const trackingData = {
-  clicks: [],
-  maxScroll: 0,
-  startTime: Date.now()
-};
+const SUPABASE_URL = 'https://sdnnpgeynzqwuruvanja.supabase.co';
+const SUPABASE_KEY = 'sb_publishable_Hbv2XnAyGQF87ma1nUJIFg_Gwhgb3sP';
+// Carregar Supabase dinamicamente se não estiver presente
+if (typeof supabase === 'undefined') {
+    const script = document.createElement('script');
+    script.src = 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2';
+    script.onload = () => initTracking();
+    document.head.appendChild(script);
+} else {
+    initTracking();
+}
 
-document.addEventListener('click', (e) => {
-  trackingData.clicks.push({
-    x: (e.pageX / document.documentElement.scrollWidth).toFixed(3),
-    y: (e.pageY / document.documentElement.scrollHeight).toFixed(3),
-    target: e.target.tagName,
-    time: Date.now() - trackingData.startTime
-  });
-  // Aqui enviariamos para o Banco de Dados futuramente
-  console.log('Click tracked:', trackingData.clicks[trackingData.clicks.length - 1]);
-});
+function initTracking() {
+    const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 
-window.addEventListener('scroll', () => {
-  const scrollPercent = (window.scrollY + window.innerHeight) / document.documentElement.scrollHeight;
-  if (scrollPercent > trackingData.maxScroll) {
-    trackingData.maxScroll = scrollPercent;
-  }
-});
+    const trackingData = {
+      clicks: [],
+      maxScroll: 0,
+      startTime: Date.now()
+    };
 
-// Salvar no LocalStorage para o Dashboard ler (simulação)
-window.addEventListener('beforeunload', () => {
-  localStorage.setItem('atelie_tracking', JSON.stringify(trackingData));
-});
+    document.addEventListener('click', async (e) => {
+      const clickData = {
+        x: (e.pageX / document.documentElement.scrollWidth).toFixed(3),
+        y: (e.pageY / document.documentElement.scrollHeight).toFixed(3),
+        target: e.target.tagName,
+        time: Date.now() - trackingData.startTime
+      };
+      
+      // Enviar clique para o Supabase
+      await supabaseClient.from('analytics_events').insert([{
+        event_type: 'click',
+        page_url: window.location.href,
+        coordinates: clickData,
+        user_agent: navigator.userAgent
+      }]);
+    });
+
+    window.addEventListener('scroll', () => {
+      const scrollPercent = (window.scrollY + window.innerHeight) / document.documentElement.scrollHeight;
+      if (scrollPercent > trackingData.maxScroll) {
+        trackingData.maxScroll = scrollPercent;
+      }
+    });
+
+    // Registrar visita ao carregar
+    supabaseClient.from('analytics_events').insert([{
+        event_type: 'visit',
+        page_url: window.location.href,
+        user_agent: navigator.userAgent
+    }]);
+}
 </script>
+
 </body>
 </html>
 
