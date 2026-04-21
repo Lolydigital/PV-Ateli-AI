@@ -303,6 +303,61 @@ body { font-family:'DM Sans',sans-serif; background:var(--cream); color:var(--in
   .dor-wrap, .guarantee { padding:28px 20px; }
   .sec { padding:48px 16px; }
 }
+
+/* CAROUSEL STYLES FROM SLIDER MODEL */
+.carousel-outer { position:relative; margin-top: 32px; }
+.carousel-track-wrap { overflow:hidden; border-radius:20px; }
+.carousel-track { display:flex; transition:transform 0.45s cubic-bezier(.4,0,.2,1); }
+.ba-card-slide { min-width:100%; padding:0; display:flex; flex-direction:column; }
+.ba-images-slide { 
+  display:flex; gap:0; border-radius:20px; overflow:hidden; 
+  border:1px solid var(--border); box-shadow:0 8px 40px rgba(200,54,90,0.10); 
+}
+.ba-side-slide { flex:1; position:relative; }
+.ba-side-slide img { width:100%; height:400px; object-fit:cover; display:block; }
+.ba-label-img-slide { 
+  position:absolute; top:14px; font-size:11px; font-weight:700; letter-spacing:0.1em; 
+  text-transform:uppercase; padding:5px 14px; border-radius:100px; z-index: 5;
+}
+.before-side-slide .ba-label-img-slide { left:14px; background:rgba(0,0,0,0.55); color:white; }
+.after-side-slide .ba-label-img-slide { right:14px; background:var(--rose); color:white; }
+.ba-divider-slide { width:4px; background:white; position:relative; z-index:2; flex-shrink:0; display:flex; align-items:center; justify-content:center; }
+.ba-divider-icon-slide { 
+  width:32px; height:32px; background:white; border-radius:50%; display:flex; align-items:center; justify-content:center; 
+  font-size:16px; box-shadow:0 2px 12px rgba(0,0,0,0.18); position:absolute; left:50%; top:50%; transform:translate(-50%,-50%); 
+  z-index:3; color:var(--rose); font-weight:900; 
+}
+.ba-caption-slide { display:flex; justify-content:space-between; align-items:flex-start; padding:20px 4px 0; gap:12px; }
+.ba-caption-side-slide { flex:1; }
+.ba-caption-label-slide { font-size:10px; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; margin-bottom:4px; }
+.cap-before-slide .ba-caption-label-slide { color:var(--ink-muted); }
+.cap-after-slide .ba-caption-label-slide { color:var(--rose); }
+.ba-caption-text-slide { font-size:13px; color:var(--ink-soft); line-height:1.5; }
+.ba-nicho-slide { text-align:center; flex-shrink:0; font-family:'Playfair Display',serif; font-size:14px; font-weight:700; color:var(--ink); padding:0 8px; }
+.ba-nicho-slide span { display:block; font-size:22px; margin-bottom:2px; }
+.carousel-dots { display:flex; justify-content:center; gap:8px; margin-top:28px; }
+.dot { width:8px; height:8px; border-radius:50%; background:var(--rose-mid); cursor:pointer; transition:all 0.25s; border:none; }
+.dot.active { width:24px; border-radius:100px; background:var(--rose); }
+.carousel-arrows { display:flex; justify-content:center; gap:12px; margin-top:16px; }
+.arrow-btn { 
+  width:42px; height:42px; border-radius:50%; background:var(--white); border:1.5px solid var(--rose-mid); 
+  color:var(--rose); font-size:18px; cursor:pointer; display:flex; align-items:center; justify-content:center; transition:all 0.2s; 
+}
+.arrow-btn:hover { background:var(--rose); color:white; border-color:var(--rose); }
+
+/* VIDEO MOCKUP SECTION */
+.video-mockup-wrap { margin-top: 40px; text-align: center; }
+.mockup-container { position: relative; max-width: 700px; margin: 0 auto; }
+.mockup-laptop { width: 100%; height: auto; display: block; }
+.mockup-phone { position: absolute; bottom: -20px; right: -10px; width: 25%; z-index: 10; border: 4px solid var(--ink); border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.3); }
+
+@media(max-width:560px){
+  .ba-side-slide img { height:240px; }
+  .ba-caption-slide { flex-direction:column; align-items:center; text-align:center; }
+  .cap-after-slide { text-align: center !important; }
+  .mockup-phone { width: 35%; right: 0; }
+}
+
 </style>
 
 <!-- BARRA URGÊNCIA -->
@@ -340,7 +395,126 @@ body { font-family:'DM Sans',sans-serif; background:var(--cream); color:var(--in
 
   <a href="#precos" class="cta-btn">Quero o meu Ateliê Criativo agora →</a>
   <p class="cta-sub-text">Acesso imediato · Garantia de 7 dias · Pagamento seguro via Hotmart</p>
+
+  <!-- NOVO CARROSSEL DE NICHOS -->
+  <div class="carousel-outer">
+    <div class="carousel-track-wrap">
+      <div class="carousel-track" id="track">
+
+        <!-- SLIDE 1: Pirâmide -->
+        <div class="ba-card-slide">
+          <div class="ba-images-slide">
+            <div class="ba-side-slide before-side-slide">
+              <img src="img/piramide_antes.jpeg" alt="Antes - Pirâmide" style="object-position:center;">
+              <span class="ba-label-img-slide">Antes</span>
+            </div>
+            <div class="ba-divider-slide"><div class="ba-divider-icon-slide">↔</div></div>
+            <div class="ba-side-slide after-side-slide">
+              <img src="img/piramide_depois.jpeg" alt="Depois - Pirâmide" style="object-position:center;">
+              <span class="ba-label-img-slide">✨ Depois</span>
+            </div>
+          </div>
+          <div class="ba-caption-slide">
+            <div class="ba-caption-side-slide cap-before-slide">
+              <div class="ba-caption-label-slide">Antes</div>
+              <div class="ba-caption-text-slide">Fundo de trabalho, luz irregular, cenário bagunçado</div>
+            </div>
+            <div class="ba-nicho-slide"><span>📦</span>Papelaria</div>
+            <div class="ba-caption-side-slide cap-after-slide" style="text-align:right;">
+              <div class="ba-caption-label-slide">✨ Depois</div>
+              <div class="ba-caption-text-slide">Fundo limpo, luz profissional, pronta para vender</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- SLIDE 2: Boneco -->
+        <div class="ba-card-slide">
+          <div class="ba-images-slide">
+            <div class="ba-side-slide before-side-slide">
+              <img src="img/boneco_antes.jpeg" alt="Antes - Boneco" style="object-position:center;">
+              <span class="ba-label-img-slide">Antes</span>
+            </div>
+            <div class="ba-divider-slide"><div class="ba-divider-icon-slide">↔</div></div>
+            <div class="ba-side-slide after-side-slide">
+              <img src="img/boneco_depois.jpeg" alt="Depois - Boneco" style="object-position:center;">
+              <span class="ba-label-img-slide">✨ Depois</span>
+            </div>
+          </div>
+          <div class="ba-caption-slide">
+            <div class="ba-caption-side-slide cap-before-slide">
+              <div class="ba-caption-label-slide">Antes</div>
+              <div class="ba-caption-text-slide">Fundo amador, sem contexto de venda</div>
+            </div>
+            <div class="ba-nicho-slide"><span>🧶</span>Artesanato</div>
+            <div class="ba-caption-side-slide cap-after-slide" style="text-align:right;">
+              <div class="ba-caption-label-slide">✨ Depois</div>
+              <div class="ba-caption-text-slide">Cenário nórdico limpo, digno de loja premium</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- SLIDE 3: Velas -->
+        <div class="ba-card-slide">
+          <div class="ba-images-slide">
+            <div class="ba-side-slide before-side-slide">
+              <img src="img/vela_antes.jpeg" alt="Antes - Velas" style="object-position:center;">
+              <span class="ba-label-img-slide">Antes</span>
+            </div>
+            <div class="ba-divider-slide"><div class="ba-divider-icon-slide">↔</div></div>
+            <div class="ba-side-slide after-side-slide">
+              <img src="img/vela_depois.jpeg" alt="Depois - Velas" style="object-position:center;">
+              <span class="ba-label-img-slide">✨ Depois</span>
+            </div>
+          </div>
+          <div class="ba-caption-slide">
+            <div class="ba-caption-side-slide cap-before-slide">
+              <div class="ba-caption-label-slide">Antes</div>
+              <div class="ba-caption-text-slide">Fundo de tapete, luz artificial, sem ambiente</div>
+            </div>
+            <div class="ba-nicho-slide"><span>🕯️</span>Velas</div>
+            <div class="ba-caption-side-slide cap-after-slide" style="text-align:right;">
+              <div class="ba-caption-label-slide">✨ Depois</div>
+              <div class="ba-caption-text-slide">Cenário zen, luz natural, produto de spa</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- SLIDE 4: Amigurumi -->
+        <div class="ba-card-slide">
+          <div class="ba-images-slide">
+            <div class="ba-side-slide before-side-slide">
+              <img src="img/amigurumi_antes.jpeg" alt="Antes - Amigurumi" style="object-position:center;">
+              <span class="ba-label-img-slide">Antes</span>
+            </div>
+            <div class="ba-divider-slide"><div class="ba-divider-icon-slide">↔</div></div>
+            <div class="ba-side-slide after-side-slide">
+              <img src="img/amigurumi_depois.jpeg" alt="Depois - Amigurumi" style="object-position:center;">
+              <span class="ba-label-img-slide">✨ Depois</span>
+            </div>
+          </div>
+          <div class="ba-caption-slide">
+            <div class="ba-caption-side-slide cap-before-slide">
+              <div class="ba-caption-label-slide">Antes</div>
+              <div class="ba-caption-text-slide">Fundo escuro, foto amadora</div>
+            </div>
+            <div class="ba-nicho-slide"><span>🧸</span>Amigurumi</div>
+            <div class="ba-caption-side-slide cap-after-slide" style="text-align:right;">
+              <div class="ba-caption-label-slide">✨ Depois</div>
+              <div class="ba-caption-text-slide">Cenário limpo e vibrante, produto irresistível</div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+    <div class="carousel-arrows">
+      <button class="arrow-btn" id="prevBtn" onclick="move(-1)">←</button>
+      <button class="arrow-btn" id="nextBtn" onclick="move(1)">→</button>
+    </div>
+    <div class="carousel-dots" id="dots"></div>
+  </div>
 </div>
+
 
 <!-- DOR -->
 <div style="background:var(--white); border-bottom:1px solid var(--border);">
@@ -358,8 +532,30 @@ body { font-family:'DM Sans',sans-serif; background:var(--cream); color:var(--in
         <small>E isso tem solução — rápida, simples e ao alcance de qualquer artesã.</small>
       </div>
     </div>
+
+    <!-- VÍDEO MOCKUP - A SOLUÇÃO -->
+    <div class="video-mockup-wrap">
+      <p class="sec-title" style="margin-bottom: 20px;">Veja como é <em>simples e rápido</em></p>
+      <div class="mockup-container">
+        <!-- Notebook Mockup -->
+        <div style="background: #333; padding: 10px; border-radius: 10px; box-shadow: 0 20px 50px rgba(0,0,0,0.2);">
+          <div style="background: #000; aspect-ratio: 16/9; display: flex; align-items: center; justify-content: center; color: white; border-radius: 5px; overflow: hidden;">
+            <p>Vídeo do Notebook aqui</p>
+            <!-- <video src="video/demo_notebook.mp4" controls style="width: 100%;"></video> -->
+          </div>
+        </div>
+        <!-- Phone Mockup -->
+        <div class="mockup-phone">
+          <div style="background: #000; aspect-ratio: 9/19.5; display: flex; align-items: center; justify-content: center; color: white; border-radius: 15px; overflow: hidden;">
+            <p style="font-size: 10px;">Vídeo Celular</p>
+            <!-- <video src="video/demo_celular.mp4" controls style="width: 100%;"></video> -->
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
+
 
 <!-- MECANISMO — FUNDO ROSÉ CLARO -->
 <div class="mec-section">
