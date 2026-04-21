@@ -172,23 +172,24 @@
                         <textarea id="sub_text" rows="3">O Ateliê Criativo transforma fotos caseiras em imagens de catálogo profissional — e organiza todo o seu negócio.</textarea>
                     </div>
                     <div class="form-group">
-                        <label>Link Checkout Vitalício</label>
-                        <input type="text" id="checkout_link" value="https://pay.hotmart.com/S105487628M?off=huvo26er&checkoutMode=6">
+                        <label>Link Checkout Vitalício (Tax Inclusive)</label>
+                        <input type="text" id="checkout_link" value="https://pay.hotmart.com/Y105490525B">
                     </div>
                 </div>
                 <div>
                     <div class="form-group">
-                        <label>Link Checkout Anual</label>
+                        <label>Link Checkout Anual (Tax Inclusive)</label>
                         <input type="text" id="checkout_anual" value="https://pay.hotmart.com/S105487628M?off=pcgu9toa">
                     </div>
                     <div class="form-group">
-                        <label>Link Checkout Mensal</label>
-                        <input type="text" id="checkout_mensal" value="https://pay.hotmart.com/S105487628M?off=hz3wb4jp">
+                        <label>Link Checkout Mensal (Tax Inclusive)</label>
+                        <input type="text" id="checkout_mensal" value="https://pay.hotmart.com/Y105490525B">
                     </div>
                     <div class="form-group">
-                        <label>Preço Oferta (€)</label>
-                        <input type="number" id="price" value="97">
+                        <label>Preço Oferta Vitalício (€)</label>
+                        <input type="number" id="price" value="117">
                     </div>
+
                     <div class="form-group">
                         <label>Garantia (Dias)</label>
                         <input type="number" id="warranty" value="15">
@@ -219,25 +220,22 @@ CREATE TABLE site_settings (
     id SERIAL PRIMARY KEY,
     headline TEXT,
     sub_headline TEXT,
-    checkout_link TEXT,
+    checkout_link TEXT, -- Vitalício
+    checkout_anual TEXT,
+    checkout_mensal TEXT,
     price DECIMAL,
     warranty INTEGER,
-    pixels TEXT[] -- Array para múltiplos pixels
+    pixels TEXT[]
 );
 
--- Tabela para Eventos de Rastreamento (Funil e Heatmap)
-CREATE TABLE analytics_events (
-    id SERIAL PRIMARY KEY,
-    event_type TEXT, -- 'visit', 'click', 'scroll'
-    page_url TEXT,
-    coordinates JSONB, -- Para o heatmap {x, y}
-    user_agent TEXT,
-    created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
-);
+-- Atualizar configurações existentes (ou inserir se não houver)
+INSERT INTO site_settings (id, headline, sub_headline, checkout_link, checkout_anual, checkout_mensal, price, warranty)
+VALUES (1, 'A sua obra é linda. Merece ser vista assim.', 'O Ateliê Criativo transforma fotos...', 'https://pay.hotmart.com/S105487628M?off=huvo26er&checkoutMode=6', 'https://pay.hotmart.com/S105487628M?off=pcgu9toa', 'https://pay.hotmart.com/S105487628M?off=hz3wb4jp', 97, 15)
+ON CONFLICT (id) DO UPDATE SET 
+    checkout_link = EXCLUDED.checkout_link,
+    checkout_anual = EXCLUDED.checkout_anual,
+    checkout_mensal = EXCLUDED.checkout_mensal;
 
--- Inserir configurações iniciais
-INSERT INTO site_settings (headline, sub_headline, checkout_link, price, warranty)
-VALUES ('A sua obra é linda. Merece ser vista assim.', 'O Ateliê Criativo transforma fotos...', 'https://pay.hotmart.com/XXXXX', 97, 15);
             </textarea>
             <button class="btn-save" style="background: #334155; margin-top: 12px;" onclick="copySQL()">Copiar Código SQL</button>
         </div>
@@ -270,16 +268,19 @@ VALUES ('A sua obra é linda. Merece ser vista assim.', 'O Ateliê Criativo tran
             // 1. Carregar Configurações (CMS)
             const { data: settings } = await supabaseClient.from('site_settings').select('*').eq('id', 1).single();
             if (settings) {
-                document.getElementById('h1_text').value = settings.headline;
-                document.getElementById('sub_text').value = settings.sub_headline;
-                document.getElementById('checkout_link').value = settings.checkout_link;
-                document.getElementById('price').value = settings.price;
-                document.getElementById('warranty').value = settings.warranty;
+                document.getElementById('h1_text').value = settings.headline || '';
+                document.getElementById('sub_text').value = settings.sub_headline || '';
+                document.getElementById('checkout_link').value = settings.checkout_link || '';
+                document.getElementById('checkout_anual').value = settings.checkout_anual || '';
+                document.getElementById('checkout_mensal').value = settings.checkout_mensal || '';
+                document.getElementById('price').value = settings.price || 97;
+                document.getElementById('warranty').value = settings.warranty || 15;
                 if (settings.pixels) {
                     document.getElementById('pixel_1').value = settings.pixels[0] || '';
                     document.getElementById('pixel_2').value = settings.pixels[1] || '';
                 }
             }
+
 
             // 2. Carregar Analytics
             const { data: events } = await supabaseClient.from('analytics_events').select('*');
@@ -305,10 +306,13 @@ VALUES ('A sua obra é linda. Merece ser vista assim.', 'O Ateliê Criativo tran
                 headline: document.getElementById('h1_text').value,
                 sub_headline: document.getElementById('sub_text').value,
                 checkout_link: document.getElementById('checkout_link').value,
+                checkout_anual: document.getElementById('checkout_anual').value,
+                checkout_mensal: document.getElementById('checkout_mensal').value,
                 price: document.getElementById('price').value,
                 warranty: document.getElementById('warranty').value,
                 pixels: [document.getElementById('pixel_1').value, document.getElementById('pixel_2').value]
             };
+
 
             const { error } = await supabaseClient.from('site_settings').update(updates).eq('id', 1);
 
