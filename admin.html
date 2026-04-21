@@ -103,8 +103,10 @@
             <a href="#" class="nav-link"><i class="fas fa-fire"></i> <span>Heatmap</span></a>
             <a href="#" class="nav-link"><i class="fas fa-users"></i> <span>Leads</span></a>
             <a href="#" class="nav-link" style="margin-top: 40px;"><i class="fas fa-cog"></i> <span>Configurações</span></a>
+            <a href="#" onclick="handleLogout()" class="nav-link" style="color: #ef4444;"><i class="fas fa-sign-out-alt"></i> <span>Sair</span></a>
         </nav>
     </div>
+
 
     <div class="main">
         <div class="header">
@@ -234,7 +236,26 @@ VALUES ('A sua obra é linda. Merece ser vista assim.', 'O Ateliê Criativo tran
     </div>
 
 
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script>
+        const SUPABASE_URL = 'SUA_URL_AQUI';
+        const SUPABASE_KEY = 'SUA_KEY_AQUI';
+        const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+
+        // Verificar Sessão
+        async function checkSession() {
+            const { data: { session } } = await supabaseClient.auth.getSession();
+            if (!session) {
+                window.location.href = 'login.html';
+            }
+        }
+        checkSession();
+
+        async function handleLogout() {
+            await supabaseClient.auth.signOut();
+            window.location.href = 'login.html';
+        }
+
         const ctx = document.getElementById('funnelChart').getContext('2d');
         new Chart(ctx, {
             type: 'bar',
