@@ -725,7 +725,8 @@ body { font-family:'DM Sans',sans-serif; background:var(--cream); color:var(--in
           <li>Gestão de encomendas</li>
           <li>Financeiro completo</li>
         </ul>
-        <a href="https://pay.hotmart.com/S105487628M?off=hz3wb4jp" class="price-cta">Assinar Mensal</a>
+        <a href="https://pay.hotmart.com/S105487628M?off=hz3wb4jp" id="checkout-mensal" class="price-cta">Assinar Mensal</a>
+
       </div>
 
       <div class="price-card featured">
@@ -742,7 +743,8 @@ body { font-family:'DM Sans',sans-serif; background:var(--cream); color:var(--in
           <li>Suporte prioritário</li>
           <li>Todas as atualizações</li>
         </ul>
-        <a href="https://pay.hotmart.com/S105487628M?off=pcgu9toa" class="price-cta">Assinar Anual · Melhor Oferta</a>
+        <a href="https://pay.hotmart.com/S105487628M?off=pcgu9toa" id="checkout-anual" class="price-cta">Assinar Anual · Melhor Oferta</a>
+
       </div>
 
       <div class="price-card">
@@ -899,10 +901,18 @@ function initTracking() {
             if (settings.headline) document.getElementById('main-headline').innerHTML = settings.headline;
             if (settings.sub_headline) document.getElementById('sub-headline').innerText = settings.sub_headline;
             if (settings.checkout_link) {
-                document.querySelectorAll('a[href="#precos"], #checkout-link-final').forEach(link => {
-                    if (link.id === 'checkout-link-final') link.href = settings.checkout_link;
-                });
+                const btnVit = document.getElementById('checkout-link-final');
+                if (btnVit) btnVit.href = settings.checkout_link;
             }
+            if (settings.checkout_anual) {
+                const btnAnu = document.getElementById('checkout-anual');
+                if (btnAnu) btnAnu.href = settings.checkout_anual;
+            }
+            if (settings.checkout_mensal) {
+                const btnMen = document.getElementById('checkout-mensal');
+                if (btnMen) btnMen.href = settings.checkout_mensal;
+            }
+
             if (settings.price) document.getElementById('price-value').innerText = settings.price;
             if (settings.pixels) {
                 settings.pixels.forEach(id => {
