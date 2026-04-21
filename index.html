@@ -838,77 +838,71 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 });
 
-if (document.readyState === 'complete' || document.readyState === 'interactive') {
-  initCarousel();
-}
-// Tracking Script for Admin Dashboard
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+// Configuração do Supabase
 const SUPABASE_URL = 'https://sdnnpgeynzqwuruvanja.supabase.co';
 const SUPABASE_KEY = 'sb_publishable_Hbv2XnAyGQF87ma1nUJIFg_Gwhgb3sP';
-// Carregar Supabase dinamicamente se não estiver presente
-if (typeof supabase === 'undefined') {
-    const script = document.createElement('script');
-    script.src = 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2';
-    script.onload = () => initTracking();
-    document.head.appendChild(script);
-} else {
-    initTracking();
-}
+const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 
 function initTracking() {
-    const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+    // Capturar Origem (UTMs ou Referer)
+    const urlParams = new URLSearchParams(window.location.search);
+    const source = urlParams.get('utm_source') || (document.referrer ? new URL(document.referrer).hostname : 'Direto');
+    
+    // 1. Registrar Visita
+    supabaseClient.from('analytics_events').insert([{
+        event_type: 'visit',
+        page_url: window.location.href,
+        user_agent: navigator.userAgent,
+        coordinates: { source: source }
+    }]);
 
-    const trackingData = {
-      clicks: [],
-      maxScroll: 0,
-      startTime: Date.now()
-    };
-
+    // 2. Registrar Cliques (Mapa de Calor)
     document.addEventListener('click', async (e) => {
-      const clickData = {
-        x: (e.pageX / document.documentElement.scrollWidth).toFixed(3),
-        y: (e.pageY / document.documentElement.scrollHeight).toFixed(3),
-        target: e.target.tagName,
-        time: Date.now() - trackingData.startTime
-      };
+      const x = (e.pageX / document.documentElement.scrollWidth).toFixed(3);
+      const y = (e.pageY / document.documentElement.scrollHeight).toFixed(3);
       
-      // Enviar clique para o Supabase
       await supabaseClient.from('analytics_events').insert([{
         event_type: 'click',
         page_url: window.location.href,
-        coordinates: clickData,
+        coordinates: { x, y, target: e.target.tagName },
         user_agent: navigator.userAgent
       }]);
     });
 
+    // 3. Registrar Profundidade de Scroll
+    let maxScroll = 0;
     window.addEventListener('scroll', () => {
-      const scrollPercent = (window.scrollY + window.innerHeight) / document.documentElement.scrollHeight;
-      if (scrollPercent > trackingData.maxScroll) {
-        trackingData.maxScroll = scrollPercent;
-      }
+      const scrollPercent = Math.round(((window.scrollY + window.innerHeight) / document.documentElement.scrollHeight) * 100);
+      if (scrollPercent > maxScroll) maxScroll = scrollPercent;
     });
 
-    // Registrar visita ao carregar
-    supabaseClient.from('analytics_events').insert([{
-        event_type: 'visit',
+    // Enviar scroll máximo ao sair
+    window.addEventListener('beforeunload', () => {
+      // Usamos beacon ou enviamos síncrono se possível
+      const data = {
+        event_type: 'scroll_depth',
         page_url: window.location.href,
-        user_agent: navigator.userAgent
-    }]);
+        coordinates: { depth: maxScroll }
+      };
+      // Nota: insert no beforeunload pode falhar em alguns browsers sem beacon
+      supabaseClient.from('analytics_events').insert([data]);
+    });
+}
 
-    // Carregar Configurações Dinâmicas (CMS)
+    // 4. Carregar Configurações Dinâmicas (CMS)
     async function applySettings() {
         const { data: settings } = await supabaseClient.from('site_settings').select('*').eq('id', 1).single();
         if (settings) {
             if (settings.headline) document.getElementById('main-headline').innerHTML = settings.headline;
             if (settings.sub_headline) document.getElementById('sub-headline').innerText = settings.sub_headline;
             if (settings.checkout_link) {
-                // Atualizar todos os links de checkout
                 document.querySelectorAll('a[href="#precos"], #checkout-link-final').forEach(link => {
                     if (link.id === 'checkout-link-final') link.href = settings.checkout_link;
                 });
             }
             if (settings.price) document.getElementById('price-value').innerText = settings.price;
-            
-            // Injetar Pixels
             if (settings.pixels) {
                 settings.pixels.forEach(id => {
                     if (id) {
@@ -922,7 +916,14 @@ function initTracking() {
     }
     applySettings();
 }
+
+// Inicializar tudo
+document.addEventListener('DOMContentLoaded', () => {
+    initCarousel();
+    initTracking();
+});
 </script>
+
 
 
 </body>
