@@ -361,18 +361,34 @@ ON CONFLICT (id) DO UPDATE SET
             alert("Código SQL copiado! Cole no Supabase.");
         }
 
-        function saveChanges() {
+        async function saveChanges() {
             const btn = document.querySelector('.btn-save');
             const msg = document.getElementById('saveMsg');
             btn.innerText = "Salvando...";
             
-            // Simulação de salvamento
-            setTimeout(() => {
+            const updates = {
+                headline: document.getElementById('h1_text').value,
+                sub_headline: document.getElementById('sub_text').value,
+                checkout_link: document.getElementById('checkout_link').value,
+                checkout_anual: document.getElementById('checkout_anual').value,
+                checkout_mensal: document.getElementById('checkout_mensal').value,
+                price: document.getElementById('price').value,
+                warranty: document.getElementById('warranty').value,
+                pixels: [document.getElementById('pixel_1').value, document.getElementById('pixel_2').value]
+            };
+
+            const { error } = await supabaseClient.from('site_settings').update(updates).eq('id', 1);
+
+            if (error) {
+                alert("Erro ao salvar: " + error.message);
+                btn.innerText = "Tentar Novamente";
+            } else {
                 btn.innerText = "Salvar Alterações";
                 msg.style.display = "block";
                 setTimeout(() => { msg.style.display = "none"; }, 3000);
-            }, 1500);
+            }
         }
+
         loadData();
     </script>
 </body>
