@@ -35,8 +35,29 @@ body { font-family:'DM Sans',sans-serif; background:var(--cream); color:var(--in
   background: linear-gradient(90deg, var(--rose-dark), #B02248, var(--rose-dark));
   color:white; text-align:center; padding:11px 20px;
   font-size:13px; font-weight:500; letter-spacing:0.02em;
+  position: relative; z-index: 100;
 }
 .urgency-bar strong { color:#FFE0A0; font-weight:700; }
+#timer { font-family: monospace; background: rgba(0,0,0,0.2); padding: 2px 6px; border-radius: 4px; margin-left: 8px; font-size: 14px; }
+
+/* STICKY CTA BAR */
+.sticky-cta {
+  position: fixed; bottom: 0; left: 0; right: 0;
+  background: white; padding: 12px 20px;
+  box-shadow: 0 -4px 20px rgba(0,0,0,0.1);
+  display: flex; justify-content: space-between; align-items: center;
+  z-index: 1000; transform: translateY(100%); transition: transform 0.3s ease;
+  border-top: 1px solid var(--border-soft);
+}
+.sticky-cta.active { transform: translateY(0); }
+.sticky-price { font-weight: 700; color: var(--rose-dark); }
+.sticky-price small { text-decoration: line-through; color: var(--ink-muted); font-weight: 400; margin-right: 4px; }
+.sticky-btn { 
+  background: var(--rose); color: white; padding: 10px 20px; 
+  border-radius: 100px; text-decoration: none; font-weight: 700; font-size: 14px;
+}
+@media(min-width: 601px) { .sticky-cta { display: none; } }
+
 
 /* HERO */
 .hero {
@@ -394,8 +415,16 @@ src="https://www.facebook.com/tr?id=976808261431332&ev=PageView&noscript=1"
 
 <!-- BARRA URGÊNCIA -->
 <div class="urgency-bar">
-  ⏳ Oferta de lançamento · <strong>Acesso vitalício por €97</strong> — esta semana apenas · Depois sobe para €197
+  ⏳ Oferta termina em: <strong id="timer">15:00</strong> — <strong>Vitalício por €97</strong> apenas esta semana.
 </div>
+
+<!-- STICKY CTA MOBILE -->
+<div class="sticky-cta" id="sticky-cta">
+  <div class="sticky-price"><small>€197</small>€97</div>
+  <a href="#precos" class="sticky-btn">Garantir Vaga →</a>
+</div>
+
+
 
 <!-- HERO -->
 <div class="hero">
@@ -529,10 +558,12 @@ src="https://www.facebook.com/tr?id=976808261431332&ev=PageView&noscript=1"
     <div class="carousel-dots" id="dots"></div>
   </div>
 
-
-  <a href="#demonstracao" class="cta-btn">Quero o meu Ateliê Criativo agora →</a>
-  <p class="cta-sub-text">Acesso imediato · Garantia de 15 dias · Pagamento seguro via Hotmart</p>
-</div>
+    <!-- EARLY CTA FOR MOBILE -->
+    <div style="text-align:center; padding: 20px 20px 40px;">
+      <a href="#precos" class="cta-btn" style="width:100%; max-width:400px; margin:0 auto;">Quero Garantir o Desconto →</a>
+      <p style="margin-top:12px; font-size:12px; color:var(--ink-muted);">🎁 Bónus exclusivo para as próximas 24h</p>
+    </div>
+  </div>
 
 
 
@@ -737,7 +768,7 @@ src="https://www.facebook.com/tr?id=976808261431332&ev=PageView&noscript=1"
       <div class="price-card">
         <div class="price-name">Mensal</div>
         <div class="price-old">€19,90/mês</div>
-        <div class="price-val">€9<small style="font-size:22px">,90</small></div>
+        <div class="price-val">€7<small style="font-size:22px">,90</small></div>
         <div class="price-period">/mês · cancela quando quiser</div>
         <ul class="price-feats">
           <li>Fotos IA profissionais</li>
@@ -747,16 +778,15 @@ src="https://www.facebook.com/tr?id=976808261431332&ev=PageView&noscript=1"
           <li>Financeiro completo</li>
         </ul>
         <a href="https://pay.hotmart.com/Y105492438A?off=lufkir3m" id="checkout-mensal" class="price-cta">Assinar Mensal</a>
-
       </div>
 
       <div class="price-card featured">
         <div class="price-badge">⭐ Mais Popular</div>
         <div class="price-name">Anual</div>
         <div class="price-old">€119,00/ano</div>
-        <div class="price-val">€47<small style="font-size:22px">,00</small></div>
-        <div class="price-period">/ano · ≈ €3,92/mês</div>
-        <div class="price-save">Poupa €72 por ano</div>
+        <div class="price-val">€59<small style="font-size:22px">,00</small></div>
+        <div class="price-period">/ano · equivale a €4,91/mês</div>
+        <div class="price-save">Poupa €60 por ano</div>
         <ul class="price-feats">
           <li>Tudo do Mensal</li>
           <li>Cenários premium</li>
@@ -765,13 +795,12 @@ src="https://www.facebook.com/tr?id=976808261431332&ev=PageView&noscript=1"
           <li>Todas as atualizações</li>
         </ul>
         <a href="https://pay.hotmart.com/Y105492438A?off=ff49t67u" id="checkout-anual" class="price-cta">Assinar Anual · Melhor Oferta</a>
-
       </div>
 
       <div class="price-card">
         <div class="price-name">Vitalício ⚡</div>
         <div class="price-old">€247,00</div>
-        <div class="price-val">€<span id="price-value">117</span></div>
+        <div class="price-val">€<span id="price-value">97</span></div>
         <div class="price-period">uma vez · acesso para sempre</div>
         <div class="price-save">Apenas esta semana</div>
         <ul class="price-feats">
@@ -783,10 +812,8 @@ src="https://www.facebook.com/tr?id=976808261431332&ev=PageView&noscript=1"
         </ul>
         <a href="https://pay.hotmart.com/Y105490525B" id="checkout-link-final" class="price-cta gold-cta">Acesso Vitalício →</a>
       </div>
-
-
-
     </div>
+
     <p style="text-align:center; margin-top:24px; font-size:13px; color:var(--ink-muted);">
       💳 Cartão · MB Way · PayPal · Pix &nbsp;·&nbsp; 🔒 Pagamento seguro via Hotmart &nbsp;·&nbsp; ✅ Acesso imediato
     </p>
@@ -930,11 +957,40 @@ function initTracking() {
     applySettings();
 }
 
+// 5. CRONÔMETRO DE URGÊNCIA (15 MINUTOS)
+function startTimer(duration, display) {
+    let timer = duration, minutes, seconds;
+    setInterval(function () {
+        minutes = parseInt(timer / 60, 10);
+        seconds = parseInt(timer % 60, 10);
+        minutes = minutes < 10 ? "0" + minutes : minutes;
+        seconds = seconds < 10 ? "0" + seconds : seconds;
+        display.textContent = minutes + ":" + seconds;
+        if (--timer < 0) timer = duration; // Loop para manter a urgência sempre ativa
+    }, 1000);
+}
+
+// 6. STICKY BAR LOGIC
+function initStickyBar() {
+    const sticky = document.getElementById('sticky-cta');
+    const hero = document.querySelector('.hero');
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > hero.offsetHeight) {
+            sticky.classList.add('active');
+        } else {
+            sticky.classList.remove('active');
+        }
+    });
+}
+
 document.addEventListener('DOMContentLoaded', () => {
     initTracking();
+    initStickyBar();
+    startTimer(60 * 15, document.querySelector('#timer'));
 });
 </script>
 </body>
 </html>
+
 
 

@@ -188,8 +188,9 @@
 
                     <div class="form-group">
                         <label>Preço Oferta Vitalício (€)</label>
-                        <input type="number" id="price" value="117">
+                        <input type="number" id="price" value="97">
                     </div>
+
 
                     <div class="form-group">
                         <label>Garantia (Dias)</label>
@@ -232,11 +233,13 @@ CREATE TABLE site_settings (
 
 -- Atualizar configurações existentes (ou inserir se não houver)
 INSERT INTO site_settings (id, headline, sub_headline, checkout_link, checkout_anual, checkout_mensal, price, warranty)
-VALUES (1, 'A sua obra é linda. Merece ser vista assim.', 'O Ateliê Criativo transforma fotos...', 'https://pay.hotmart.com/S105487628M?off=huvo26er&checkoutMode=6', 'https://pay.hotmart.com/S105487628M?off=pcgu9toa', 'https://pay.hotmart.com/S105487628M?off=hz3wb4jp', 97, 15)
+VALUES (1, 'A sua obra é linda. Merece ser vista assim.', 'O Ateliê Criativo transforma fotos...', 'https://pay.hotmart.com/Y105490525B', 'https://pay.hotmart.com/Y105492438A?off=ff49t67u', 'https://pay.hotmart.com/Y105492438A?off=lufkir3m', 97, 15)
 ON CONFLICT (id) DO UPDATE SET 
     checkout_link = EXCLUDED.checkout_link,
     checkout_anual = EXCLUDED.checkout_anual,
-    checkout_mensal = EXCLUDED.checkout_mensal;
+    checkout_mensal = EXCLUDED.checkout_mensal,
+    price = EXCLUDED.price;
+
 
             </textarea>
             <button class="btn-save" style="background: #334155; margin-top: 12px;" onclick="copySQL()">Copiar Código SQL</button>
