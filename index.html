@@ -367,26 +367,109 @@ body { font-family:'DM Sans',sans-serif; background:var(--cream); color:var(--in
 }
 .arrow-btn:hover { background:var(--rose); color:white; border-color:var(--rose); }
 
-/* VIDEO MOCKUP SECTION */
-.video-mockup-wrap { margin-top: 40px; text-align: center; }
-.mockup-container { position: relative; max-width: 700px; margin: 0 auto; }
-.mockup-laptop { width: 100%; height: auto; display: block; }
-.mockup-phone { position: absolute; bottom: -20px; right: -10px; width: 25%; z-index: 10; border: 4px solid var(--ink); border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.3); }
-
-/* AJUSTE RESPONSIVIDADE CARROSSEL */
-.ba-side-slide img { 
-  width:100%; 
-  height: clamp(240px, 60vh, 500px); /* Altura fluida para não cortar no PC */
-  object-fit: contain; /* Garante que a imagem inteira apareça */
-  background: #f8f8f8; /* Fundo neutro para preencher se necessário */
-  display:block; 
+/* PREMIUM VIDEO MOCKUP SECTION */
+.video-mockup-wrap { 
+  margin: 60px auto; 
+  padding: 0 20px;
+  max-width: 900px;
+  text-align: center; 
+  position: relative;
 }
 
-@media(max-width:560px){
-  .ba-side-slide img { height: 280px; object-fit: cover; } /* No celular mantemos o cover para preencher a tela */
-  .ba-caption-slide { flex-direction:column; align-items:center; text-align:center; }
-  .cap-after-slide { text-align: center !important; }
-  .mockup-phone { width: 35%; right: 0; }
+/* Background Glow */
+.mockup-glow {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 300px;
+  height: 300px;
+  background: var(--rose);
+  filter: blur(120px);
+  opacity: 0.15;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.iphone-frame {
+  position: relative;
+  width: 280px;
+  height: 560px;
+  margin: 0 auto;
+  background: #1a1a1a;
+  border-radius: 44px;
+  padding: 11px;
+  box-shadow: 0 50px 100px -20px rgba(0,0,0,0.4), 0 30px 60px -30px rgba(0,0,0,0.5);
+  border: 1px solid #444;
+  z-index: 2;
+  animation: float 6s ease-in-out infinite;
+}
+
+/* Speaker/Dynamic Island */
+.iphone-frame::before {
+  content: '';
+  position: absolute;
+  top: 22px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 70px;
+  height: 20px;
+  background: #000;
+  border-radius: 20px;
+  z-index: 10;
+}
+
+.iphone-screen {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background: #000;
+  border-radius: 34px;
+  overflow: hidden;
+  -webkit-mask-image: -webkit-radial-gradient(white, black); /* Fix for Safari border-radius overflow */
+}
+
+.iphone-screen iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+  transform: scale(1.05); /* Slight zoom to hide YouTube borders if any */
+}
+
+/* Reflection Overlay */
+.iphone-screen::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, rgba(255,255,255,0.15) 0%, rgba(255,255,255,0) 40%);
+  pointer-events: none;
+  z-index: 5;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-15px); }
+}
+
+@media(max-width: 600px) {
+  .iphone-frame {
+    width: 240px;
+    height: 480px;
+  }
+}
+
+/* SCROLL REVEAL */
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.reveal.active {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 
@@ -586,22 +669,25 @@ src="https://www.facebook.com/tr?id=976808261431332&ev=PageView&noscript=1"
 
     <!-- VÍDEO MOCKUP - A SOLUÇÃO -->
     <div id="demonstracao" class="video-mockup-wrap">
-      <p class="sec-title" style="margin-bottom: 20px;">Veja como é <em>simples e rápido</em></p>
-      <div class="mockup-container">
-        <!-- Notebook Mockup -->
-        <div style="background: #333; padding: 10px; border-radius: 10px; box-shadow: 0 20px 50px rgba(0,0,0,0.2);">
-          <div style="background: #000; aspect-ratio: 16/9; display: flex; align-items: center; justify-content: center; color: white; border-radius: 5px; overflow: hidden;">
-            <p>Vídeo do Notebook aqui</p>
-            <!-- <video src="video/demo_notebook.mp4" controls style="width: 100%;"></video> -->
-          </div>
+      <div class="mockup-glow"></div>
+      <p class="sec-title" style="margin-bottom: 20px;">Veja o app em <em>ação</em></p>
+      <p class="sec-sub" style="margin-bottom: 40px;">Resultados profissionais em menos de 1 minuto</p>
+      
+      <div class="iphone-frame">
+        <div class="iphone-screen">
+          <iframe 
+            id="main-video-iframe"
+            src="https://www.youtube.com/embed/mEOoLSFqcsM?autoplay=1&mute=1&loop=1&playlist=mEOoLSFqcsM&controls=0&showinfo=0&rel=0&modestbranding=1" 
+            title="Demonstração Ateliê Criativo" 
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+            allowfullscreen>
+          </iframe>
         </div>
-        <!-- Phone Mockup -->
-        <div class="mockup-phone">
-          <div style="background: #000; aspect-ratio: 9/19.5; display: flex; align-items: center; justify-content: center; color: white; border-radius: 15px; overflow: hidden;">
-            <p style="font-size: 10px;">Vídeo Celular</p>
-            <!-- <video src="video/demo_celular.mp4" controls style="width: 100%;"></video> -->
-          </div>
-        </div>
+      </div>
+
+      <div style="margin-top: 50px;">
+        <span style="display: block; font-size: 14px; color: var(--ink-soft); margin-bottom: 15px;">✨ 100% feito com o Ateliê Criativo</span>
+        <a href="#precos" class="cta-btn" style="padding: 14px 30px; font-size: 15px;">Quero vender assim também →</a>
       </div>
     </div>
   </div>
@@ -942,7 +1028,33 @@ function initTracking() {
             if (settings.checkout_link) document.getElementById('checkout-link-final').href = settings.checkout_link;
             if (settings.checkout_anual) document.getElementById('checkout-anual').href = settings.checkout_anual;
             if (settings.checkout_mensal) document.getElementById('checkout-mensal').href = settings.checkout_mensal;
-            if (settings.price) document.getElementById('price-value').innerText = settings.price;
+            
+            // Atualizar preço dinâmico (Vitalício)
+                if (priceEl) priceEl.innerText = settings.price;
+            }
+
+            // Atualizar Vídeo Dinâmico
+            if (settings.video_url) {
+                const videoIframe = document.getElementById('main-video-iframe');
+                if (videoIframe) {
+                    // Extrair ID do YouTube (suporta Shorts e URL comum)
+                    let videoId = '';
+                    const url = settings.video_url;
+                    if (url.includes('shorts/')) {
+                        videoId = url.split('shorts/')[1].split('?')[0];
+                    } else if (url.includes('v=')) {
+                        videoId = url.split('v=')[1].split('&')[0];
+                    } else if (url.includes('be/')) {
+                        videoId = url.split('be/')[1].split('?')[0];
+                    }
+                    
+                    if (videoId) {
+                        videoIframe.src = `https://www.youtube.com/embed/${videoId}?autoplay=1&mute=1&loop=1&playlist=${videoId}&controls=0&showinfo=0&rel=0&modestbranding=1`;
+                    }
+                }
+            }
+
+            // Injetar Pixels Numéricos
             if (settings.pixels) {
                 settings.pixels.forEach(id => {
                     if (id && id !== '976808261431332') {
@@ -952,8 +1064,22 @@ function initTracking() {
                     }
                 });
             }
+
+            // Injetar Pixel via Script HTML (Novo campo)
+            if (settings.pixel_html) {
+                const container = document.createElement('div');
+                container.innerHTML = settings.pixel_html;
+                const scripts = container.querySelectorAll('script');
+                scripts.forEach(oldScript => {
+                    const newScript = document.createElement('script');
+                    Array.from(oldScript.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value));
+                    newScript.appendChild(document.createTextNode(oldScript.innerHTML));
+                    document.head.appendChild(newScript);
+                });
+            }
         }
     }
+
     applySettings();
 }
 
@@ -983,9 +1109,26 @@ function initStickyBar() {
     });
 }
 
+// 7. SCROLL REVEAL LOGIC
+function initReveal() {
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('active');
+            }
+        });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.sec, .dor-wrap, .mec-card, .price-card, .guarantee, .iphone-frame').forEach(el => {
+        el.classList.add('reveal');
+        observer.observe(el);
+    });
+}
+
 document.addEventListener('DOMContentLoaded', () => {
     initTracking();
     initStickyBar();
+    initReveal();
     startTimer(60 * 15, document.querySelector('#timer'));
 });
 </script>

@@ -175,6 +175,10 @@
                         <label>Link Checkout Vitalício (Tax Inclusive)</label>
                         <input type="text" id="checkout_link" value="https://pay.hotmart.com/Y105490525B">
                     </div>
+                    <div class="form-group">
+                        <label>URL do Vídeo (YouTube Shorts ou Comum)</label>
+                        <input type="text" id="video_url" placeholder="Ex: https://youtube.com/shorts/mEOoLSFqcsM" value="https://youtube.com/shorts/mEOoLSFqcsM">
+                    </div>
                 </div>
                 <div>
                     <div class="form-group">
@@ -197,14 +201,14 @@
                         <input type="number" id="warranty" value="15">
                     </div>
                     <div class="form-group">
-                        <label>Facebook Pixel ID 1</label>
-                        <input type="text" id="pixel_1" placeholder="Ex: 1234567890" value="976808261431332">
+                        <label>Facebook Pixel ID 1 (Numérico)</label>
+                        <input type="text" id="pixel_1" placeholder="Ex: 976808261431332" value="976808261431332">
+                    </div>
+                    <div class="form-group">
+                        <label>Facebook Pixel Script (HTML Completo)</label>
+                        <textarea id="pixel_html" rows="5" placeholder="Cole aqui o script completo do Facebook Pixel..."></textarea>
                     </div>
 
-                    <div class="form-group">
-                        <label>Facebook Pixel ID 2 (Opcional)</label>
-                        <input type="text" id="pixel_2" placeholder="Ex: 0987654321">
-                    </div>
                     <button class="btn-save" onclick="saveChanges()">Salvar Alterações</button>
                     <p id="saveMsg" style="margin-top: 10px; font-size: 12px; color: #10b981; display: none;">Sincronizando com o site...</p>
                 </div>
@@ -223,22 +227,26 @@ CREATE TABLE site_settings (
     id SERIAL PRIMARY KEY,
     headline TEXT,
     sub_headline TEXT,
-    checkout_link TEXT, -- Vitalício
+    checkout_link TEXT,
     checkout_anual TEXT,
     checkout_mensal TEXT,
     price DECIMAL,
     warranty INTEGER,
-    pixels TEXT[]
+    pixels TEXT[],
+    pixel_html TEXT,
+    video_url TEXT
 );
 
--- Atualizar configurações existentes (ou inserir se não houver)
-INSERT INTO site_settings (id, headline, sub_headline, checkout_link, checkout_anual, checkout_mensal, price, warranty)
-VALUES (1, 'A sua obra é linda. Merece ser vista assim.', 'O Ateliê Criativo transforma fotos...', 'https://pay.hotmart.com/Y105490525B', 'https://pay.hotmart.com/Y105492438A?off=ff49t67u', 'https://pay.hotmart.com/Y105492438A?off=lufkir3m', 97, 15)
+-- Atualizar configurações existentes
+INSERT INTO site_settings (id, headline, sub_headline, checkout_link, checkout_anual, checkout_mensal, price, warranty, video_url)
+VALUES (1, 'A sua obra é linda. Merece ser vista assim.', 'O Ateliê Criativo transforma fotos...', 'https://pay.hotmart.com/Y105490525B', 'https://pay.hotmart.com/Y105492438A?off=ff49t67u', 'https://pay.hotmart.com/Y105492438A?off=lufkir3m', 97, 15, 'https://youtube.com/shorts/mEOoLSFqcsM')
 ON CONFLICT (id) DO UPDATE SET 
     checkout_link = EXCLUDED.checkout_link,
     checkout_anual = EXCLUDED.checkout_anual,
     checkout_mensal = EXCLUDED.checkout_mensal,
-    price = EXCLUDED.price;
+    price = EXCLUDED.price,
+    video_url = EXCLUDED.video_url;
+
 
 
             </textarea>
@@ -280,11 +288,13 @@ ON CONFLICT (id) DO UPDATE SET
                 document.getElementById('checkout_mensal').value = settings.checkout_mensal || '';
                 document.getElementById('price').value = settings.price || 97;
                 document.getElementById('warranty').value = settings.warranty || 15;
+                document.getElementById('pixel_html').value = settings.pixel_html || '';
+                document.getElementById('video_url').value = settings.video_url || 'https://youtube.com/shorts/mEOoLSFqcsM';
                 if (settings.pixels) {
                     document.getElementById('pixel_1').value = settings.pixels[0] || '';
-                    document.getElementById('pixel_2').value = settings.pixels[1] || '';
                 }
             }
+
 
 
             // 2. Carregar Analytics
@@ -377,10 +387,13 @@ ON CONFLICT (id) DO UPDATE SET
                 checkout_mensal: document.getElementById('checkout_mensal').value,
                 price: document.getElementById('price').value,
                 warranty: document.getElementById('warranty').value,
-                pixels: [document.getElementById('pixel_1').value, document.getElementById('pixel_2').value]
+                pixels: [document.getElementById('pixel_1').value],
+                pixel_html: document.getElementById('pixel_html').value,
+                video_url: document.getElementById('video_url').value
             };
 
             const { error } = await supabaseClient.from('site_settings').update(updates).eq('id', 1);
+
 
             if (error) {
                 alert("Erro ao salvar: " + error.message);
