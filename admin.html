@@ -312,33 +312,6 @@ ON CONFLICT (id) DO UPDATE SET
             }
         }
 
-        async function saveChanges() {
-            const btn = document.querySelector('.btn-save');
-            const msg = document.getElementById('saveMsg');
-            btn.innerText = "Salvando...";
-
-            const updates = {
-                headline: document.getElementById('h1_text').value,
-                sub_headline: document.getElementById('sub_text').value,
-                checkout_link: document.getElementById('checkout_link').value,
-                checkout_anual: document.getElementById('checkout_anual').value,
-                checkout_mensal: document.getElementById('checkout_mensal').value,
-                price: document.getElementById('price').value,
-                warranty: document.getElementById('warranty').value,
-                pixels: [document.getElementById('pixel_1').value, document.getElementById('pixel_2').value]
-            };
-
-
-            const { error } = await supabaseClient.from('site_settings').update(updates).eq('id', 1);
-
-            if (error) {
-                alert("Erro ao salvar: " + error.message);
-            } else {
-                btn.innerText = "Salvar Alterações";
-                msg.style.display = "block";
-                setTimeout(() => { msg.style.display = "none"; }, 3000);
-            }
-        }
 
         function updateCharts(visits, clicks) {
             funnelChart.data.datasets[0].data = [visits, Math.round(visits*0.7), clicks, Math.round(clicks*0.2)];
