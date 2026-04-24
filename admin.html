@@ -146,11 +146,8 @@
             </div>
             <div class="card">
                 <div class="card-title">Zonas de Calor <i class="fas fa-fire"></i></div>
-                <div class="heatmap-viz">
-                    <!-- Dots simulados -->
-                    <div class="heat-dot" style="top: 20%; left: 30%;"></div>
-                    <div class="heat-dot" style="top: 25%; left: 35%; width: 60px; height: 60px;"></div>
-                    <div class="heat-dot" style="top: 70%; left: 50%; background: radial-gradient(circle, rgba(56,189,248,0.6) 0%, rgba(255,255,0,0) 70%);"></div>
+                <div class="heatmap-viz" id="heatmapContainer">
+                    <!-- Dots reais serão injetados aqui -->
                 </div>
                 <p style="font-size: 12px; color: var(--text-muted); margin-top: 16px;">
                     Cliques concentrados no botão de CTA e no Carrossel.
@@ -237,7 +234,17 @@ CREATE TABLE site_settings (
     video_url TEXT
 );
 
--- Atualizar configurações existentes
+-- Tabela para Eventos de Analytics (Heatmap e Funil)
+CREATE TABLE analytics_events (
+    id SERIAL PRIMARY KEY,
+    created_at TIMESTAMPTZ DEFAULT NOW(),
+    event_type TEXT, -- 'visit', 'click', 'scroll_depth'
+    page_url TEXT,
+    coordinates JSONB, -- {x, y, target} ou {source} ou {depth}
+    user_agent TEXT
+);
+
+-- Atualizar configurações iniciais
 INSERT INTO site_settings (id, headline, sub_headline, checkout_link, checkout_anual, checkout_mensal, price, warranty, video_url)
 VALUES (1, 'A sua obra é linda. Merece ser vista assim.', 'O Ateliê Criativo transforma fotos...', 'https://pay.hotmart.com/Y105490525B', 'https://pay.hotmart.com/Y105492438A?off=ff49t67u', 'https://pay.hotmart.com/Y105492438A?off=lufkir3m', 97, 15, 'https://youtube.com/shorts/mEOoLSFqcsM')
 ON CONFLICT (id) DO UPDATE SET 
@@ -309,9 +316,28 @@ ON CONFLICT (id) DO UPDATE SET
                 document.querySelectorAll('.stat-value')[2].innerText = convRate + '%';
                 
                 updateCharts(visits, clicks);
+                renderHeatmap(events);
             }
         }
 
+        function renderHeatmap(events) {
+            const container = document.getElementById('heatmapContainer');
+            if (!container) return;
+            container.innerHTML = ''; 
+
+            const clicks = events.filter(e => e.event_type === 'click' && e.coordinates);
+            
+            clicks.forEach(click => {
+                const dot = document.createElement('div');
+                dot.className = 'heat-dot';
+                const x = (click.coordinates.x * 100).toFixed(1);
+                const y = (click.coordinates.y * 100).toFixed(1);
+                
+                dot.style.left = `${x}%`;
+                dot.style.top = `${y}%`;
+                container.appendChild(dot);
+            });
+        }
 
         function updateCharts(visits, clicks) {
             funnelChart.data.datasets[0].data = [visits, Math.round(visits*0.7), clicks, Math.round(clicks*0.2)];
