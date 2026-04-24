@@ -202,7 +202,7 @@
                     </div>
                     <div class="form-group">
                         <label>Facebook Pixel ID 1 (Numérico)</label>
-                        <input type="text" id="pixel_1" placeholder="Ex: 976808261431332" value="976808261431332">
+                        <input type="text" id="pixel_1" placeholder="Ex: 985629873942366" value="985629873942366">
                     </div>
                     <div class="form-group">
                         <label>Facebook Pixel Script (HTML Completo)</label>
@@ -353,6 +353,7 @@ ON CONFLICT (id) DO UPDATE SET
             btn.innerText = "Salvando...";
             
             const updates = {
+                id: 1,
                 headline: document.getElementById('h1_text').value,
                 sub_headline: document.getElementById('sub_text').value,
                 checkout_link: document.getElementById('checkout_link').value,
@@ -365,7 +366,7 @@ ON CONFLICT (id) DO UPDATE SET
                 video_url: document.getElementById('video_url').value
             };
 
-            const { error } = await supabaseClient.from('site_settings').update(updates).eq('id', 1);
+            const { error } = await supabaseClient.from('site_settings').upsert(updates);
 
 
             if (error) {
