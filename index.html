@@ -486,7 +486,9 @@ t.src=v;s=b.getElementsByTagName(e)[0];
 s.parentNode.insertBefore(t,s)}(window, document,'script',
 'https://connect.facebook.net/en_US/fbevents.js');
 fbq('init', '985629873942366');
-fbq('track', 'PageView');
+// Gerar ID Único para Desduplicação do PageView Inicial
+window.pageViewId = 'pv-' + Date.now() + '-' + Math.floor(Math.random() * 1000000);
+fbq('track', 'PageView', {}, { eventID: window.pageViewId });
 </script>
 <noscript><img height="1" width="1" style="display:none"
 src="https://www.facebook.com/tr?id=985629873942366&ev=PageView&noscript=1"
@@ -1019,6 +1021,27 @@ function initTracking() {
         coordinates: { depth: maxScroll }
       }]);
     });
+
+    // Enviar evento de PageView para a API de Conversões (CAPI)
+    async function sendCapiEvent(eventName, eventId, userData = {}) {
+        try {
+            await fetch('/api/meta-capi', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    event_name: eventName,
+                    event_id: eventId,
+                    event_url: window.location.href,
+                    user_data: userData
+                })
+            });
+        } catch (err) {
+            console.error('Erro CAPI:', err);
+        }
+    }
+
+    // Disparar CAPI para o PageView inicial
+    sendCapiEvent('PageView', window.pageViewId);
 
     async function applySettings() {
         try {
