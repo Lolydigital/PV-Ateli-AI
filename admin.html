@@ -359,8 +359,8 @@ ON CONFLICT (id) DO UPDATE SET
                 checkout_link: document.getElementById('checkout_link').value,
                 checkout_anual: document.getElementById('checkout_anual').value,
                 checkout_mensal: document.getElementById('checkout_mensal').value,
-                price: document.getElementById('price').value,
-                warranty: document.getElementById('warranty').value,
+                price: parseFloat(document.getElementById('price').value) || 0,
+                warranty: parseInt(document.getElementById('warranty').value) || 0,
                 pixels: [document.getElementById('pixel_1').value],
                 pixel_html: document.getElementById('pixel_html').value,
                 video_url: document.getElementById('video_url').value
