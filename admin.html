@@ -232,6 +232,60 @@
             </div>
         </div>
 
+        <!-- LINKS ÚTEIS SECTION -->
+        <div class="card" style="margin-top: 24px; background: rgba(56, 189, 248, 0.05); border-color: rgba(56, 189, 248, 0.2);">
+            <div class="card-title" style="color: var(--accent);">Links Úteis (Para Campanhas) <i class="fas fa-link"></i></div>
+            <p style="font-size: 13px; color: var(--text-muted); margin-bottom: 16px;">
+                Copie as URLs abaixo para utilizar nos seus anúncios de acordo com o público-alvo:
+            </p>
+            <div style="display: flex; flex-direction: column; gap: 12px;">
+                <div style="background: var(--bg); padding: 12px; border-radius: 8px; border: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center;">
+                    <div>
+                        <span style="font-weight: 600; font-size: 14px; margin-right: 10px;">🇵🇹 Quiz Portugal (PT-PT)</span>
+                        <a href="quiz_funil_completo_v2.html" target="_blank" style="color: var(--accent); font-size: 13px; text-decoration: none;" id="link_pt">/quiz_funil_completo_v2.html</a>
+                    </div>
+                    <button class="btn-save" style="background: #334155; padding: 8px 16px; font-size: 12px;" onclick="copyToClip('link_pt')">Copiar Link</button>
+                </div>
+
+                <div style="background: var(--bg); padding: 12px; border-radius: 8px; border: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center;">
+                    <div>
+                        <span style="font-weight: 600; font-size: 14px; margin-right: 10px;">🇧🇷 Quiz Brasil (PT-BR)</span>
+                        <a href="quiz_br.html" target="_blank" style="color: var(--accent); font-size: 13px; text-decoration: none;" id="link_br">/quiz_br.html</a>
+                    </div>
+                    <button class="btn-save" style="background: #334155; padding: 8px 16px; font-size: 12px;" onclick="copyToClip('link_br')">Copiar Link</button>
+                </div>
+
+                <div style="background: var(--bg); padding: 12px; border-radius: 8px; border: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center;">
+                    <div>
+                        <span style="font-weight: 600; font-size: 14px; margin-right: 10px;">🇪🇸 Quiz Espanha (ES)</span>
+                        <a href="quiz_es.html" target="_blank" style="color: var(--accent); font-size: 13px; text-decoration: none;" id="link_es">/quiz_es.html</a>
+                    </div>
+                    <button class="btn-save" style="background: #334155; padding: 8px 16px; font-size: 12px;" onclick="copyToClip('link_es')">Copiar Link</button>
+                </div>
+            </div>
+            
+            <script>
+                // Formata os links relativos para links absolutos caso esteja em servidor real
+                document.addEventListener('DOMContentLoaded', () => {
+                    const baseUrl = window.location.origin + window.location.pathname.replace('/admin.html', '');
+                    document.getElementById('link_pt').innerText = baseUrl + '/quiz_funil_completo_v2.html';
+                    document.getElementById('link_pt').href = baseUrl + '/quiz_funil_completo_v2.html';
+                    
+                    document.getElementById('link_br').innerText = baseUrl + '/quiz_br.html';
+                    document.getElementById('link_br').href = baseUrl + '/quiz_br.html';
+                    
+                    document.getElementById('link_es').innerText = baseUrl + '/quiz_es.html';
+                    document.getElementById('link_es').href = baseUrl + '/quiz_es.html';
+                });
+
+                function copyToClip(id) {
+                    const text = document.getElementById(id).innerText;
+                    navigator.clipboard.writeText(text);
+                    alert("Link copiado: " + text);
+                }
+            </script>
+        </div>
+
         <!-- DEPOIMENTOS SECTION -->
         <div class="card" id="testimonials-section" style="margin-top: 24px;">
             <div class="card-title">Depoimentos & Provas Sociais <i class="fas fa-comments"></i></div>
