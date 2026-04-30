@@ -220,6 +220,20 @@
             </div>
         </div>
 
+        <!-- DEPOIMENTOS SECTION -->
+        <div class="card" id="testimonials-section" style="margin-top: 24px;">
+            <div class="card-title">Depoimentos & Provas Sociais <i class="fas fa-comments"></i></div>
+            <p style="font-size: 13px; color: var(--text-muted); margin-bottom: 16px;">
+                Adicione depoimentos em texto com estrelas ou prints do WhatsApp (como imagens). Eles substituirão os depoimentos padrão.
+            </p>
+            <div id="testimonialsList"></div>
+            
+            <div style="margin-top: 20px; padding-top: 20px; border-top: 1px solid var(--border);">
+                <button class="btn-save" style="background: var(--card); color: var(--text); border: 1px solid var(--border); width: auto; padding: 8px 16px; margin-right: 10px;" onclick="addTestimonial('text')">+ Adicionar Texto</button>
+                <button class="btn-save" style="background: var(--card); color: var(--text); border: 1px solid var(--border); width: auto; padding: 8px 16px;" onclick="addTestimonial('image')">+ Adicionar Print (Imagem)</button>
+            </div>
+        </div>
+
         <!-- SQL SETUP INSTRUCTIONS -->
         <div class="card" style="margin-top: 24px;">
             <div class="card-title">Configuração Supabase (SQL) <i class="fas fa-database"></i></div>
@@ -239,8 +253,12 @@ CREATE TABLE IF NOT EXISTS site_settings (
     warranty INTEGER,
     pixels TEXT[],
     pixel_html TEXT,
-    video_url TEXT
+    video_url TEXT,
+    testimonials JSONB
 );
+
+-- Se a tabela já existir, adicione a nova coluna rodando isto:
+-- ALTER TABLE site_settings ADD COLUMN IF NOT EXISTS testimonials JSONB;
 
 -- Tabela para Eventos de Analytics (Heatmap e Funil)
 CREATE TABLE IF NOT EXISTS analytics_events (
@@ -307,13 +325,17 @@ ON CONFLICT (id) DO UPDATE SET
                 document.getElementById('checkout_mensal').value = settings.checkout_mensal || '';
                 document.getElementById('price').value = settings.price || 97;
                 document.getElementById('warranty').value = settings.warranty || 15;
+                document.getElementById('pixel_1').value = (settings.pixels && settings.pixels.length > 0) ? settings.pixels[0] : '';
                 document.getElementById('pixel_html').value = settings.pixel_html || '';
                 document.getElementById('video_url').value = settings.video_url || 'https://youtube.com/shorts/mEOoLSFqcsM';
-                if (settings.pixels) {
-                    document.getElementById('pixel_1').value = settings.pixels[0] || '';
+                
+                // Load testimonials
+                if (settings.testimonials && Array.isArray(settings.testimonials)) {
+                    currentTestimonials = settings.testimonials;
                 } else {
-                    document.getElementById('pixel_1').value = '';
+                    currentTestimonials = [];
                 }
+                renderTestimonials();
             } else {
                 document.getElementById('h1_text').value = '';
                 document.getElementById('sub_text').value = '';
@@ -325,9 +347,9 @@ ON CONFLICT (id) DO UPDATE SET
                 document.getElementById('pixel_html').value = '';
                 document.getElementById('video_url').value = '';
                 document.getElementById('pixel_1').value = '';
+                currentTestimonials = [];
+                renderTestimonials();
             }
-
-
 
             // 2. Carregar Analytics
             const { data: events } = await supabaseClient.from('analytics_events').select('*');
@@ -414,9 +436,10 @@ ON CONFLICT (id) DO UPDATE SET
                 checkout_mensal: document.getElementById('checkout_mensal').value,
                 price: parseFloat(document.getElementById('price').value) || 0,
                 warranty: parseInt(document.getElementById('warranty').value) || 0,
-                pixels: [document.getElementById('pixel_1').value],
+                pixels: [document.getElementById('pixel_1').value].filter(Boolean),
                 pixel_html: document.getElementById('pixel_html').value,
-                video_url: document.getElementById('video_url').value
+                video_url: document.getElementById('video_url').value,
+                testimonials: currentTestimonials
             };
 
             const { error } = await supabaseClient.from('site_settings').upsert(updates);
@@ -432,8 +455,69 @@ ON CONFLICT (id) DO UPDATE SET
             }
         }
 
-        loadData();
+       // ------------- Testimonials Logic -------------
+    let currentTestimonials = [];
+
+    function renderTestimonials() {
+        const list = document.getElementById('testimonialsList');
+        list.innerHTML = '';
+        currentTestimonials.forEach((t, i) => {
+            const item = document.createElement('div');
+            item.style.border = '1px solid var(--border)';
+            item.style.padding = '16px';
+            item.style.marginBottom = '16px';
+            item.style.borderRadius = '8px';
+            item.style.position = 'relative';
+
+            const btnRemove = document.createElement('button');
+            btnRemove.innerHTML = '&times;';
+            btnRemove.style.position = 'absolute';
+            btnRemove.style.top = '10px';
+            btnRemove.style.right = '10px';
+            btnRemove.style.background = 'transparent';
+            btnRemove.style.color = '#ef4444';
+            btnRemove.style.border = 'none';
+            btnRemove.style.fontSize = '20px';
+            btnRemove.style.cursor = 'pointer';
+            btnRemove.onclick = () => { currentTestimonials.splice(i, 1); renderTestimonials(); };
+            item.appendChild(btnRemove);
+
+            if(t.type === 'image') {
+                item.innerHTML += `
+                    <div style="margin-bottom: 10px;"><strong>📸 Print (Imagem)</strong></div>
+                    <input type="text" value="${t.imageUrl || ''}" placeholder="URL da Imagem (Ex: img/print1.png)" style="width: 90%; background: #1a1a1a; color: #fff; border: 1px solid #333; padding: 8px; border-radius: 4px;" onchange="updateTestimonial(${i}, 'imageUrl', this.value)">
+                    ${t.imageUrl ? `<div style="margin-top: 10px;"><img src="${t.imageUrl}" style="max-height: 100px; border-radius: 8px;"></div>` : ''}
+                `;
+            } else {
+                item.innerHTML += `
+                    <div style="margin-bottom: 10px;"><strong>📝 Depoimento em Texto</strong></div>
+                    <div style="display:flex; gap:10px; margin-bottom:10px;">
+                        <input type="text" value="${t.name || ''}" placeholder="Nome (Ex: Maria Amélia)" style="width: 50%; background: #1a1a1a; color: #fff; border: 1px solid #333; padding: 8px; border-radius: 4px;" onchange="updateTestimonial(${i}, 'name', this.value)">
+                        <input type="text" value="${t.role || ''}" placeholder="Papel (Ex: Sousplats · Braga)" style="width: 50%; background: #1a1a1a; color: #fff; border: 1px solid #333; padding: 8px; border-radius: 4px;" onchange="updateTestimonial(${i}, 'role', this.value)">
+                    </div>
+                    <div style="margin-bottom:10px;">
+                        <input type="text" value="${t.avatar || ''}" placeholder="URL da Foto do Perfil (Ex: img/testi_1.png)" style="width: 90%; background: #1a1a1a; color: #fff; border: 1px solid #333; padding: 8px; border-radius: 4px;" onchange="updateTestimonial(${i}, 'avatar', this.value)">
+                    </div>
+                    <textarea placeholder="Texto do depoimento..." style="width: 90%; background: #1a1a1a; color: #fff; border: 1px solid #333; padding: 8px; border-radius: 4px; height: 60px;" onchange="updateTestimonial(${i}, 'text', this.value)">${t.text || ''}</textarea>
+                `;
+            }
+            list.appendChild(item);
+        });
+    }
+
+    function addTestimonial(type) {
+        currentTestimonials.push({ type: type });
+        renderTestimonials();
+    }
+
+    // Usado inline no HTML injetado, precisa estar no escopo global
+    window.updateTestimonial = function(index, key, value) {
+        currentTestimonials[index][key] = value;
+    }
+    window.addTestimonial = addTestimonial;
+
+    // Inicialização
+    loadData();
     </script>
 </body>
 </html>
-

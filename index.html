@@ -1111,6 +1111,27 @@ function initTracking() {
                         document.head.appendChild(newScript);
                     });
                 }
+
+                // Atualizar Depoimentos Dinâmicos
+                if (settings.testimonials && Array.isArray(settings.testimonials) && settings.testimonials.length > 0) {
+                    const grid = document.querySelector('.testi-grid');
+                    if (grid) {
+                        grid.innerHTML = '';
+                        settings.testimonials.forEach(t => {
+                            if (t.type === 'image' && t.imageUrl) {
+                                grid.innerHTML += `<div class="testi-card" style="padding:0; overflow:hidden;"><img src="${t.imageUrl}" style="width:100%; display:block; border-radius:12px;"></div>`;
+                            } else if (t.type === 'text') {
+                                grid.innerHTML += `
+                                  <div class="testi-card">
+                                    <div class="testi-stars">★★★★★</div>
+                                    <p class="testi-text">"${t.text || ''}"</p>
+                                    <div class="testi-author"><div class="testi-av"><img src="${t.avatar || 'img/testi_1.png'}"></div><div><div class="testi-name">${t.name || ''}</div><div class="testi-role">${t.role || ''}</div></div></div>
+                                  </div>
+                                `;
+                            }
+                        });
+                    }
+                }
             }
         } catch (err) {
             console.error('Erro inesperado:', err);
