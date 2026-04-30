@@ -1,0 +1,1176 @@
+<!DOCTYPE html>
+<!-- Deployment trigger: v1.0.1 - Pixel and Real CMS Fixed -->
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ateliê Criativo - Transforme suas fotos em vendas profissionais</title>
+<meta name="description" content="O Ateliê Criativo transforma fotos caseiras em imagens de catálogo profissional e organiza todo o seu negócio de artesanato.">
+<meta name="facebook-domain-verification" content="vh10rkzfcv60q46m9klu5z5sg0hynm" />
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=DM+Sans:wght@300;400;500;600&display=swap');
+
+:root {
+  --rose: #C8365A;
+  --rose-light: #F9EDF1;
+  --rose-mid: #F0C4D0;
+  --rose-dark: #8B1A35;
+  --gold: #B8860B;
+  --gold-light: #FBF4E0;
+  --gold-warm: #D4A017;
+  --cream: #FBF8F4;
+  --cream-warm: #F5EFE6;
+  --white: #FFFFFF;
+  --ink: #1A1410;
+  --ink-soft: #4A3F38;
+  --ink-muted: #9A8D85;
+  --border: rgba(200,54,90,0.12);
+  --border-soft: rgba(200,54,90,0.08);
+}
+
+* { margin:0; padding:0; box-sizing:border-box; }
+body { font-family:'DM Sans',sans-serif; background:var(--cream); color:var(--ink); line-height:1.6; }
+
+/* URGENCY BAR */
+.urgency-bar {
+  background: linear-gradient(90deg, var(--rose-dark), #B02248, var(--rose-dark));
+  color:white; text-align:center; padding:11px 20px;
+  font-size:13px; font-weight:500; letter-spacing:0.02em;
+  position: relative; z-index: 100;
+}
+.urgency-bar strong { color:#FFE0A0; font-weight:700; }
+#timer { font-family: monospace; background: rgba(0,0,0,0.2); padding: 2px 6px; border-radius: 4px; margin-left: 8px; font-size: 14px; }
+
+/* STICKY CTA BAR */
+.sticky-cta {
+  position: fixed; bottom: 0; left: 0; right: 0;
+  background: white; padding: 12px 20px;
+  box-shadow: 0 -4px 20px rgba(0,0,0,0.1);
+  display: flex; justify-content: space-between; align-items: center;
+  z-index: 1000; transform: translateY(100%); transition: transform 0.3s ease;
+  border-top: 1px solid var(--border-soft);
+}
+.sticky-cta.active { transform: translateY(0); }
+.sticky-price { font-weight: 700; color: var(--rose-dark); }
+.sticky-price small { text-decoration: line-through; color: var(--ink-muted); font-weight: 400; margin-right: 4px; }
+.sticky-btn { 
+  background: var(--rose); color: white; padding: 10px 20px; 
+  border-radius: 100px; text-decoration: none; font-weight: 700; font-size: 14px;
+}
+@media(min-width: 601px) { .sticky-cta { display: none; } }
+
+
+/* HERO */
+.hero {
+  background: linear-gradient(160deg, #FFF5F8 0%, var(--white) 50%, #FFF8F0 100%);
+  padding:64px 20px 56px; text-align:center;
+  border-bottom:1px solid var(--border);
+}
+.eyebrow {
+  display:inline-block; background:var(--rose-light); color:var(--rose-dark);
+  font-size:11px; font-weight:700; letter-spacing:0.12em; text-transform:uppercase;
+  padding:6px 18px; border-radius:100px; margin-bottom:24px;
+  border:1px solid var(--rose-mid);
+}
+.hero h1 {
+  font-family:'Playfair Display',serif;
+  font-size:clamp(28px,5vw,52px); font-weight:900; line-height:1.15;
+  color:var(--ink); max-width:760px; margin:0 auto 20px;
+}
+.hero h1 em { font-style:italic; color:var(--rose); }
+.hero-sub {
+  font-size:clamp(15px,2.5vw,18px); color:var(--ink-soft);
+  max-width:560px; margin:0 auto 12px; font-weight:300;
+}
+.hero-sub strong { color:var(--ink); font-weight:600; }
+
+/* SOCIAL PROOF STRIP */
+.proof-strip {
+  display:flex; justify-content:center; align-items:center;
+  gap:6px; margin:20px auto 32px; flex-wrap:wrap;
+}
+.proof-avatars { display:flex; }
+.proof-avatars span {
+  width:30px; height:30px; border-radius:50%; border:2px solid white;
+  background:var(--rose-light); color:var(--rose-dark); font-size:10px; font-weight:700;
+  display:flex; align-items:center; justify-content:center; margin-left:-8px;
+}
+.proof-avatars span:first-child { margin-left:0; }
+.proof-text { font-size:13px; color:var(--ink-soft); }
+.proof-text strong { color:var(--rose-dark); }
+.stars-inline { color:var(--gold-warm); font-size:13px; letter-spacing:1px; }
+
+/* BEFORE AFTER */
+.ba-wrap {
+  display:flex; justify-content:center; align-items:center;
+  gap:14px; margin:32px auto; max-width:580px;
+}
+.ba-card {
+  flex:1; border-radius:16px; overflow:hidden;
+  border:2px solid; text-align:center; padding:28px 20px;
+}
+.ba-card.before-c {
+  border-color:#D5CAC4; background:#F0EAE4;
+}
+.ba-card.after-c {
+  border-color:var(--rose); background:linear-gradient(145deg,#FFF0F4,#FFE0EA);
+  box-shadow:0 8px 32px rgba(200,54,90,0.15);
+}
+.ba-tag {
+  display:inline-block; font-size:10px; font-weight:700; letter-spacing:0.1em;
+  text-transform:uppercase; padding:4px 10px; border-radius:100px; margin-bottom:14px;
+}
+.before-c .ba-tag { background:#DDD5CE; color:#7A6E68; }
+.after-c .ba-tag { background:var(--rose); color:white; }
+.ba-emoji { font-size:44px; display:block; margin-bottom:10px; }
+.ba-desc { font-size:12px; line-height:1.5; }
+.before-c .ba-desc { color:var(--ink-muted); }
+.after-c .ba-desc { color:var(--rose-dark); font-weight:500; }
+.ba-arrow { font-size:26px; color:var(--gold-warm); flex-shrink:0; font-weight:900; }
+
+/* CTA BUTTON */
+.cta-btn {
+  display:inline-block;
+  background:linear-gradient(135deg, var(--rose) 0%, var(--rose-dark) 100%);
+  color:white; font-family:'DM Sans',sans-serif; font-size:17px; font-weight:700;
+  padding:18px 44px; border-radius:100px; border:none; cursor:pointer;
+  text-decoration:none; letter-spacing:0.01em;
+  box-shadow:0 8px 32px rgba(200,54,90,0.38);
+  transition:transform 0.2s, box-shadow 0.2s;
+}
+.cta-btn:hover { transform:translateY(-2px); box-shadow:0 14px 44px rgba(200,54,90,0.48); }
+.cta-sub-text { font-size:12px; color:var(--ink-muted); margin-top:10px; }
+
+/* SECTION */
+.sec { padding:64px 20px; max-width:820px; margin:0 auto; }
+.sec-title {
+  font-family:'Playfair Display',serif;
+  font-size:clamp(22px,4vw,38px); font-weight:700;
+  text-align:center; margin-bottom:10px; color:var(--ink);
+}
+.sec-title em { font-style:italic; color:var(--rose); }
+.sec-sub { text-align:center; color:var(--ink-muted); font-size:16px; margin-bottom:44px; font-weight:300; }
+
+/* DOR */
+.dor-wrap { background:var(--white); border-radius:24px; padding:44px 36px; border:1px solid var(--border); }
+.dor-item {
+  display:flex; align-items:flex-start; gap:14px;
+  padding:18px 20px; border-left:3px solid var(--rose);
+  background:var(--cream); border-radius:0 10px 10px 0;
+  font-size:15px; color:var(--ink-soft); margin-bottom:12px;
+}
+.dor-item:last-of-type { margin-bottom:0; }
+.dor-icon { font-size:20px; flex-shrink:0; }
+.dor-close {
+  text-align:center; padding-top:32px;
+  border-top:1px solid var(--border); margin-top:28px;
+}
+.dor-close p { font-family:'Playfair Display',serif; font-size:20px; font-weight:700; color:var(--rose); margin-bottom:6px; }
+.dor-close small { font-size:14px; color:var(--ink-muted); }
+
+/* MECHANISM — ROSE LIGHT (não preto) */
+.mec-section {
+  background:linear-gradient(160deg, #FFF0F4 0%, #FFF8F2 100%);
+  border-top:1px solid var(--border); border-bottom:1px solid var(--border);
+}
+.mec-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:18px; margin-top:32px; }
+.mec-card {
+  background:var(--white); border:1px solid var(--border); border-radius:16px; padding:24px 20px;
+  box-shadow:0 2px 12px rgba(200,54,90,0.06);
+}
+.mec-icon { font-size:32px; margin-bottom:12px; }
+.mec-title { font-weight:700; font-size:15px; margin-bottom:7px; color:var(--ink); }
+.mec-text { font-size:13px; color:var(--ink-soft); line-height:1.55; }
+.mec-badge {
+  display:inline-block; background:var(--rose-light); color:var(--rose-dark);
+  font-size:10px; font-weight:700; letter-spacing:0.08em; text-transform:uppercase;
+  padding:3px 8px; border-radius:100px; margin-bottom:8px;
+}
+
+/* NICHOS */
+.niche-strip {
+  display:flex; flex-wrap:wrap; gap:10px; justify-content:center; margin-top:28px;
+}
+.niche-pill {
+  background:var(--white); border:1.5px solid var(--rose-mid); color:var(--rose-dark);
+  font-size:14px; font-weight:600; padding:10px 20px; border-radius:100px;
+}
+
+/* STEPS */
+.step-row {
+  display:flex; align-items:flex-start; gap:20px;
+  padding:26px 28px; background:var(--white); border-radius:16px;
+  border:1px solid var(--border); margin-bottom:14px;
+}
+.step-num {
+  width:46px; height:46px; background:var(--rose); color:white; border-radius:50%;
+  display:flex; align-items:center; justify-content:center;
+  font-weight:900; font-size:20px; flex-shrink:0;
+}
+.step-title { font-weight:700; font-size:16px; margin-bottom:6px; }
+.step-text { font-size:14px; color:var(--ink-soft); line-height:1.6; }
+
+/* TESTIMONIALS */
+.testi-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:18px; }
+.testi-card {
+  background:var(--white); border:1px solid var(--border); border-radius:18px; padding:26px 24px;
+}
+.testi-stars { color:var(--gold-warm); font-size:15px; letter-spacing:2px; margin-bottom:12px; }
+.testi-q { font-size:18px; color:var(--rose-light); margin-bottom:8px; }
+.testi-text { font-size:14px; color:var(--ink-soft); line-height:1.65; margin-bottom:18px; font-style:italic; }
+.testi-author { display:flex; align-items:center; gap:10px; }
+.testi-av {
+  width:50px; height:50px; border-radius:50%; background:var(--rose-light); flex-shrink:0;
+  overflow: hidden; border: 2px solid var(--rose-mid);
+}
+.testi-av img { width: 100%; height: 100%; object-fit: cover; }
+
+.testi-name { font-weight:700; font-size:14px; }
+.testi-role { font-size:12px; color:var(--ink-muted); }
+
+/* ANCHORING PRICING */
+.anchor-block {
+  background:var(--cream-warm); border-radius:20px; padding:32px 28px;
+  border:1px solid rgba(184,134,11,0.2); margin-bottom:28px; text-align:center;
+}
+.anchor-title { font-family:'Playfair Display',serif; font-size:18px; font-weight:700; color:var(--ink); margin-bottom:20px; }
+.anchor-compare { display:flex; flex-wrap:wrap; gap:12px; justify-content:center; margin-bottom:16px; }
+.anchor-item { background:var(--white); border-radius:12px; padding:14px 18px; text-align:center; min-width:130px; border:1px solid rgba(184,134,11,0.2); }
+.anchor-item.crossed .anchor-price { text-decoration:line-through; color:var(--ink-muted); }
+.anchor-label { font-size:11px; color:var(--ink-muted); text-transform:uppercase; letter-spacing:0.06em; margin-bottom:4px; }
+.anchor-price { font-size:22px; font-weight:700; color:var(--ink); }
+.anchor-item.highlight { background:var(--rose-light); border-color:var(--rose); }
+.anchor-item.highlight .anchor-price { color:var(--rose-dark); }
+.anchor-desc { font-size:12px; color:var(--ink-muted); margin-top:4px; }
+.anchor-cta-text { font-size:14px; color:var(--ink-soft); font-weight:500; }
+.anchor-cta-text strong { color:var(--rose); }
+
+/* PRICING CARDS */
+.price-wrap { display:flex; flex-wrap:wrap; gap:20px; justify-content:center; }
+.price-card {
+  background:var(--white); border:2px solid var(--border); border-radius:22px;
+  padding:36px 28px; flex:1; min-width:220px; max-width:270px; text-align:center;
+  position:relative;
+}
+.price-card.featured { border-color:var(--rose); box-shadow:0 16px 52px rgba(200,54,90,0.18); transform:scale(1.04); }
+.price-badge {
+  position:absolute; top:-14px; left:50%; transform:translateX(-50%);
+  background:var(--gold-warm); color:white; font-size:11px; font-weight:700;
+  letter-spacing:0.06em; text-transform:uppercase; padding:5px 18px; border-radius:100px; white-space:nowrap;
+}
+.price-name { font-weight:700; font-size:14px; color:var(--ink-muted); margin-bottom:6px; text-transform:uppercase; letter-spacing:0.08em; }
+.price-old { font-size:14px; color:var(--ink-muted); text-decoration:line-through; margin-bottom:4px; }
+.price-val { font-family:'Playfair Display',serif; font-size:46px; font-weight:900; color:var(--rose); line-height:1.1; }
+.price-period { font-size:13px; color:var(--ink-muted); margin-bottom:6px; }
+.price-save {
+  display:inline-block; background:var(--gold-light); color:var(--gold);
+  font-size:12px; font-weight:700; padding:4px 12px; border-radius:100px; margin-bottom:22px;
+  border:1px solid rgba(184,134,11,0.2);
+}
+.price-feats { text-align:left; font-size:13px; color:var(--ink-soft); line-height:2; margin-bottom:26px; }
+.price-feats li { list-style:none; display:flex; align-items:center; gap:8px; }
+.price-feats li::before { content:'✓'; color:var(--rose); font-weight:700; flex-shrink:0; }
+.price-cta {
+  display:block; width:100%; padding:15px 20px;
+  background:linear-gradient(135deg, var(--rose), var(--rose-dark));
+  color:white; border:none; border-radius:100px; cursor:pointer;
+  font-family:'DM Sans',sans-serif; font-size:14px; font-weight:700;
+  text-decoration:none; box-shadow:0 6px 20px rgba(200,54,90,0.3);
+  transition:transform 0.2s;
+}
+.price-cta:hover { transform:translateY(-2px); }
+.price-cta.gold-cta { background:linear-gradient(135deg, var(--gold-warm), var(--gold)); box-shadow:0 6px 20px rgba(184,134,11,0.35); }
+
+/* COMPARISON */
+.comp-wrap { background:var(--white); border-radius:18px; border:1px solid var(--border); overflow:hidden; }
+.comp-table { width:100%; border-collapse:collapse; font-size:14px; }
+.comp-table th { padding:16px 20px; font-size:12px; font-weight:700; text-transform:uppercase; letter-spacing:0.06em; }
+.comp-table th:first-child { text-align:left; color:var(--ink-muted); background:var(--cream); }
+.comp-table th:nth-child(2) { background:#F0EDEA; color:var(--ink-muted); width:28%; }
+.comp-table th:nth-child(3) { background:var(--rose); color:white; width:28%; }
+.comp-table td { padding:13px 20px; border-bottom:1px solid var(--border-soft); }
+.comp-table td:first-child { color:var(--ink-soft); }
+.comp-table td:nth-child(2) { background:#F9F7F5; text-align:center; }
+.comp-table td:nth-child(3) { background:var(--rose-light); text-align:center; font-weight:600; color:var(--rose-dark); }
+.chk { color:#2E7D32; font-size:16px; }
+.crs { color:#C62828; font-size:16px; }
+
+/* GUARANTEE */
+.guarantee {
+  background:linear-gradient(135deg, #FFF5F8, #FFF8F0);
+  border:2px solid var(--rose-mid); border-radius:22px; padding:44px 36px; text-align:center;
+}
+.guarantee-icon { font-size:60px; margin-bottom:14px; display:block; }
+.guarantee-title { font-family:'Playfair Display',serif; font-size:28px; font-weight:700; margin-bottom:12px; color:var(--ink); }
+.guarantee-text { font-size:15px; color:var(--ink-soft); max-width:480px; margin:0 auto; line-height:1.75; }
+
+/* FAQ */
+.faq-item { background:var(--white); border:1px solid var(--border); border-radius:14px; padding:22px 26px; margin-bottom:12px; }
+.faq-q { font-weight:700; font-size:15px; margin-bottom:8px; color:var(--ink); }
+.faq-a { font-size:14px; color:var(--ink-soft); line-height:1.65; }
+
+/* FINAL CTA */
+.final-cta {
+  background:linear-gradient(160deg, #FFF0F5 0%, #FBF4E0 100%);
+  border-top:1px solid var(--border); padding:80px 20px; text-align:center;
+}
+.final-cta h2 { font-family:'Playfair Display',serif; font-size:clamp(24px,4vw,42px); font-weight:900; color:var(--ink); margin-bottom:14px; }
+.final-cta h2 em { font-style:italic; color:var(--rose); }
+.final-cta p { font-size:17px; color:var(--ink-soft); margin-bottom:36px; font-weight:300; }
+
+@media(max-width:600px){
+  .ba-wrap { flex-direction:column; }
+  .ba-arrow { transform:rotate(90deg); }
+  .price-wrap { flex-direction:column; align-items:center; }
+  .price-card.featured { transform:none; }
+  .dor-wrap, .guarantee { padding:28px 20px; }
+  .sec { padding:48px 16px; }
+}
+
+/* CAROUSEL STYLES FROM SLIDER MODEL */
+.carousel-outer { position:relative; margin-top: 32px; }
+.carousel-track-wrap { overflow:hidden; border-radius:20px; }
+.carousel-track { display:flex; transition:transform 0.45s cubic-bezier(.4,0,.2,1); }
+.ba-card-slide { min-width:100%; padding:0; display:flex; flex-direction:column; }
+.ba-images-slide { 
+  display:flex; gap:0; border-radius:20px; overflow:hidden; 
+  border:1px solid var(--border); box-shadow:0 8px 40px rgba(200,54,90,0.10); 
+}
+.ba-side-slide { flex:1; position:relative; }
+.ba-side-slide img { width:100%; height:400px; object-fit:cover; display:block; }
+.ba-label-img-slide { 
+  position:absolute; top:14px; font-size:11px; font-weight:700; letter-spacing:0.1em; 
+  text-transform:uppercase; padding:5px 14px; border-radius:100px; z-index: 5;
+}
+.before-side-slide .ba-label-img-slide { left:14px; background:rgba(0,0,0,0.55); color:white; }
+.after-side-slide .ba-label-img-slide { right:14px; background:var(--rose); color:white; }
+.ba-divider-slide { width:4px; background:white; position:relative; z-index:2; flex-shrink:0; display:flex; align-items:center; justify-content:center; }
+.ba-divider-icon-slide { 
+  width:32px; height:32px; background:white; border-radius:50%; display:flex; align-items:center; justify-content:center; 
+  font-size:16px; box-shadow:0 2px 12px rgba(0,0,0,0.18); position:absolute; left:50%; top:50%; transform:translate(-50%,-50%); 
+  z-index:3; color:var(--rose); font-weight:900; 
+}
+.ba-caption-slide { display:flex; justify-content:space-between; align-items:flex-start; padding:20px 4px 0; gap:12px; }
+.ba-caption-side-slide { flex:1; }
+.ba-caption-label-slide { font-size:10px; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; margin-bottom:4px; }
+.cap-before-slide .ba-caption-label-slide { color:var(--ink-muted); }
+.cap-after-slide .ba-caption-label-slide { color:var(--rose); }
+.ba-caption-text-slide { font-size:13px; color:var(--ink-soft); line-height:1.5; }
+.ba-nicho-slide { text-align:center; flex-shrink:0; font-family:'Playfair Display',serif; font-size:14px; font-weight:700; color:var(--ink); padding:0 8px; }
+.ba-nicho-slide span { display:block; font-size:22px; margin-bottom:2px; }
+.carousel-dots { display:flex; justify-content:center; gap:8px; margin-top:28px; }
+.dot { width:8px; height:8px; border-radius:50%; background:var(--rose-mid); cursor:pointer; transition:all 0.25s; border:none; }
+.dot.active { width:24px; border-radius:100px; background:var(--rose); }
+.carousel-arrows { display:flex; justify-content:center; gap:12px; margin-top:16px; }
+.arrow-btn { 
+  width:42px; height:42px; border-radius:50%; background:var(--white); border:1.5px solid var(--rose-mid); 
+  color:var(--rose); font-size:18px; cursor:pointer; display:flex; align-items:center; justify-content:center; transition:all 0.2s; 
+}
+.arrow-btn:hover { background:var(--rose); color:white; border-color:var(--rose); }
+
+/* PREMIUM VIDEO MOCKUP SECTION */
+.video-mockup-wrap { 
+  margin: 60px auto; 
+  padding: 0 20px;
+  max-width: 900px;
+  text-align: center; 
+  position: relative;
+}
+
+/* Background Glow */
+.mockup-glow {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 300px;
+  height: 300px;
+  background: var(--rose);
+  filter: blur(120px);
+  opacity: 0.15;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.iphone-frame {
+  position: relative;
+  width: 280px;
+  height: 560px;
+  margin: 0 auto;
+  background: #1a1a1a;
+  border-radius: 44px;
+  padding: 11px;
+  box-shadow: 0 50px 100px -20px rgba(0,0,0,0.4), 0 30px 60px -30px rgba(0,0,0,0.5);
+  border: 1px solid #444;
+  z-index: 2;
+  animation: float 6s ease-in-out infinite;
+}
+
+/* Speaker/Dynamic Island */
+.iphone-frame::before {
+  content: '';
+  position: absolute;
+  top: 22px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 70px;
+  height: 20px;
+  background: #000;
+  border-radius: 20px;
+  z-index: 10;
+}
+
+.iphone-screen {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background: #000;
+  border-radius: 34px;
+  overflow: hidden;
+  -webkit-mask-image: -webkit-radial-gradient(white, black); /* Fix for Safari border-radius overflow */
+}
+
+.iphone-screen iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+  transform: scale(1.05); /* Slight zoom to hide YouTube borders if any */
+}
+
+/* Reflection Overlay */
+.iphone-screen::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, rgba(255,255,255,0.15) 0%, rgba(255,255,255,0) 40%);
+  pointer-events: none;
+  z-index: 5;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-15px); }
+}
+
+@media(max-width: 600px) {
+  .iphone-frame {
+    width: 240px;
+    height: 480px;
+  }
+}
+
+/* SCROLL REVEAL */
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.reveal.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+
+</style>
+
+<!-- Meta Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '985629873942366');
+// Gerar ID Único para Desduplicação do PageView Inicial
+window.pageViewId = 'pv-' + Date.now() + '-' + Math.floor(Math.random() * 1000000);
+fbq('track', 'PageView', {}, { eventID: window.pageViewId });
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=985629873942366&ev=PageView&noscript=1"
+/></noscript>
+<!-- End Meta Pixel Code -->
+
+</head>
+<body>
+
+<!-- BARRA URGÊNCIA -->
+<div class="urgency-bar">
+  ⏳ Oferta termina em: <strong id="timer">15:00</strong> — <strong>Vitalício por €97</strong> apenas esta semana.
+</div>
+
+<!-- STICKY CTA MOBILE -->
+<div class="sticky-cta" id="sticky-cta">
+  <div class="sticky-price"><small>€197</small>€97</div>
+  <a href="#precos" class="sticky-btn">Garantir Vaga →</a>
+</div>
+
+
+
+<!-- HERO -->
+<div class="hero">
+  <div class="eyebrow">🧶 Artesanato · 📦 Papelaria · 🕯️ Velas · 🎀 Acessórios</div>
+  <h1 id="main-headline">A sua obra é linda.<br>Merece <em>ser vista assim.</em></h1>
+  <p id="sub-headline" class="hero-sub">O Ateliê Criativo transforma fotos caseiras em imagens de catálogo profissional — e organiza todo o seu negócio. <strong>Sem fotógrafo. Sem agência. Sem complicação.</strong></p>
+
+  <div class="proof-strip">
+    <div class="proof-avatars">
+      <span>MA</span><span>CS</span><span>LP</span><span>RF</span><span>AG</span>
+    </div>
+    <span class="stars-inline">★★★★★</span>
+    <span class="proof-text"><strong>+500 artesãs</strong> já transformaram o negócio</span>
+  </div>
+
+  <!-- CARROSSEL INTERATIVO (Substituindo a seção estática) -->
+  <div class="carousel-outer">
+    <div class="carousel-track-wrap">
+      <div class="carousel-track" id="track">
+
+        <!-- SLIDE 1: Pirâmide -->
+        <div class="ba-card-slide">
+          <div class="ba-images-slide">
+            <div class="ba-side-slide before-side-slide">
+              <img src="img/piramide_antes.jpeg" alt="Antes - Pirâmide">
+              <span class="ba-label-img-slide">Antes</span>
+            </div>
+            <div class="ba-divider-slide"><div class="ba-divider-icon-slide">↔</div></div>
+            <div class="ba-side-slide after-side-slide">
+              <img src="img/piramide_depois.jpeg" alt="Depois - Pirâmide">
+              <span class="ba-label-img-slide">✨ Depois</span>
+            </div>
+          </div>
+          <div class="ba-caption-slide">
+            <div class="ba-caption-side-slide cap-before-slide">
+              <div class="ba-caption-label-slide">Antes</div>
+              <div class="ba-caption-text-slide">Fundo de trabalho bagunçado</div>
+            </div>
+            <div class="ba-nicho-slide"><span>📦</span>Papelaria</div>
+            <div class="ba-caption-side-slide cap-after-slide" style="text-align:right;">
+              <div class="ba-caption-label-slide">✨ Depois</div>
+              <div class="ba-caption-text-slide">Luz profissional e pronta para vender</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- SLIDE 2: Boneco -->
+        <div class="ba-card-slide">
+          <div class="ba-images-slide">
+            <div class="ba-side-slide before-side-slide">
+              <img src="img/boneco_antes.jpeg" alt="Antes - Boneco">
+              <span class="ba-label-img-slide">Antes</span>
+            </div>
+            <div class="ba-divider-slide"><div class="ba-divider-icon-slide">↔</div></div>
+            <div class="ba-side-slide after-side-slide">
+              <img src="img/boneco_depois.jpeg" alt="Depois - Boneco">
+              <span class="ba-label-img-slide">✨ Depois</span>
+            </div>
+          </div>
+          <div class="ba-caption-slide">
+            <div class="ba-caption-side-slide cap-before-slide">
+              <div class="ba-caption-label-slide">Antes</div>
+              <div class="ba-caption-text-slide">Fundo amador e sem contexto</div>
+            </div>
+            <div class="ba-nicho-slide"><span>🧶</span>Artesanato</div>
+            <div class="ba-caption-side-slide cap-after-slide" style="text-align:right;">
+              <div class="ba-caption-label-slide">✨ Depois</div>
+              <div class="ba-caption-text-slide">Cenário nórdico limpo e premium</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- SLIDE 3: Velas -->
+        <div class="ba-card-slide">
+          <div class="ba-images-slide">
+            <div class="ba-side-slide before-side-slide">
+              <img src="img/vela_antes.jpeg" alt="Antes - Velas">
+              <span class="ba-label-img-slide">Antes</span>
+            </div>
+            <div class="ba-divider-slide"><div class="ba-divider-icon-slide">↔</div></div>
+            <div class="ba-side-slide after-side-slide">
+              <img src="img/vela_depois.jpeg" alt="Depois - Velas">
+              <span class="ba-label-img-slide">✨ Depois</span>
+            </div>
+          </div>
+          <div class="ba-caption-slide">
+            <div class="ba-caption-side-slide cap-before-slide">
+              <div class="ba-caption-label-slide">Antes</div>
+              <div class="ba-caption-text-slide">Fundo de tapete e luz artificial</div>
+            </div>
+            <div class="ba-nicho-slide"><span>🕯️</span>Velas</div>
+            <div class="ba-caption-side-slide cap-after-slide" style="text-align:right;">
+              <div class="ba-caption-label-slide">✨ Depois</div>
+              <div class="ba-caption-text-slide">Cenário zen e luz natural</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- SLIDE 4: Amigurumi -->
+        <div class="ba-card-slide">
+          <div class="ba-images-slide">
+            <div class="ba-side-slide before-side-slide">
+              <img src="img/amigurumi_antes.jpeg" alt="Antes - Amigurumi">
+              <span class="ba-label-img-slide">Antes</span>
+            </div>
+            <div class="ba-divider-slide"><div class="ba-divider-icon-slide">↔</div></div>
+            <div class="ba-side-slide after-side-slide">
+              <img src="img/amigurumi_depois.jpeg" alt="Depois - Amigurumi">
+              <span class="ba-label-img-slide">✨ Depois</span>
+            </div>
+          </div>
+          <div class="ba-caption-slide">
+            <div class="ba-caption-side-slide cap-before-slide">
+              <div class="ba-caption-label-slide">Antes</div>
+              <div class="ba-caption-text-slide">Fundo escuro e sombras</div>
+            </div>
+            <div class="ba-nicho-slide"><span>🧸</span>Amigurumi</div>
+            <div class="ba-caption-side-slide cap-after-slide" style="text-align:right;">
+              <div class="ba-caption-label-slide">✨ Depois</div>
+              <div class="ba-caption-text-slide">Cenário limpo e cores vivas</div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+    <div class="carousel-arrows">
+      <button class="arrow-btn" onclick="move(-1)">←</button>
+      <button class="arrow-btn" onclick="move(1)">→</button>
+    </div>
+    <div class="carousel-dots" id="dots"></div>
+  </div>
+
+    <!-- EARLY CTA FOR MOBILE -->
+    <div style="text-align:center; padding: 20px 20px 40px;">
+      <a href="#precos" class="cta-btn" style="width:100%; max-width:400px; margin:0 auto;">Quero Garantir o Desconto →</a>
+      <p style="margin-top:12px; font-size:12px; color:var(--ink-muted);">🎁 Bónus exclusivo para as próximas 24h</p>
+    </div>
+  </div>
+
+
+
+<!-- DOR -->
+<div style="background:var(--white); border-bottom:1px solid var(--border);">
+  <div class="sec">
+    <div class="dor-wrap">
+      <p class="sec-title">Reconhece <em>alguma destas situações?</em></p>
+      <p class="sec-sub">Se uma delas lhe soou familiar — este app foi feito para si</p>
+      <div class="dor-item"><span class="dor-icon">📸</span><span>Tira fotos dos seus produtos mas ficam sempre sem graça — e a cliente olha e não compra</span></div>
+      <div class="dor-item"><span class="dor-icon">💶</span><span>A cliente pergunta o preço e você hesita, diz um número "de cabeça" — e no fim do mês o dinheiro some sem saber porquê</span></div>
+      <div class="dor-item"><span class="dor-icon">📋</span><span>Envia o orçamento pelo WhatsApp, a cliente lê... e não responde. Ou pede desconto porque não parece profissional</span></div>
+      <div class="dor-item"><span class="dor-icon">🗂️</span><span>Encomendas anotadas num papel, num chat, numa folha — e às vezes perde-se, esquece ou confunde datas</span></div>
+      <div class="dor-item"><span class="dor-icon">😓</span><span>Trabalha muito, a peça sai bonita — mas a sensação é que o negócio nunca cresce como devia</span></div>
+      <div class="dor-close">
+        <p>Não é falta de talento. É falta de ferramenta certa.</p>
+        <small>E isso tem solução — rápida, simples e ao alcance de qualquer artesã.</small>
+      </div>
+    </div>
+
+    <!-- VÍDEO MOCKUP - A SOLUÇÃO -->
+    <div id="demonstracao" class="video-mockup-wrap">
+      <div class="mockup-glow"></div>
+      <p class="sec-title" style="margin-bottom: 20px;">Veja o app em <em>ação</em></p>
+      <p class="sec-sub" style="margin-bottom: 40px;">Resultados profissionais em menos de 1 minuto</p>
+      
+      <div class="iphone-frame">
+        <div class="iphone-screen">
+          <iframe 
+            id="main-video-iframe"
+            src="https://www.youtube.com/embed/mEOoLSFqcsM?autoplay=1&mute=1&loop=1&playlist=mEOoLSFqcsM&controls=0&showinfo=0&rel=0&modestbranding=1" 
+            title="Demonstração Ateliê Criativo" 
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+            allowfullscreen>
+          </iframe>
+        </div>
+      </div>
+
+      <div style="margin-top: 50px;">
+        <span style="display: block; font-size: 14px; color: var(--ink-soft); margin-bottom: 15px;">✨ 100% feito com o Ateliê Criativo</span>
+        <a href="#precos" class="cta-btn" style="padding: 14px 30px; font-size: 15px;">Quero vender assim também →</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- MECANISMO — FUNDO ROSÉ CLARO -->
+<div class="mec-section">
+  <div class="sec">
+    <p class="sec-title">O seu estúdio completo,<br><em>na palma da mão</em></p>
+    <p class="sec-sub">A inteligência artificial que era só para grandes marcas — agora ao serviço da artesã</p>
+
+    <div class="niche-strip" style="margin-bottom:36px;">
+      <span class="niche-pill">🧶 Artesanato</span>
+      <span class="niche-pill">📦 Papelaria</span>
+      <span class="niche-pill">🕯️ Velas & Sabonetes</span>
+      <span class="niche-pill">🎀 Acessórios</span>
+    </div>
+
+    <div class="mec-grid">
+      <div class="mec-card">
+        <div class="mec-badge">Diferencial único</div>
+        <div class="mec-icon">📸✨</div>
+        <div class="mec-title">Estúdio de Fotos com IA</div>
+        <div class="mec-text">Tire uma foto simples com o telemóvel. A nossa IA troca o fundo, melhora a luz e entrega uma imagem digna de revista — em segundos. <strong>Corre no nosso servidor.</strong> Não precisa de autorizar o Google, nem de criar conta em lado nenhum.</div>
+      </div>
+      <div class="mec-card">
+        <div class="mec-icon">🧮</div>
+        <div class="mec-title">Calculadora de Preço Justo</div>
+        <div class="mec-text">Materiais + horas + margem = preço com lucro real. Nunca mais trabalhe de graça sem perceber. Cobra com segurança e confiança.</div>
+      </div>
+      <div class="mec-card">
+        <div class="mec-icon">📄</div>
+        <div class="mec-title">Orçamentos PDF em 1 clique</div>
+        <div class="mec-text">Com a sua logo e as suas cores. Enviado pelo WhatsApp em segundos. A cliente recebe um documento profissional — e a confiança muda tudo.</div>
+      </div>
+      <div class="mec-card">
+        <div class="mec-icon">📋</div>
+        <div class="mec-title">Contratos Personalizados</div>
+        <div class="mec-text">Proteja o seu trabalho com contratos simples e profissionais. Sem advogado. Gerados pelo app com os dados da encomenda.</div>
+      </div>
+      <div class="mec-card">
+        <div class="mec-icon">📦</div>
+        <div class="mec-title">Gestão de Encomendas</div>
+        <div class="mec-text">Todos os pedidos organizados, com prazo e estado. Nunca mais se esqueça de uma entrega ou confunda uma cliente.</div>
+      </div>
+      <div class="mec-card">
+        <div class="mec-icon">💰</div>
+        <div class="mec-title">Financeiro Completo</div>
+        <div class="mec-text">Receitas, despesas e lucro real num só painel. Feche o mês a saber exatamente quanto o seu ateliê gerou.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- COMO FUNCIONA -->
+<div style="background:var(--white); border-bottom:1px solid var(--border);">
+  <div class="sec">
+    <p class="sec-title">Como funciona <em>em 3 passos</em></p>
+    <p class="sec-sub">Simples como deve ser. Poderoso como o seu negócio merece.</p>
+    <div class="step-row">
+      <div class="step-num">1</div>
+      <div><div class="step-title">Tire a foto como sempre fez</div><div class="step-text">Com o telemóvel, em qualquer sítio, com a luz que tiver. Não precisa de equipamento especial nem de arrumar a casa toda.</div></div>
+    </div>
+    <div class="step-row">
+      <div class="step-num">2</div>
+      <div><div class="step-title">Escolha o cenário — a IA trata do resto</div><div class="step-text">Estúdio branco, mesa de madeira, fundo floral, jardim, rústico, minimalista — dezenas de cenários prontos. Em segundos tem uma foto profissional com a sua peça em destaque.</div></div>
+    </div>
+    <div class="step-row">
+      <div class="step-num">3</div>
+      <div><div class="step-title">Publique, orce e venda mais</div><div class="step-text">Fotos que param o scroll nas redes sociais. Orçamentos PDF que fecham vendas. Negócio organizado que finalmente cresce.</div></div>
+    </div>
+    
+    <div style="text-align:center; margin-top:40px;">
+      <a href="#precos" class="cta-btn">Escolher meu plano e começar →</a>
+      <p class="cta-sub-text">Garantia incondicional de 15 dias</p>
+    </div>
+  </div>
+</div>
+
+
+<!-- DEPOIMENTOS -->
+<div style="background:var(--cream); border-bottom:1px solid var(--border);">
+  <div class="sec">
+    <p class="sec-title">O que dizem <em>as artesãs</em></p>
+    <p class="sec-sub">Histórias reais de quem já vive a transformação</p>
+    <div class="testi-grid">
+      <div class="testi-card">
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-text">"Tirei uma foto do meu sousplat em cima da mesa da cozinha e ficou uma imagem de revista. As clientes perguntam se contratei fotógrafo. Respondo que sim — a inteligência artificial!"</p>
+        <div class="testi-author"><div class="testi-av"><img src="img/testi_1.png" alt="Maria Amélia"></div><div><div class="testi-name">Maria Amélia</div><div class="testi-role">Sousplats & cestaria · Braga</div></div></div>
+      </div>
+      <div class="testi-card">
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-text">"Mandei o orçamento em PDF com a minha logo pela primeira vez. A cliente respondeu de imediato: 'parece tão profissional, vou confirmar já.' Nunca mais voltei ao WhatsApp simples."</p>
+        <div class="testi-author"><div class="testi-av"><img src="img/testi_2.png" alt="Carla Santos"></div><div><div class="testi-name">Carla Santos</div><div class="testi-role">Papelaria personalizada · Lisboa</div></div></div>
+      </div>
+      <div class="testi-card">
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-text">"Descobri que cobrava quase 30% abaixo do que devia. A calculadora mostrou isso em 5 minutos. Ajustei os preços — e as clientes nem pestanejaram. Agora sei que estou a lucrar de verdade."</p>
+        <div class="testi-author"><div class="testi-av"><img src="img/testi_3.png" alt="Luciana Pires"></div><div><div class="testi-name">Luciana Pires</div><div class="testi-role">Velas artesanais · Porto</div></div></div>
+      </div>
+
+    </div>
+
+    <div style="text-align:center; margin-top:40px;">
+      <a href="#precos" class="cta-btn">Quero os resultados dessas artesãs →</a>
+      <p class="cta-sub-text">Acesso vitalício disponível por tempo limitado</p>
+    </div>
+  </div>
+</div>
+
+
+<!-- ANCORAGEM DE PREÇO — GATILHO MENTAL -->
+<div style="background:var(--white); border-bottom:1px solid var(--border);">
+  <div class="sec">
+    <p class="sec-title">Quanto custaria isto <em>separado?</em></p>
+    <p class="sec-sub">Veja o que está a poupar — tudo incluído num único app</p>
+    <div class="anchor-block">
+      <p class="anchor-title">Se fosse comprar cada peça separada, pagaria:</p>
+      <div class="anchor-compare">
+        <div class="anchor-item crossed"><div class="anchor-label">Fotógrafo profissional</div><div class="anchor-price">€80–120</div><div class="anchor-desc">por sessão</div></div>
+        <div class="anchor-item crossed"><div class="anchor-label">Orçamento/Contrato</div><div class="anchor-price">€30–50</div><div class="anchor-desc">por template</div></div>
+        <div class="anchor-item crossed"><div class="anchor-label">App de gestão</div><div class="anchor-price">€25/mês</div><div class="anchor-desc">só o básico</div></div>
+        <div class="anchor-item crossed"><div class="anchor-label">Calculadora de preços</div><div class="anchor-price">€15/mês</div><div class="anchor-desc">serviço separado</div></div>
+        <div class="anchor-item highlight"><div class="anchor-label">✦ Tudo junto aqui</div><div class="anchor-price">€7,90</div><div class="anchor-desc">por mês</div></div>
+      </div>
+      <p class="anchor-cta-text">Tudo o que acima custaria <strong>€150+ por mês</strong> — está disponível por <strong>menos que um café por semana.</strong></p>
+    </div>
+  </div>
+</div>
+
+<!-- COMPARAÇÃO -->
+<div style="background:var(--cream); border-bottom:1px solid var(--border);">
+  <div class="sec">
+    <p class="sec-title">Com ou sem o Ateliê Criativo. <em>Escolhe tu.</em></p>
+    <p class="sec-sub">A diferença entre o negócio que sobrevive e o que cresce</p>
+    <div class="comp-wrap">
+      <table class="comp-table">
+        <thead>
+          <tr><th></th><th>Sem o app</th><th>Com Ateliê Criativo</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Fotos de produto</td><td><span class="crs">✕</span> Caseiras, sem cenário</td><td><span class="chk">✓</span> Profissionais com IA</td></tr>
+          <tr><td>Preço das peças</td><td><span class="crs">✕</span> No achismo, quase sempre a perder</td><td><span class="chk">✓</span> Calculado com custo real</td></tr>
+          <tr><td>Orçamentos</td><td><span class="crs">✕</span> Mensagem de WhatsApp</td><td><span class="chk">✓</span> PDF com a sua marca</td></tr>
+          <tr><td>Contratos</td><td><span class="crs">✕</span> Nenhum — trabalha a perder</td><td><span class="chk">✓</span> Gerados em 1 clique</td></tr>
+          <tr><td>Pedidos de desconto</td><td><span class="crs">✕</span> Cede por não ter como justificar</td><td><span class="chk">✓</span> Mostra o cálculo — cliente entende</td></tr>
+          <tr><td>Financeiro</td><td><span class="crs">✕</span> Sem saber se está a lucrar</td><td><span class="chk">✓</span> Lucro visível em cada pedido</td></tr>
+          <tr><td>Imagem profissional</td><td><span class="crs">✕</span> Parece hobby</td><td><span class="chk">✓</span> Parece empresa de verdade</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- PREÇOS -->
+<div id="precos" style="background:var(--white); border-bottom:1px solid var(--border);">
+  <div class="sec">
+    <p class="sec-title">Escolha o seu plano <em>hoje</em></p>
+    <p class="sec-sub">Menos que uma refeição fora — e transforma o seu ateliê por completo</p>
+    <div class="price-wrap">
+
+      <div class="price-card">
+        <div class="price-name">Mensal</div>
+        <div class="price-old">€19,90/mês</div>
+        <div class="price-val">€7<small style="font-size:22px">,90</small></div>
+        <div class="price-period">/mês · cancela quando quiser</div>
+        <ul class="price-feats">
+          <li>Fotos IA profissionais</li>
+          <li>Calculadora de preço</li>
+          <li>Orçamentos PDF</li>
+          <li>Gestão de encomendas</li>
+          <li>Financeiro completo</li>
+        </ul>
+        <a href="https://pay.hotmart.com/Y105492438A?off=lufkir3m" id="checkout-mensal" class="price-cta">Assinar Mensal</a>
+      </div>
+
+      <div class="price-card featured">
+        <div class="price-badge">⭐ Mais Popular</div>
+        <div class="price-name">Anual</div>
+        <div class="price-old">€119,00/ano</div>
+        <div class="price-val">€59<small style="font-size:22px">,00</small></div>
+        <div class="price-period">/ano · equivale a €4,91/mês</div>
+        <div class="price-save">Poupa €60 por ano</div>
+        <ul class="price-feats">
+          <li>Tudo do Mensal</li>
+          <li>Cenários premium</li>
+          <li>Contratos personalizados</li>
+          <li>Suporte prioritário</li>
+          <li>Todas as atualizações</li>
+        </ul>
+        <a href="https://pay.hotmart.com/Y105492438A?off=ff49t67u" id="checkout-anual" class="price-cta">Assinar Anual · Melhor Oferta</a>
+      </div>
+
+      <div class="price-card">
+        <div class="price-name">Vitalício ⚡</div>
+        <div class="price-old">€247,00</div>
+        <div class="price-val">€<span id="price-value">97</span></div>
+        <div class="price-period">uma vez · acesso para sempre</div>
+        <div class="price-save">Apenas esta semana</div>
+        <ul class="price-feats">
+          <li>Tudo incluído para sempre</li>
+          <li>Todas as atualizações futuras</li>
+          <li>Cenários ilimitados</li>
+          <li>Suporte vitalício</li>
+          <li>Sem mensalidades nunca</li>
+        </ul>
+        <a href="https://pay.hotmart.com/Y105490525B" id="checkout-link-final" class="price-cta gold-cta">Acesso Vitalício →</a>
+      </div>
+    </div>
+
+    <p style="text-align:center; margin-top:24px; font-size:13px; color:var(--ink-muted);">
+      💳 Cartão · MB Way · PayPal · Pix &nbsp;·&nbsp; 🔒 Pagamento seguro via Hotmart &nbsp;·&nbsp; ✅ Acesso imediato
+    </p>
+  </div>
+</div>
+
+<!-- GARANTIA -->
+<div style="background:var(--cream); border-bottom:1px solid var(--border);">
+  <div class="sec">
+    <div class="guarantee">
+      <span class="guarantee-icon">🛡️</span>
+      <div class="guarantee-title">Garantia total de 15 dias — sem perguntas</div>
+      <p class="guarantee-text">Experimente o Ateliê Criativo durante 15 dias completos. Se por qualquer razão não ficar satisfeita — um e-mail e devolvemos tudo na hora. Sem perguntas, sem formulários, sem esperas. <strong>O risco é nosso. O ganho é seu.</strong></p>
+    </div>
+  </div>
+</div>
+
+<!-- FAQ -->
+<div style="background:var(--white); border-bottom:1px solid var(--border);">
+  <div class="sec">
+    <p class="sec-title">Perguntas <em>frequentes</em></p>
+    <p class="sec-sub">Tudo o que precisa saber antes de começar</p>
+    <div class="faq-item"><div class="faq-q">Preciso de saber usar computador ou perceber de tecnologia?</div><div class="faq-a">Não. Se sabe usar o WhatsApp, sabe usar o Ateliê Criativo. Foi desenhado para ser simples e intuitivo, mesmo para quem nunca usou um app de negócio.</div></div>
+    <div class="faq-item"><div class="faq-q">Tenho de autorizar o Google ou dar acesso à minha conta?</div><div class="faq-a">Não. A nossa inteligência artificial corre nos nossos próprios servidores. Não precisa de autorizar o Google, criar conta na OpenAI, nem dar acesso a absolutamente nada. Entra no app, usa e pronto — simples assim.</div></div>
+    <div class="faq-item"><div class="faq-q">Quantas fotos posso fazer?</div><div class="faq-a">Generosas para o uso normal de uma artesã ativa. Muito acima do que os concorrentes oferecem (alguns limitam a 4 fotos por dia mesmo cobrando mensalidade). No plano vitalício o limite é consideravelmente maior.</div></div>
+    <div class="faq-item"><div class="faq-q">Funciona para o tipo de artesanato que eu faço?</div><div class="faq-a">Sim — macramê, bordados, crochê, sousplats, velas, sabonetes, papelaria, bijuteria, joias, presentes personalizados, MDF, guirlandas, cestos, acessórios. Se é feito com as mãos e com amor, o app foi feito para si.</div></div>
+    <div class="faq-item"><div class="faq-q">Estou em Portugal — o pagamento funciona?</div><div class="faq-a">Sim, perfeitamente. Cartão de débito e crédito, MB Way e PayPal. Valores em euros. Fatura emitida automaticamente pela Hotmart.</div></div>
+    <div class="faq-item"><div class="faq-q">Posso cancelar a qualquer momento?</div><div class="faq-a">No plano mensal, cancela quando quiser sem qualquer penalização. No anual e vitalício tem sempre a garantia de 15 dias. Sem letra pequena.</div></div>
+  </div>
+</div>
+
+<!-- FINAL CTA -->
+<div class="final-cta">
+  <h2>O seu talento merece<br>uma vitrine <em>à sua altura.</em></h2>
+  <p>Junte-se a centenas de artesãs que já pararam de trabalhar no escuro.<br>Fotos profissionais. Negócio organizado. Lucro visível. Hoje.</p>
+  <a href="#precos" class="cta-btn">Quero começar agora →</a>
+  <p style="margin-top:18px; font-size:13px; color:var(--ink-muted);">✅ Acesso imediato · 🛡️ Garantia 15 dias · 💳 Pagamento seguro Hotmart</p>
+</div>
+
+<script>
+let current = 0;
+const total = 4;
+const track = document.getElementById('track');
+const dotsWrap = document.getElementById('dots');
+
+function initCarousel() {
+  if (dotsWrap && dotsWrap.innerHTML === "") {
+    for(let i=0; i<total; i++){
+      const d = document.createElement('button');
+      d.className = 'dot' + (i===0?' active':'');
+      d.onclick = ()=>goTo(i);
+      dotsWrap.appendChild(d);
+    }
+  }
+}
+
+function goTo(n){
+  if (!track) return;
+  current = (n+total)%total;
+  track.style.transform = `translateX(-${current*100}%)`;
+  const dots = document.querySelectorAll('.dot');
+  dots.forEach((d,i)=>d.classList.toggle('active',i===current));
+}
+
+function move(dir){ goTo(current+dir); }
+
+let auto = setInterval(()=>move(1), 4500);
+
+document.addEventListener('DOMContentLoaded', () => {
+  initCarousel();
+  if (track) {
+    track.parentElement.addEventListener('mouseenter',()=>clearInterval(auto));
+    track.parentElement.addEventListener('mouseleave',()=>{ auto=setInterval(()=>move(1), 4500); });
+  }
+});
+</script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+const SUPABASE_URL = 'https://sdnnpgeynzqwuruvanja.supabase.co';
+const SUPABASE_KEY = 'sb_publishable_Hbv2XnAyGQF87ma1nUJIFg_Gwhgb3sP';
+const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+
+function initTracking() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const source = urlParams.get('utm_source') || (document.referrer ? new URL(document.referrer).hostname : 'Direto');
+    
+    supabaseClient.from('analytics_events').insert([{
+        event_type: 'visit',
+        page_url: window.location.href,
+        user_agent: navigator.userAgent,
+        coordinates: { source: source }
+    }]);
+
+    document.addEventListener('click', async (e) => {
+      const x = (e.pageX / document.documentElement.scrollWidth).toFixed(3);
+      const y = (e.pageY / document.documentElement.scrollHeight).toFixed(3);
+      await supabaseClient.from('analytics_events').insert([{
+        event_type: 'click',
+        page_url: window.location.href,
+        coordinates: { x, y, target: e.target.tagName },
+        user_agent: navigator.userAgent
+      }]);
+    });
+
+    let maxScroll = 0;
+    window.addEventListener('scroll', () => {
+      const scrollPercent = Math.round(((window.scrollY + window.innerHeight) / document.documentElement.scrollHeight) * 100);
+      if (scrollPercent > maxScroll) maxScroll = scrollPercent;
+    });
+
+    window.addEventListener('beforeunload', () => {
+      supabaseClient.from('analytics_events').insert([{
+        event_type: 'scroll_depth',
+        page_url: window.location.href,
+        coordinates: { depth: maxScroll }
+      }]);
+    });
+
+    // Enviar evento de PageView para a API de Conversões (CAPI)
+    async function sendCapiEvent(eventName, eventId, userData = {}) {
+        try {
+            await fetch('/api/meta-capi', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    event_name: eventName,
+                    event_id: eventId,
+                    event_url: window.location.href,
+                    user_data: userData
+                })
+            });
+        } catch (err) {
+            console.error('Erro CAPI:', err);
+        }
+    }
+
+    // Disparar CAPI para o PageView inicial
+    sendCapiEvent('PageView', window.pageViewId);
+
+    async function applySettings() {
+        try {
+            const { data: settings, error } = await supabaseClient.from('site_settings').select('*').eq('id', 3).single();
+            if (error) {
+                console.error('Erro ao carregar configurações:', error);
+                return;
+            }
+            if (settings) {
+                if (settings.headline) document.getElementById('main-headline').innerHTML = settings.headline;
+                if (settings.sub_headline) document.getElementById('sub-headline').innerText = settings.sub_headline;
+                
+                const checkoutFinal = document.getElementById('checkout-link-final');
+                if (checkoutFinal && settings.checkout_link) checkoutFinal.href = settings.checkout_link;
+                
+                const checkoutAnual = document.getElementById('checkout-anual');
+                if (checkoutAnual && settings.checkout_anual) checkoutAnual.href = settings.checkout_anual;
+                
+                const checkoutMensal = document.getElementById('checkout-mensal');
+                if (checkoutMensal && settings.checkout_mensal) checkoutMensal.href = settings.checkout_mensal;
+                
+                // Atualizar preço dinâmico (Vitalício)
+                const priceEl = document.getElementById('price-value');
+                if (priceEl && settings.price) priceEl.innerText = settings.price;
+
+                // Atualizar Vídeo Dinâmico
+                if (settings.video_url) {
+                    const videoIframe = document.getElementById('main-video-iframe');
+                    if (videoIframe) {
+                        let videoId = '';
+                        const url = settings.video_url;
+                        if (url.includes('shorts/')) {
+                            videoId = url.split('shorts/')[1].split('?')[0];
+                        } else if (url.includes('v=')) {
+                            videoId = url.split('v=')[1].split('&')[0];
+                        } else if (url.includes('be/')) {
+                            videoId = url.split('be/')[1].split('?')[0];
+                        }
+                        
+                        if (videoId) {
+                            videoIframe.src = `https://www.youtube.com/embed/${videoId}?autoplay=1&mute=1&loop=1&playlist=${videoId}&controls=0&showinfo=0&rel=0&modestbranding=1`;
+                        }
+                    }
+                }
+
+                // Injetar Pixels Numéricos
+                if (settings.pixels && Array.isArray(settings.pixels)) {
+                    settings.pixels.forEach(id => {
+                        if (id && id !== '985629873942366') {
+                            const script = document.createElement('script');
+                            script.innerHTML = `!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window, document,'script','https://connect.facebook.net/en_US/fbevents.js');fbq('init', '${id}');fbq('track', 'PageView');`;
+                            document.head.appendChild(script);
+                        }
+                    });
+                }
+
+                // Injetar Pixel via Script HTML
+                if (settings.pixel_html) {
+                    const container = document.createElement('div');
+                    container.innerHTML = settings.pixel_html;
+                    const scripts = container.querySelectorAll('script');
+                    scripts.forEach(oldScript => {
+                        const newScript = document.createElement('script');
+                        Array.from(oldScript.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value));
+                        newScript.appendChild(document.createTextNode(oldScript.innerHTML));
+                        document.head.appendChild(newScript);
+                    });
+                }
+            }
+        } catch (err) {
+            console.error('Erro inesperado:', err);
+        }
+    }
+
+    applySettings();
+}
+
+// 5. CRONÔMETRO DE URGÊNCIA (15 MINUTOS)
+function startTimer(duration, display) {
+    let timer = duration, minutes, seconds;
+    setInterval(function () {
+        minutes = parseInt(timer / 60, 10);
+        seconds = parseInt(timer % 60, 10);
+        minutes = minutes < 10 ? "0" + minutes : minutes;
+        seconds = seconds < 10 ? "0" + seconds : seconds;
+        display.textContent = minutes + ":" + seconds;
+        if (--timer < 0) timer = duration; // Loop para manter a urgência sempre ativa
+    }, 1000);
+}
+
+// 6. STICKY BAR LOGIC
+function initStickyBar() {
+    const sticky = document.getElementById('sticky-cta');
+    const hero = document.querySelector('.hero');
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > hero.offsetHeight) {
+            sticky.classList.add('active');
+        } else {
+            sticky.classList.remove('active');
+        }
+    });
+}
+
+// 7. SCROLL REVEAL LOGIC
+function initReveal() {
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('active');
+            }
+        });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.sec, .dor-wrap, .mec-card, .price-card, .guarantee, .iphone-frame').forEach(el => {
+        el.classList.add('reveal');
+        observer.observe(el);
+    });
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    initTracking();
+    initStickyBar();
+    initReveal();
+    startTimer(60 * 15, document.querySelector('#timer'));
+});
+</script>
+</body>
+</html>
+
+
+

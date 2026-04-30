@@ -158,6 +158,14 @@
         <!-- CMS SECTION -->
         <div class="card" id="cms">
             <div class="card-title">Editor de Página (CMS) <i class="fas fa-pencil-alt"></i></div>
+            <div style="margin-bottom: 24px; display: flex; align-items: center; background: rgba(0,0,0,0.2); padding: 16px; border-radius: 12px; border: 1px solid var(--border);">
+                <label style="color: var(--text-muted); font-weight: 600; font-size: 14px; margin-right: 16px;"><i class="fas fa-globe"></i> Selecione a Oferta/País:</label>
+                <select id="regionSelect" onchange="loadData()" style="background: var(--card); color: var(--text); padding: 10px 16px; border-radius: 8px; border: 1px solid var(--border); font-family: inherit; font-size: 14px; outline: none; cursor: pointer;">
+                    <option value="1">🇵🇹 Oferta Portugal (ID 1)</option>
+                    <option value="2">🇧🇷 Oferta Brasil (ID 2)</option>
+                    <option value="3">🇪🇸 Oferta Espanha (ID 3)</option>
+                </select>
+            </div>
             <div class="cms-grid">
                 <div>
                     <div class="form-group">
@@ -246,7 +254,10 @@ CREATE TABLE analytics_events (
 
 -- Atualizar configurações iniciais
 INSERT INTO site_settings (id, headline, sub_headline, checkout_link, checkout_anual, checkout_mensal, price, warranty, video_url)
-VALUES (1, 'A sua obra é linda. Merece ser vista assim.', 'O Ateliê Criativo transforma fotos...', 'https://pay.hotmart.com/Y105490525B', 'https://pay.hotmart.com/Y105492438A?off=ff49t67u', 'https://pay.hotmart.com/Y105492438A?off=lufkir3m', 97, 15, 'https://youtube.com/shorts/mEOoLSFqcsM')
+VALUES 
+(1, 'A sua obra é linda. Merece ser vista assim.', 'O Ateliê Criativo transforma fotos...', 'https://pay.hotmart.com/Y105490525B', 'https://pay.hotmart.com/Y105492438A?off=ff49t67u', 'https://pay.hotmart.com/Y105492438A?off=lufkir3m', 97, 15, 'https://youtube.com/shorts/mEOoLSFqcsM'),
+(2, '[BR] A sua obra é linda. Merece ser vista assim.', '[BR] O Ateliê Criativo transforma fotos...', '', '', '', 97, 15, 'https://youtube.com/shorts/mEOoLSFqcsM'),
+(3, '[ES] Tu obra es hermosa.', '[ES] El Atelier Creativo transforma fotos...', '', '', '', 97, 15, 'https://youtube.com/shorts/mEOoLSFqcsM')
 ON CONFLICT (id) DO UPDATE SET 
     checkout_link = EXCLUDED.checkout_link,
     checkout_anual = EXCLUDED.checkout_anual,
@@ -285,8 +296,9 @@ ON CONFLICT (id) DO UPDATE SET
 
         // Carregar Dados Iniciais
         async function loadData() {
+            const selectedId = parseInt(document.getElementById('regionSelect')?.value) || 1;
             // 1. Carregar Configurações (CMS)
-            const { data: settings } = await supabaseClient.from('site_settings').select('*').eq('id', 1).single();
+            const { data: settings } = await supabaseClient.from('site_settings').select('*').eq('id', selectedId).single();
             if (settings) {
                 document.getElementById('h1_text').value = settings.headline || '';
                 document.getElementById('sub_text').value = settings.sub_headline || '';
@@ -299,7 +311,20 @@ ON CONFLICT (id) DO UPDATE SET
                 document.getElementById('video_url').value = settings.video_url || 'https://youtube.com/shorts/mEOoLSFqcsM';
                 if (settings.pixels) {
                     document.getElementById('pixel_1').value = settings.pixels[0] || '';
+                } else {
+                    document.getElementById('pixel_1').value = '';
                 }
+            } else {
+                document.getElementById('h1_text').value = '';
+                document.getElementById('sub_text').value = '';
+                document.getElementById('checkout_link').value = '';
+                document.getElementById('checkout_anual').value = '';
+                document.getElementById('checkout_mensal').value = '';
+                document.getElementById('price').value = 97;
+                document.getElementById('warranty').value = 15;
+                document.getElementById('pixel_html').value = '';
+                document.getElementById('video_url').value = '';
+                document.getElementById('pixel_1').value = '';
             }
 
 
@@ -378,8 +403,10 @@ ON CONFLICT (id) DO UPDATE SET
             const msg = document.getElementById('saveMsg');
             btn.innerText = "Salvando...";
             
+            const selectedId = parseInt(document.getElementById('regionSelect')?.value) || 1;
+            
             const updates = {
-                id: 1,
+                id: selectedId,
                 headline: document.getElementById('h1_text').value,
                 sub_headline: document.getElementById('sub_text').value,
                 checkout_link: document.getElementById('checkout_link').value,
