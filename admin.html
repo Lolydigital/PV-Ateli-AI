@@ -100,9 +100,11 @@
         <nav>
             <a href="#" class="nav-link active"><i class="fas fa-chart-line"></i> <span>Overview</span></a>
             <a href="#cms" class="nav-link"><i class="fas fa-edit"></i> <span>Editar Página</span></a>
-            <a href="#" class="nav-link"><i class="fas fa-fire"></i> <span>Heatmap</span></a>
-            <a href="#" class="nav-link"><i class="fas fa-users"></i> <span>Leads</span></a>
-            <a href="#" class="nav-link" style="margin-top: 40px;"><i class="fas fa-cog"></i> <span>Configurações</span></a>
+            <a href="#heatmap-section" class="nav-link"><i class="fas fa-fire"></i> <span>Heatmap Landing</span></a>
+            <a href="#quiz-section" class="nav-link"><i class="fas fa-list-ol"></i> <span>Mapeamento Quiz</span></a>
+            <a href="#links-section" class="nav-link"><i class="fas fa-link"></i> <span>Links Campanhas</span></a>
+            <a href="#leads-section" class="nav-link"><i class="fas fa-users"></i> <span>Leads (Cadastros)</span></a>
+            <a href="#sql-section" class="nav-link" style="margin-top: 40px;"><i class="fas fa-database"></i> <span>Banco de Dados</span></a>
             <a href="#" onclick="handleLogout()" class="nav-link" style="color: #ef4444;"><i class="fas fa-sign-out-alt"></i> <span>Sair</span></a>
         </nav>
     </div>
@@ -139,7 +141,7 @@
         </div>
 
         <!-- CHARTS & HEATMAP -->
-        <div class="chart-row">
+        <div class="chart-row" id="heatmap-section">
             <div class="card">
                 <div class="card-title">Fluxo do Funil <i class="fas fa-filter"></i></div>
                 <canvas id="funnelChart"></canvas>
@@ -155,7 +157,7 @@
             </div>
         </div>
 
-        <div class="chart-row" style="margin-top: 24px;">
+        <div class="chart-row" style="margin-top: 24px;" id="quiz-section">
             <div class="card" style="width: 100%;">
                 <div class="card-title">Desempenho do Quiz (XQuiz) <i class="fas fa-list-ol"></i></div>
                 <div style="height: 300px; position: relative;">
@@ -233,7 +235,7 @@
         </div>
 
         <!-- LINKS ÚTEIS SECTION -->
-        <div class="card" style="margin-top: 24px; background: rgba(56, 189, 248, 0.05); border-color: rgba(56, 189, 248, 0.2);">
+        <div class="card" id="links-section" style="margin-top: 24px; background: rgba(56, 189, 248, 0.05); border-color: rgba(56, 189, 248, 0.2);">
             <div class="card-title" style="color: var(--accent);">Links Úteis (Para Campanhas) <i class="fas fa-link"></i></div>
             <p style="font-size: 13px; color: var(--text-muted); margin-bottom: 16px;">
                 Copie as URLs abaixo para utilizar nos seus anúncios de acordo com o público-alvo:
@@ -286,6 +288,52 @@
             </script>
         </div>
 
+        <!-- LEADS SECTION -->
+        <div class="card" id="leads-section" style="margin-top: 24px;">
+            <div class="card-title">Leads Cadastrados <i class="fas fa-users"></i></div>
+            <p style="font-size: 13px; color: var(--text-muted); margin-bottom: 16px;">
+                Aqui aparecerão os leads capturados (emails) quando houver formulários de captura integrados ao banco de dados Supabase. Atualmente, os clientes compram diretamente no Checkout.
+            </p>
+            <div style="overflow-x: auto;">
+                <table style="width: 100%; border-collapse: collapse; font-size: 14px; text-align: left;">
+                    <thead>
+                        <tr style="border-bottom: 1px solid var(--border); color: var(--text-muted);">
+                            <th style="padding: 12px 8px;">ID</th>
+                            <th style="padding: 12px 8px;">Nome / Email</th>
+                            <th style="padding: 12px 8px;">Origem</th>
+                            <th style="padding: 12px 8px;">Data</th>
+                            <th style="padding: 12px 8px;">Status</th>
+                        </tr>
+                    </thead>
+                    <tbody id="leadsTableBody">
+                        <!-- Simulação de Leads até criar integração real com Supabase (tabela leads) -->
+                        <tr style="border-bottom: 1px solid rgba(255,255,255,0.05);">
+                            <td style="padding: 12px 8px;">#1042</td>
+                            <td style="padding: 12px 8px;">mariana.artes@...</td>
+                            <td style="padding: 12px 8px;"><span style="background: rgba(56, 189, 248, 0.1); color: var(--accent); padding: 4px 8px; border-radius: 4px; font-size: 11px;">Quiz BR</span></td>
+                            <td style="padding: 12px 8px;">Hoje, 14:30</td>
+                            <td style="padding: 12px 8px; color: #10b981;">Acessou Checkout</td>
+                        </tr>
+                        <tr style="border-bottom: 1px solid rgba(255,255,255,0.05);">
+                            <td style="padding: 12px 8px;">#1041</td>
+                            <td style="padding: 12px 8px;">carlos.designer@...</td>
+                            <td style="padding: 12px 8px;"><span style="background: rgba(200, 54, 90, 0.1); color: var(--primary); padding: 4px 8px; border-radius: 4px; font-size: 11px;">Landing PT</span></td>
+                            <td style="padding: 12px 8px;">Hoje, 11:15</td>
+                            <td style="padding: 12px 8px; color: var(--text-muted);">Apenas Visitou</td>
+                        </tr>
+                        <tr style="border-bottom: 1px solid rgba(255,255,255,0.05);">
+                            <td style="padding: 12px 8px;">#1040</td>
+                            <td style="padding: 12px 8px;">sofia.velas@...</td>
+                            <td style="padding: 12px 8px;"><span style="background: rgba(56, 189, 248, 0.1); color: var(--accent); padding: 4px 8px; border-radius: 4px; font-size: 11px;">Quiz ES</span></td>
+                            <td style="padding: 12px 8px;">Ontem, 20:05</td>
+                            <td style="padding: 12px 8px; color: #10b981;">Acessou Checkout</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <button class="btn-save" style="background: transparent; border: 1px solid var(--border); width: 100%; margin-top: 16px; color: var(--text-muted);">Ver todos os Leads</button>
+        </div>
+
         <!-- DEPOIMENTOS SECTION -->
         <div class="card" id="testimonials-section" style="margin-top: 24px;">
             <div class="card-title">Depoimentos & Provas Sociais <i class="fas fa-comments"></i></div>
@@ -301,7 +349,7 @@
         </div>
 
         <!-- SQL SETUP INSTRUCTIONS -->
-        <div class="card" style="margin-top: 24px;">
+        <div class="card" id="sql-section" style="margin-top: 24px;">
             <div class="card-title">Configuração Supabase (SQL) <i class="fas fa-database"></i></div>
             <p style="font-size: 13px; color: var(--text-muted); margin-bottom: 16px;">
                 Copie o código abaixo e cole no <strong>SQL Editor</strong> do seu Supabase para criar as tabelas necessárias:
