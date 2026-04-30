@@ -228,7 +228,7 @@
             </p>
             <textarea id="sqlCode" rows="10" readonly style="width: 100%; background: #000; color: #10b981; font-family: monospace; padding: 12px; border-radius: 8px;">
 -- Tabela para Configurações do Site
-CREATE TABLE site_settings (
+CREATE TABLE IF NOT EXISTS site_settings (
     id SERIAL PRIMARY KEY,
     headline TEXT,
     sub_headline TEXT,
@@ -243,7 +243,7 @@ CREATE TABLE site_settings (
 );
 
 -- Tabela para Eventos de Analytics (Heatmap e Funil)
-CREATE TABLE analytics_events (
+CREATE TABLE IF NOT EXISTS analytics_events (
     id SERIAL PRIMARY KEY,
     created_at TIMESTAMPTZ DEFAULT NOW(),
     event_type TEXT, -- 'visit', 'click', 'scroll_depth'
