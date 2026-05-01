@@ -501,12 +501,12 @@ src="https://www.facebook.com/tr?id=985629873942366&ev=PageView&noscript=1"
 
 <!-- BARRA URGÊNCIA -->
 <div class="urgency-bar">
-  ⏳ Oferta termina em: <strong id="timer">15:00</strong> — <strong>Vitalício por €97</strong> apenas esta semana.
+  ⏳ Oferta termina em: <strong id="timer">15:00</strong> — <strong>Vitalício por €<span id="urgency-price">97</span></strong> apenas esta semana.
 </div>
 
 <!-- STICKY CTA MOBILE -->
 <div class="sticky-cta" id="sticky-cta">
-  <div class="sticky-price"><small>€197</small>€97</div>
+  <div class="sticky-price"><small>€197</small>€<span id="sticky-price-val">97</span></div>
   <a href="#precos" class="sticky-btn">Garantir Vaga →</a>
 </div>
 
@@ -914,7 +914,7 @@ src="https://www.facebook.com/tr?id=985629873942366&ev=PageView&noscript=1"
   <div class="sec">
     <div class="guarantee">
       <span class="guarantee-icon">🛡️</span>
-      <div class="guarantee-title">Garantia total de 15 dias — sem perguntas</div>
+      <div class="guarantee-title">Garantia total de <span id="warranty-days">15</span> dias — sem perguntas</div>
       <p class="guarantee-text">Experimente o Ateliê Criativo durante 15 dias completos. Se por qualquer razão não ficar satisfeita — um e-mail e devolvemos tudo na hora. Sem perguntas, sem formulários, sem esperas. <strong>O risco é nosso. O ganho é seu.</strong></p>
     </div>
   </div>
@@ -1110,6 +1110,18 @@ function initTracking() {
                         newScript.appendChild(document.createTextNode(oldScript.innerHTML));
                         document.head.appendChild(newScript);
                     });
+                }
+
+                // Atualizar Garantia e Preços em Barras
+                if (settings.warranty) {
+                    const warrantyEl = document.getElementById('warranty-days');
+                    if (warrantyEl) warrantyEl.innerText = settings.warranty;
+                }
+                if (settings.price) {
+                    const up = document.getElementById('urgency-price');
+                    const sp = document.getElementById('sticky-price-val');
+                    if (up) up.innerText = settings.price;
+                    if (sp) sp.innerText = settings.price;
                 }
 
                 // Atualizar Depoimentos Dinâmicos

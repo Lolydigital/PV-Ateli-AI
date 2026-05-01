@@ -501,12 +501,12 @@ src="https://www.facebook.com/tr?id=985629873942366&ev=PageView&noscript=1"
 
 <!-- BARRA URGÊNCIA -->
 <div class="urgency-bar">
-  ⏳ Oferta termina en: <strong id="timer">15:00</strong> — <strong>Vitalicio por $97</strong> solo esta semana.
+  ⏳ Oferta termina en: <strong id="timer">15:00</strong> — <strong>Vitalicio por $<span id="urgency-price">97</span></strong> solo esta semana.
 </div>
 
 <!-- STICKY CTA MOBILE -->
 <div class="sticky-cta" id="sticky-cta">
-  <div class="sticky-price"><small>$197</small>$97</div>
+  <div class="sticky-price"><small>$197</small>$<span id="sticky-price-val">97</span></div>
   <a href="#precos" class="sticky-btn">Asegurar mi lugar →</a>
 </div>
 
@@ -914,7 +914,7 @@ src="https://www.facebook.com/tr?id=985629873942366&ev=PageView&noscript=1"
   <div class="sec">
     <div class="guarantee">
       <span class="guarantee-icon">🛡️</span>
-      <div class="guarantee-title">Garantía total de 15 días — sin preguntas</div>
+      <div class="guarantee-title">Garantía total de <span id="warranty-days">15</span> días — sin preguntas</div>
       <p class="guarantee-text">Prueba el Atelier Creativo durante 15 días completos. Si por cualquier razón no quedas satisfecha — un correo y devolvemos todo al instante. Sin preguntas, sin formularios, sin esperas. <strong>El riesgo es nuestro. La ganancia es tuya.</strong></p>
     </div>
   </div>
@@ -1110,6 +1110,18 @@ function initTracking() {
                         newScript.appendChild(document.createTextNode(oldScript.innerHTML));
                         document.head.appendChild(newScript);
                     });
+                }
+
+                // Atualizar Garantia e Preços em Barras
+                if (settings.warranty) {
+                    const warrantyEl = document.getElementById('warranty-days');
+                    if (warrantyEl) warrantyEl.innerText = settings.warranty;
+                }
+                if (settings.price) {
+                    const up = document.getElementById('urgency-price');
+                    const sp = document.getElementById('sticky-price-val');
+                    if (up) up.innerText = settings.price;
+                    if (sp) sp.innerText = settings.price;
                 }
 
                 // Atualizar Depoimentos Dinâmicos
