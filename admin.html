@@ -236,57 +236,76 @@
 
         <!-- LINKS ÚTEIS SECTION -->
         <div class="card" id="links-section" style="margin-top: 24px; background: rgba(56, 189, 248, 0.05); border-color: rgba(56, 189, 248, 0.2);">
-            <div class="card-title" style="color: var(--accent);">Links Úteis (Para Campanhas) <i class="fas fa-link"></i></div>
+            <div class="card-title" style="color: var(--accent);">Links das Páginas & Quizzes <i class="fas fa-link"></i></div>
             <p style="font-size: 13px; color: var(--text-muted); margin-bottom: 16px;">
-                Copie as URLs abaixo para utilizar nos seus anúncios de acordo com o público-alvo:
+                Copie as URLs abaixo para utilizar nos seus anúncios e campanhas:
             </p>
-            <div style="display: flex; flex-direction: column; gap: 12px;">
-                <div style="background: var(--bg); padding: 12px; border-radius: 8px; border: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center;">
-                    <div>
-                        <span style="font-weight: 600; font-size: 14px; margin-right: 10px;">🇵🇹 Quiz Portugal (PT-PT)</span>
-                        <a href="quiz_funil_completo_v2.html" target="_blank" style="color: var(--accent); font-size: 13px; text-decoration: none;" id="link_pt">/quiz_funil_completo_v2.html</a>
+            
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+                <!-- PÁGINAS DE VENDAS -->
+                <div>
+                    <h4 style="font-size: 14px; margin-bottom: 10px; color: var(--text);">Páginas de Vendas (LP)</h4>
+                    <div style="display: flex; flex-direction: column; gap: 8px;">
+                        <div style="background: var(--bg); padding: 10px; border-radius: 6px; border: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center;">
+                            <span style="font-size: 12px;">🇵🇹 Portugal (LP)</span>
+                            <button style="background: var(--accent); color: white; border: none; padding: 4px 10px; border-radius: 4px; font-size: 11px; cursor: pointer;" onclick="copyAbsolute('/index.html')">Copiar</button>
+                        </div>
+                        <div style="background: var(--bg); padding: 10px; border-radius: 6px; border: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center;">
+                            <span style="font-size: 12px;">🇧🇷 Brasil (LP)</span>
+                            <button style="background: var(--accent); color: white; border: none; padding: 4px 10px; border-radius: 4px; font-size: 11px; cursor: pointer;" onclick="copyAbsolute('/br.html')">Copiar</button>
+                        </div>
+                        <div style="background: var(--bg); padding: 10px; border-radius: 6px; border: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center;">
+                            <span style="font-size: 12px;">🇪🇸 Espanha/Latam (LP)</span>
+                            <button style="background: var(--accent); color: white; border: none; padding: 4px 10px; border-radius: 4px; font-size: 11px; cursor: pointer;" onclick="copyAbsolute('/es.html')">Copiar</button>
+                        </div>
                     </div>
-                    <button class="btn-save" style="background: #334155; padding: 8px 16px; font-size: 12px;" onclick="copyToClip('link_pt')">Copiar Link</button>
                 </div>
 
-                <div style="background: var(--bg); padding: 12px; border-radius: 8px; border: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center;">
-                    <div>
-                        <span style="font-weight: 600; font-size: 14px; margin-right: 10px;">🇧🇷 Quiz Brasil (PT-BR)</span>
-                        <a href="quiz_br.html" target="_blank" style="color: var(--accent); font-size: 13px; text-decoration: none;" id="link_br">/quiz_br.html</a>
+                <!-- QUIZZES -->
+                <div>
+                    <h4 style="font-size: 14px; margin-bottom: 10px; color: var(--text);">Quizzes (Funil)</h4>
+                    <div style="display: flex; flex-direction: column; gap: 8px;">
+                        <div style="background: var(--bg); padding: 10px; border-radius: 6px; border: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center;">
+                            <span style="font-size: 12px;">🇵🇹 Quiz PT</span>
+                            <button style="background: #334155; color: white; border: none; padding: 4px 10px; border-radius: 4px; font-size: 11px; cursor: pointer;" onclick="copyAbsolute('/quiz_funil_completo_v2.html')">Copiar</button>
+                        </div>
+                        <div style="background: var(--bg); padding: 10px; border-radius: 6px; border: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center;">
+                            <span style="font-size: 12px;">🇧🇷 Quiz BR</span>
+                            <button style="background: #334155; color: white; border: none; padding: 4px 10px; border-radius: 4px; font-size: 11px; cursor: pointer;" onclick="copyAbsolute('/quiz_br.html')">Copiar</button>
+                        </div>
+                        <div style="background: var(--bg); padding: 10px; border-radius: 6px; border: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center;">
+                            <span style="font-size: 12px;">🇪🇸 Quiz ES</span>
+                            <button style="background: #334155; color: white; border: none; padding: 4px 10px; border-radius: 4px; font-size: 11px; cursor: pointer;" onclick="copyAbsolute('/quiz_es.html')">Copiar</button>
+                        </div>
                     </div>
-                    <button class="btn-save" style="background: #334155; padding: 8px 16px; font-size: 12px;" onclick="copyToClip('link_br')">Copiar Link</button>
-                </div>
-
-                <div style="background: var(--bg); padding: 12px; border-radius: 8px; border: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center;">
-                    <div>
-                        <span style="font-weight: 600; font-size: 14px; margin-right: 10px;">🇪🇸 Quiz Espanha (ES)</span>
-                        <a href="quiz_es.html" target="_blank" style="color: var(--accent); font-size: 13px; text-decoration: none;" id="link_es">/quiz_es.html</a>
-                    </div>
-                    <button class="btn-save" style="background: #334155; padding: 8px 16px; font-size: 12px;" onclick="copyToClip('link_es')">Copiar Link</button>
                 </div>
             </div>
             
             <script>
-                // Formata os links relativos para links absolutos caso esteja em servidor real
-                document.addEventListener('DOMContentLoaded', () => {
+                function copyAbsolute(path) {
                     const baseUrl = window.location.origin + window.location.pathname.replace('/admin.html', '');
-                    document.getElementById('link_pt').innerText = baseUrl + '/quiz_funil_completo_v2.html';
-                    document.getElementById('link_pt').href = baseUrl + '/quiz_funil_completo_v2.html';
+                    const fullUrl = baseUrl + path;
                     
-                    document.getElementById('link_br').innerText = baseUrl + '/quiz_br.html';
-                    document.getElementById('link_br').href = baseUrl + '/quiz_br.html';
+                    // Fallback for copy
+                    const el = document.createElement('textarea');
+                    el.value = fullUrl;
+                    document.body.appendChild(el);
+                    el.select();
+                    document.execCommand('copy');
+                    document.body.removeChild(el);
                     
-                    document.getElementById('link_es').innerText = baseUrl + '/quiz_es.html';
-                    document.getElementById('link_es').href = baseUrl + '/quiz_es.html';
-                });
-
-                function copyToClip(id) {
-                    const text = document.getElementById(id).innerText;
-                    navigator.clipboard.writeText(text);
-                    alert("Link copiado: " + text);
+                    const btn = event.target;
+                    const oldText = btn.innerText;
+                    btn.innerText = "Copiado!";
+                    btn.style.background = "#10b981";
+                    setTimeout(() => {
+                        btn.innerText = oldText;
+                        btn.style.background = "";
+                    }, 2000);
                 }
             </script>
         </div>
+
 
         <!-- LEADS SECTION -->
         <div class="card" id="leads-section" style="margin-top: 24px;">
