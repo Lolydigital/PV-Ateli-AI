@@ -986,6 +986,14 @@ function initTracking() {
     document.addEventListener('click', async (e) => {
       const x = (e.pageX / document.documentElement.scrollWidth).toFixed(3);
       const y = (e.pageY / document.documentElement.scrollHeight).toFixed(3);
+      
+      // Rastrear cliques em links de checkout
+      const link = e.target.closest('a');
+      if (link && link.href.includes('pay.hotmart.com')) {
+          if (typeof fbq !== 'undefined') fbq('track', 'InitiateCheckout');
+          sendCapiEvent('InitiateCheckout', 'ic-' + Date.now());
+      }
+
       await supabaseClient.from('analytics_events').insert([{
         event_type: 'click',
         page_url: window.location.href,

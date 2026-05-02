@@ -489,6 +489,31 @@ async function loadQuizSettings() {
         console.error('Erro', err);
     }
 }
+async function sendCapiEvent(eventName, eventId, userData = {}) {
+    try {
+        await fetch('/api/meta-capi', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                event_name: eventName,
+                event_id: eventId,
+                event_url: window.location.href,
+                user_data: userData
+            })
+        });
+    } catch (err) {
+        console.error('Erro CAPI:', err);
+    }
+}
+
+document.addEventListener('click', (e) => {
+  const link = e.target.closest('a');
+  if (link && link.href.includes('pay.hotmart.com')) {
+      if (typeof fbq !== 'undefined') fbq('track', 'InitiateCheckout');
+      sendCapiEvent('InitiateCheckout', 'ic-' + Date.now());
+  }
+});
+
 document.addEventListener('DOMContentLoaded', loadQuizSettings);
 </script>
 
