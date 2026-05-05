@@ -207,11 +207,7 @@ async function sendCapiEvent(eventName, eventId, userData = {}) {
 }
 
 document.addEventListener('click', (e) => {
-  const link = e.target.closest('a');
-  if (link && link.href.includes('pay.hotmart.com')) {
-      if (typeof fbq !== 'undefined') fbq('track', 'InitiateCheckout');
-      sendCapiEvent('InitiateCheckout', 'ic-' + Date.now());
-  }
+  // Rastreio manual removido para evitar duplicação com CAPI Hotmart
 });
 
 document.addEventListener('DOMContentLoaded', loadQuizSettings);
