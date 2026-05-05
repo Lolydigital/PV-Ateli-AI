@@ -67,7 +67,7 @@ const mockupHtml = `
   <div class="iphone-frame">
     <div class="iphone-screen">
       <iframe id="main-video-iframe"
-        src="https://www.youtube.com/embed/mEOoLSFqcsM?autoplay=1&mute=1&loop=1&playlist=mEOoLSFqcsM&controls=0&showinfo=0&rel=0&modestbranding=1" 
+        src="https://www.youtube.com/embed/mEOoLSFqcsM?autoplay=1&loop=1&playlist=mEOoLSFqcsM&controls=0&showinfo=0&rel=0&modestbranding=1" 
         title="Demonstração Ateliê Criativo" 
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
         allowfullscreen>
