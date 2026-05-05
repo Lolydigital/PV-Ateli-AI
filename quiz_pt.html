@@ -510,8 +510,9 @@ async function sendCapiEvent(eventName, eventId, userData = {}) {
 document.addEventListener('click', (e) => {
   const link = e.target.closest('a');
   if (link && link.href.includes('pay.hotmart.com')) {
-      if (typeof fbq !== 'undefined') fbq('track', 'InitiateCheckout');
-      sendCapiEvent('InitiateCheckout', 'ic-' + Date.now());
+      const checkoutId = 'ic-' + Date.now() + '-' + Math.floor(Math.random() * 1000000);
+      if (typeof fbq !== 'undefined') fbq('track', 'InitiateCheckout', {}, { eventID: checkoutId });
+      sendCapiEvent('InitiateCheckout', checkoutId);
   }
 });
 
