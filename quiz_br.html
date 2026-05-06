@@ -12,7 +12,7 @@
   --border:rgba(200,54,90,0.13);
 }
 *{margin:0;padding:0;box-sizing:border-box;}
-body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--ink);}
+body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--ink);-webkit-font-smoothing:antialiased;}
 
 .wrap{max-width:500px; width:100%;margin:0 auto;padding:20px 16px 48px;}
 
@@ -27,7 +27,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--ink);}
 .prog-label{font-size:11px;color:var(--ink-muted);text-align:right;margin-top:5px;letter-spacing:.04em;}
 
 /* CARD */
-.card{background:var(--white);border-radius:20px;border:1px solid var(--border);padding:32px 24px;box-shadow:0 4px 24px rgba(200,54,90,.06);}
+.card{background:var(--white);border-radius:20px;border:1px solid var(--border);padding:32px 24px;box-shadow:0 4px 24px rgba(200,54,90,.06);position:relative;}
 .step{display:none;animation:up .35s ease;}
 .step.on{display:block;}
 @keyframes up{from{opacity:0;transform:translateY(14px);}to{opacity:1;transform:translateY(0);}}
@@ -36,11 +36,11 @@ body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--ink);}
 
 .q{font-family:'Playfair Display',serif;font-size:clamp(19px,4vw,26px);font-weight:700;line-height:1.25;margin-bottom:8px;}
 .q em{font-style:italic;color:var(--rose);}
-.qsub{font-size:15px;color:var(--ink-muted);margin-bottom:24px;font-weight:300;line-height:1.5;}
+.qsub{font-size:16px;color:var(--ink-muted);margin-bottom:24px;font-weight:300;line-height:1.5;}
 
 /* OPTIONS */
 .opts{display:flex;flex-direction:column;gap:10px;}
-.opt{display:block;width:100%;padding:15px 18px;background:var(--cream);border:1.5px solid var(--border);border-radius:13px;cursor:pointer;font-family:'DM Sans',sans-serif;font-size:16px;font-weight:500;color:var(--ink);text-align:left;transition:all .2s;line-height:1.4;}
+.opt{display:block;width:100%;padding:16px 20px;background:var(--cream);border:1.5px solid var(--border);border-radius:13px;cursor:pointer;font-family:'DM Sans',sans-serif;font-size:17px;font-weight:500;color:var(--ink);text-align:left;transition:all .2s;line-height:1.4;}
 .opt:hover{border-color:var(--rose);background:var(--rose-light);color:var(--rose-dark);transform:translateX(4px);}
 
 /* BEFORE AFTER */
@@ -54,11 +54,9 @@ body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--ink);}
 .ba-sep-ico{width:28px;height:28px;background:white;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:15px;box-shadow:0 2px 8px rgba(0,0,0,.18);position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);color:var(--rose);font-weight:900;}
 
 /* GALLERY GRID */
-.gal{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:18px 0 22px;}
-.gal-pair{border-radius:10px;overflow:hidden;display:flex;}
-.gal-half{flex:1;min-height:75px;display:flex;align-items:center;justify-content:center;font-size:26px;}
-.gal-half.gb{background:#EDE7E0;}
-.gal-half.ga{background:linear-gradient(135deg,#FDE8EF,#F5C6D4);}
+.gal{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:18px 0 22px;}
+.gal-item{border-radius:12px;overflow:hidden;border:1px solid var(--border);background:var(--cream);}
+.gal-item img{width:100%; height:130px; object-fit:cover; display:block;}
 
 /* RESULT BOX */
 .result-box{background:var(--rose-light);border:1.5px solid var(--rose-mid);border-radius:14px;padding:18px 20px;margin:16px 0 20px;border-left:4px solid var(--rose);}
@@ -103,9 +101,6 @@ body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--ink);}
 .cta-sub{font-size:11px;color:var(--ink-muted);text-align:center;margin-top:8px;}
 
 .back{display:block;text-align:center;margin-top:14px;font-size:12px;color:var(--ink-muted);cursor:pointer;text-decoration:underline;}
-
-/* DIVIDER */
-.divider{height:1px;background:var(--border);margin:20px 0;}
 
 /* MOCKUP IPHONE */
 .iphone-frame {
@@ -152,6 +147,11 @@ body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--ink);}
   0%, 100% { transform: translateY(0); }
   50% { transform: translateY(-15px); }
 }
+
+/* LOADER */
+.loader-wrap{text-align:center;padding:40px 0;}
+.spinner{width:40px;height:40px;border:4px solid var(--rose-light);border-top:4px solid var(--rose);border-radius:50%;margin:0 auto 20px;animation:spin 1s linear infinite;}
+@keyframes spin{to{transform:rotate(360deg);}}
 </style>
 
 <!-- Meta Pixel Code -->
@@ -230,7 +230,7 @@ src="https://www.facebook.com/tr?id=985629873942366&ev=PageView&noscript=1"
       <span class="ba-tag">✨ Depois</span>
     </div>
   </div>
-  <p style="font-size:16px;color:var(--ink-soft);margin-bottom:22px;text-align:center;">Se pudesse fazer isso com <strong>todos os seus produtos</strong> — mudaria suas vendas?</p>
+  <p style="font-size:15px;color:var(--ink-soft);margin-bottom:22px;text-align:center;">Se pudesse fazer isso com <strong>todos os seus produtos</strong> — mudaria suas vendas?</p>
   <div class="opts">
     <button class="opt" onclick="go(4)">😍 Com certeza! É exatamente o que eu preciso</button>
     <button class="opt" onclick="go(4)">😊 Sim, parece incrível — quero ver mais</button>
@@ -245,13 +245,13 @@ src="https://www.facebook.com/tr?id=985629873942366&ev=PageView&noscript=1"
 <div class="card">
   <span class="eyebrow">Pergunta 2 de 5</span>
   <h2 class="q">Veja mais transformações — <em>produtos como os seus</em></h2>
-  <div style="display:grid; grid-template-columns:1fr 1fr; gap:8px; margin:18px 0 22px;">
-    <img src="img/boneco_depois.jpeg" style="width:100%; height:120px; object-fit:cover; border-radius:10px;" alt="Artesanato">
-    <img src="img/piramide_depois.jpeg" style="width:100%; height:120px; object-fit:cover; border-radius:10px;" alt="Papelaria">
-    <img src="img/vela_depois.jpeg" style="width:100%; height:120px; object-fit:cover; border-radius:10px;" alt="Velas">
-    <img src="img/amigurumi_depois.jpeg" style="width:100%; height:120px; object-fit:cover; border-radius:10px;" alt="Amigurumi">
+  <div class="gal">
+    <div class="gal-item"><img src="img/amigurumi_depois.jpeg" alt="Amigurumi"></div>
+    <div class="gal-item"><img src="img/piramide_depois.jpeg" alt="Papeleria"></div>
+    <div class="gal-item"><img src="img/vela_depois.jpeg" alt="Velas"></div>
+    <div class="gal-item"><img src="img/boneco_depois.jpeg" alt="Acessórios"></div>
   </div>
-  <p style="font-size:16px;color:var(--ink-soft);margin-bottom:20px;">Além das fotos — o que mais você gostaria de ter no seu negócio?</p>
+  <p style="font-size:15px;color:var(--ink-soft);margin-bottom:20px;">Além das fotos — o que mais você gostaria de ter no seu negócio?</p>
   <div class="opts">
     <button class="opt" onclick="go(5)">🧮 Saber o preço certo de cada peça — sem adivinhar</button>
     <button class="opt" onclick="go(5)">📄 Orçamentos profissionais que fecham vendas</button>
@@ -330,6 +330,17 @@ src="https://www.facebook.com/tr?id=985629873942366&ev=PageView&noscript=1"
 <span class="back" onclick="go(7)">← Voltar</span>
 </div>
 
+<!-- STEP 8.5 (GAMIFICATION/LOADER) -->
+<div class="step" id="s-load">
+<div class="card">
+  <div class="loader-wrap">
+    <div class="spinner"></div>
+    <h3 class="q">Analisando o seu Ateliê...</h3>
+    <p class="qsub">Preparando o seu diagnóstico e oferta personalizada com base nas suas respostas.</p>
+  </div>
+</div>
+</div>
+
 <!-- STEP 9 -->
 <div class="step" id="s9">
 <div class="card">
@@ -359,7 +370,7 @@ src="https://www.facebook.com/tr?id=985629873942366&ev=PageView&noscript=1"
   <div class="stats">
     <div class="stat"><div class="stat-n">+500</div><div class="stat-d">artesãs já usam</div></div>
     <div class="stat"><div class="stat-n">R$0</div><div class="stat-d">gasto em fotógrafo</div></div>
-    <div class="stat"><div class="stat-n">7 dias</div><div class="stat-d">garantia total</div></div>
+    <div class="stat"><div class="stat-n">15 dias</div><div class="stat-d">garantia total</div></div>
   </div>
 
   <div class="urgency">
@@ -375,10 +386,10 @@ src="https://www.facebook.com/tr?id=985629873942366&ev=PageView&noscript=1"
       </div>
     </a>
     <a class="pc best" id="checkout_anual_card" href="https://pay.hotmart.com/Y105492438A?off=ff49t67u" style="text-decoration:none; display:block; color:inherit;">
-      <div class="pc-badge">⭐ Mais Popular — Poupa R$55</div>
+      <div class="pc-badge">⭐ Mais Popular — Poupa 37%</div>
       <div class="pc-row" style="margin-top:8px;">
-        <div><div class="pc-name">Anual</div><div class="pc-sub">≈ R$3,32/mês · melhor oferta</div></div>
-        <div class="pc-price"><div class="pc-old">R$94,90/ano</div><div class="pc-val">R$<span id="price_anual">39,90</span></div><div class="pc-period">/ano</div></div>
+        <div><div class="pc-name">Anual</div><div class="pc-sub">≈ R$4,91/mês · melhor oferta</div></div>
+        <div class="pc-price"><div class="pc-old">R$94,00/ano</div><div class="pc-val">R$<span id="price_anual">59,00</span></div><div class="pc-period">/ano</div></div>
       </div>
     </a>
   </div>
@@ -386,7 +397,7 @@ src="https://www.facebook.com/tr?id=985629873942366&ev=PageView&noscript=1"
   <a class="cta-btn" id="checkout_anual" href="https://pay.hotmart.com/Y105492438A?off=ff49t67u" style="text-decoration:none;">
     Quero começar agora →
   </a>
-  <p class="cta-sub">🛡️ Garantia 7 dias · 💳 Hotmart · ✅ Acesso imediato</p>
+  <p class="cta-sub">🛡️ Garantia 15 dias · 💳 Hotmart · ✅ Acesso imediato</p>
 </div>
 <span class="back" onclick="go(8)">← Voltar</span>
 
@@ -409,7 +420,8 @@ src="https://www.facebook.com/tr?id=985629873942366&ev=PageView&noscript=1"
 </div>
 
 </div>
-</div>
+
+</div><!-- /wrap -->
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
@@ -422,21 +434,26 @@ let quizId = 'quiz-' + Date.now() + '-' + Math.floor(Math.random() * 1000000);
 let cur = 1;
 const total = 9;
 
-supabaseClient.from('analytics_events').insert([{
-    event_type: 'quiz_step',
-    page_url: window.location.href,
-    user_agent: navigator.userAgent,
-    coordinates: { step: 1, session_id: quizId }
-}]);
-
 function go(n){
-  document.getElementById('s'+cur).classList.remove('on');
-  cur = n;
-  document.getElementById('s'+cur).classList.add('on');
+  if(n === 9 && cur === 8) {
+    document.getElementById('s'+cur).classList.remove('on');
+    document.getElementById('s-load').classList.add('on');
+    setTimeout(() => {
+        document.getElementById('s-load').classList.remove('on');
+        document.getElementById('s9').classList.add('on');
+        window.scrollTo(0,0);
+    }, 2500);
+    cur = 9;
+  } else {
+    document.getElementById('s'+cur).classList.remove('on');
+    cur = n;
+    document.getElementById('s'+cur).classList.add('on');
+    window.scrollTo(0,0);
+  }
+  
   const pct = Math.round(((cur-1)/(total-1))*100);
   document.getElementById('pf').style.width = pct+'%';
   document.getElementById('pl').textContent = cur === 1 ? 'Início' : cur === total ? 'Concluído!' : 'Passo '+(cur-1)+' de '+(total-2);
-  window.scrollTo(0,0);
 
   supabaseClient.from('analytics_events').insert([{
       event_type: 'quiz_step',
@@ -464,49 +481,13 @@ async function loadQuizSettings() {
                     }
                 }
             }
-            if (settings.price) document.getElementById('price_vitalicio').innerText = settings.price;
-            if (settings.checkout_link) {
-                document.getElementById('checkout_vitalicio').href = settings.checkout_link;
-                document.getElementById('checkout_vitalicio_card').href = settings.checkout_link;
-            }
             if (settings.checkout_anual) document.getElementById('checkout_anual_card').href = settings.checkout_anual;
             if (settings.checkout_mensal) document.getElementById('checkout_mensal_card').href = settings.checkout_mensal;
-
-            if (settings.pixels && Array.isArray(settings.pixels)) {
-                settings.pixels.forEach(id => {
-                    if (id) {
-                        const script = document.createElement('script');
-                        script.innerHTML = `!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window, document,'script','https://connect.facebook.net/en_US/fbevents.js');fbq('init', '${id}');fbq('track', 'PageView');`;
-                        document.head.appendChild(script);
-                    }
-                });
-            }
         }
     } catch(err) {
         console.error('Erro', err);
     }
 }
-async function sendCapiEvent(eventName, eventId, userData = {}) {
-    try {
-        await fetch('/api/meta-capi', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({
-                event_name: eventName,
-                event_id: eventId,
-                event_url: window.location.href,
-                user_data: userData
-            })
-        });
-    } catch (err) {
-        console.error('Erro CAPI:', err);
-    }
-}
-
-document.addEventListener('click', (e) => {
-  // Rastreio manual removido para evitar duplicação com CAPI Hotmart
-});
-
 document.addEventListener('DOMContentLoaded', loadQuizSettings);
 </script>
 </body>

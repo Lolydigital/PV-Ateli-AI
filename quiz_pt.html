@@ -2,6 +2,7 @@
 <html lang="pt">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=DM+Sans:wght@300;400;500;600&display=swap');
 :root{
@@ -11,9 +12,9 @@
   --border:rgba(200,54,90,0.13);
 }
 *{margin:0;padding:0;box-sizing:border-box;}
-body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--ink);}
+body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--ink);-webkit-font-smoothing:antialiased;}
 
-.wrap{max-width:500px;margin:0 auto;padding:20px 16px 48px;}
+.wrap{max-width:500px; width:100%;margin:0 auto;padding:20px 16px 48px;}
 
 /* LOGO */
 .logo{text-align:center;padding:24px 0 16px;font-family:'Playfair Display',serif;font-size:20px;font-weight:900;color:var(--rose);}
@@ -26,7 +27,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--ink);}
 .prog-label{font-size:11px;color:var(--ink-muted);text-align:right;margin-top:5px;letter-spacing:.04em;}
 
 /* CARD */
-.card{background:var(--white);border-radius:20px;border:1px solid var(--border);padding:32px 24px;box-shadow:0 4px 24px rgba(200,54,90,.06);}
+.card{background:var(--white);border-radius:20px;border:1px solid var(--border);padding:32px 24px;box-shadow:0 4px 24px rgba(200,54,90,.06);position:relative;}
 .step{display:none;animation:up .35s ease;}
 .step.on{display:block;}
 @keyframes up{from{opacity:0;transform:translateY(14px);}to{opacity:1;transform:translateY(0);}}
@@ -35,11 +36,11 @@ body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--ink);}
 
 .q{font-family:'Playfair Display',serif;font-size:clamp(19px,4vw,26px);font-weight:700;line-height:1.25;margin-bottom:8px;}
 .q em{font-style:italic;color:var(--rose);}
-.qsub{font-size:13px;color:var(--ink-muted);margin-bottom:24px;font-weight:300;line-height:1.5;}
+.qsub{font-size:16px;color:var(--ink-muted);margin-bottom:24px;font-weight:300;line-height:1.5;}
 
 /* OPTIONS */
 .opts{display:flex;flex-direction:column;gap:10px;}
-.opt{display:block;width:100%;padding:15px 18px;background:var(--cream);border:1.5px solid var(--border);border-radius:13px;cursor:pointer;font-family:'DM Sans',sans-serif;font-size:14px;font-weight:500;color:var(--ink);text-align:left;transition:all .2s;line-height:1.4;}
+.opt{display:block;width:100%;padding:16px 20px;background:var(--cream);border:1.5px solid var(--border);border-radius:13px;cursor:pointer;font-family:'DM Sans',sans-serif;font-size:17px;font-weight:500;color:var(--ink);text-align:left;transition:all .2s;line-height:1.4;}
 .opt:hover{border-color:var(--rose);background:var(--rose-light);color:var(--rose-dark);transform:translateX(4px);}
 
 /* BEFORE AFTER */
@@ -50,18 +51,16 @@ body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--ink);}
 .ba-half.bef .ba-tag{left:10px;background:rgba(0,0,0,.55);color:white;}
 .ba-half.aft .ba-tag{right:10px;background:var(--rose);color:white;}
 .ba-sep{width:3px;background:white;position:relative;flex-shrink:0;display:flex;align-items:center;justify-content:center;}
-.ba-sep-ico{width:28px;height:28px;background:white;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:13px;box-shadow:0 2px 8px rgba(0,0,0,.18);position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);color:var(--rose);font-weight:900;}
+.ba-sep-ico{width:28px;height:28px;background:white;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:15px;box-shadow:0 2px 8px rgba(0,0,0,.18);position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);color:var(--rose);font-weight:900;}
 
 /* GALLERY GRID */
-.gal{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:18px 0 22px;}
-.gal-pair{border-radius:10px;overflow:hidden;display:flex;}
-.gal-half{flex:1;min-height:75px;display:flex;align-items:center;justify-content:center;font-size:26px;}
-.gal-half.gb{background:#EDE7E0;}
-.gal-half.ga{background:linear-gradient(135deg,#FDE8EF,#F5C6D4);}
+.gal{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:18px 0 22px;}
+.gal-item{border-radius:12px;overflow:hidden;border:1px solid var(--border);background:var(--cream);}
+.gal-item img{width:100%; height:130px; object-fit:cover; display:block;}
 
 /* RESULT BOX */
 .result-box{background:var(--rose-light);border:1.5px solid var(--rose-mid);border-radius:14px;padding:18px 20px;margin:16px 0 20px;border-left:4px solid var(--rose);}
-.result-box p{font-size:14px;color:var(--rose-dark);line-height:1.6;}
+.result-box p{font-size:16px;color:var(--rose-dark);line-height:1.6;}
 .result-box strong{font-weight:700;}
 
 /* STATS */
@@ -74,8 +73,8 @@ body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--ink);}
 .obj-list{display:flex;flex-direction:column;gap:10px;margin:16px 0 22px;}
 .obj-item{display:flex;align-items:flex-start;gap:12px;padding:14px 16px;background:var(--cream);border-radius:12px;border-left:3px solid var(--rose);}
 .obj-icon{font-size:18px;flex-shrink:0;}
-.obj-text{font-size:13px;color:var(--ink-soft);line-height:1.5;}
-.obj-text strong{color:var(--ink);display:block;margin-bottom:3px;font-size:13px;}
+.obj-text{font-size:15px;color:var(--ink-soft);line-height:1.5;}
+.obj-text strong{color:var(--ink);display:block;margin-bottom:3px;font-size:15px;}
 
 /* PRICE CARDS */
 .price-cards{display:flex;flex-direction:column;gap:10px;margin:18px 0;}
@@ -84,7 +83,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--ink);}
 .pc.best{border-color:var(--rose);background:var(--rose-light);}
 .pc-badge{position:absolute;top:-11px;left:18px;background:var(--gold-warm);color:white;font-size:10px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;padding:3px 12px;border-radius:100px;}
 .pc-row{display:flex;justify-content:space-between;align-items:center;gap:8px;}
-.pc-name{font-weight:700;font-size:14px;color:var(--ink);}
+.pc-name{font-weight:700;font-size:16px;color:var(--ink);}
 .pc-sub{font-size:11px;color:var(--ink-muted);margin-top:2px;}
 .pc-price{text-align:right;}
 .pc-old{font-size:11px;color:var(--ink-muted);text-decoration:line-through;}
@@ -93,7 +92,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--ink);}
 
 /* URGENCY */
 .urgency{background:var(--gold-light);border:1px solid rgba(184,134,11,.2);border-radius:12px;padding:14px 18px;text-align:center;margin:16px 0 20px;}
-.urgency p{font-size:13px;color:var(--ink-soft);line-height:1.5;}
+.urgency p{font-size:15px;color:var(--ink-soft);line-height:1.5;}
 .urgency strong{color:var(--gold);}
 
 /* CTA */
@@ -102,9 +101,6 @@ body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--ink);}
 .cta-sub{font-size:11px;color:var(--ink-muted);text-align:center;margin-top:8px;}
 
 .back{display:block;text-align:center;margin-top:14px;font-size:12px;color:var(--ink-muted);cursor:pointer;text-decoration:underline;}
-
-/* DIVIDER */
-.divider{height:1px;background:var(--border);margin:20px 0;}
 
 /* MOCKUP IPHONE */
 .iphone-frame {
@@ -151,6 +147,11 @@ body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--ink);}
   0%, 100% { transform: translateY(0); }
   50% { transform: translateY(-15px); }
 }
+
+/* LOADER */
+.loader-wrap{text-align:center;padding:40px 0;}
+.spinner{width:40px;height:40px;border:4px solid var(--rose-light);border-top:4px solid var(--rose);border-radius:50%;margin:0 auto 20px;animation:spin 1s linear infinite;}
+@keyframes spin{to{transform:rotate(360deg);}}
 </style>
 
 <!-- Meta Pixel Code -->
@@ -164,7 +165,6 @@ t.src=v;s=b.getElementsByTagName(e)[0];
 s.parentNode.insertBefore(t,s)}(window, document,'script',
 'https://connect.facebook.net/en_US/fbevents.js');
 fbq('init', '985629873942366');
-// Gerar ID Único para Desduplicação do PageView Inicial
 window.pageViewId = 'pv-' + Date.now() + '-' + Math.floor(Math.random() * 1000000);
 fbq('track', 'PageView', {}, { eventID: window.pageViewId });
 </script>
@@ -176,14 +176,14 @@ src="https://www.facebook.com/tr?id=985629873942366&ev=PageView&noscript=1"
 <body>
 
 <div class="wrap">
-<div class="logo">✧ Ateliê Criativo<small>🧵 Artesanato · 📦 Papelaria · 🕯️ Velas · 🎀 Acessórios</small></div>
+<div class="logo">✧ Ateliê Criativo<small>🧶 Artesanato · 📦 Papelaria · 🕯️ Velas · 🎀 Acessórios</small></div>
 
 <div class="prog-wrap">
   <div class="prog-track"><div class="prog-fill" id="pf" style="width:0%"></div></div>
   <div class="prog-label" id="pl">Início</div>
 </div>
 
-<!-- === STEP 1 — GANCHO / TOPO DE FUNIL === -->
+<!-- STEP 1 -->
 <div class="step on" id="s1">
 <div class="card">
   <span class="eyebrow">Quiz gratuito · 1 minuto</span>
@@ -197,7 +197,7 @@ src="https://www.facebook.com/tr?id=985629873942366&ev=PageView&noscript=1"
 </div>
 </div>
 
-<!-- === STEP 2 — DOR ESPECÍFICA === -->
+<!-- STEP 2 -->
 <div class="step" id="s2">
 <div class="card">
   <span class="eyebrow">Pergunta 1 de 5</span>
@@ -213,7 +213,7 @@ src="https://www.facebook.com/tr?id=985629873942366&ev=PageView&noscript=1"
 <span class="back" onclick="go(1)">← Voltar</span>
 </div>
 
-<!-- === STEP 3 — AMPLIAR DOR + FOTO ANTES === -->
+<!-- STEP 3 -->
 <div class="step" id="s3">
 <div class="card">
   <span class="eyebrow">Olhe para esta foto</span>
@@ -230,7 +230,7 @@ src="https://www.facebook.com/tr?id=985629873942366&ev=PageView&noscript=1"
       <span class="ba-tag">✨ Depois</span>
     </div>
   </div>
-  <p style="font-size:14px;color:var(--ink-soft);margin-bottom:22px;text-align:center;">Se pudesse fazer isto com <strong>todos os seus produtos</strong> — mudava as suas vendas?</p>
+  <p style="font-size:15px;color:var(--ink-soft);margin-bottom:22px;text-align:center;">Se pudesse fazer isto com <strong>todos os seus produtos</strong> — mudava as suas vendas?</p>
   <div class="opts">
     <button class="opt" onclick="go(4)">😍 Com certeza! É exatamente o que preciso</button>
     <button class="opt" onclick="go(4)">😊 Sim, parece incrível — quero ver mais</button>
@@ -240,18 +240,18 @@ src="https://www.facebook.com/tr?id=985629873942366&ev=PageView&noscript=1"
 <span class="back" onclick="go(2)">← Voltar</span>
 </div>
 
-<!-- === STEP 4 — DESEJO + GALERIA === -->
+<!-- STEP 4 -->
 <div class="step" id="s4">
 <div class="card">
   <span class="eyebrow">Pergunta 2 de 5</span>
   <h2 class="q">Veja mais transformações — <em>produtos como os seus</em></h2>
   <div class="gal">
-    <div class="gal-pair"><div class="gal-half gb">🧶</div><div class="gal-half ga">✨</div></div>
-    <div class="gal-pair"><div class="gal-half gb">📦</div><div class="gal-half ga">🌸</div></div>
-    <div class="gal-pair"><div class="gal-half gb">🕯️</div><div class="gal-half ga">⭐</div></div>
-    <div class="gal-pair"><div class="gal-half gb">🎀</div><div class="gal-half ga">💫</div></div>
+    <div class="gal-item"><img src="img/amigurumi_depois.jpeg" alt="Amigurumi"></div>
+    <div class="gal-item"><img src="img/piramide_depois.jpeg" alt="Papelaria"></div>
+    <div class="gal-item"><img src="img/vela_depois.jpeg" alt="Velas"></div>
+    <div class="gal-item"><img src="img/boneco_depois.jpeg" alt="Acessórios"></div>
   </div>
-  <p style="font-size:14px;color:var(--ink-soft);margin-bottom:20px;">Além das fotos — o que mais gostaria de ter no seu negócio?</p>
+  <p style="font-size:15px;color:var(--ink-soft);margin-bottom:20px;">Além das fotos — o que mais gostaria de ter no seu negócio?</p>
   <div class="opts">
     <button class="opt" onclick="go(5)">🧮 Saber o preço certo de cada peça — sem adivinhar</button>
     <button class="opt" onclick="go(5)">📄 Orçamentos profissionais que fecham vendas</button>
@@ -262,7 +262,7 @@ src="https://www.facebook.com/tr?id=985629873942366&ev=PageView&noscript=1"
 <span class="back" onclick="go(3)">← Voltar</span>
 </div>
 
-<!-- === STEP 5 — OBJEÇÃO === -->
+<!-- STEP 5 -->
 <div class="step" id="s5">
 <div class="card">
   <span class="eyebrow">Pergunta 3 de 5</span>
@@ -278,7 +278,7 @@ src="https://www.facebook.com/tr?id=985629873942366&ev=PageView&noscript=1"
 <span class="back" onclick="go(4)">← Voltar</span>
 </div>
 
-<!-- === STEP 6 — RESPONDER OBJEÇÕES === -->
+<!-- STEP 6 -->
 <div class="step" id="s6">
 <div class="card">
   <span class="eyebrow">Já percebemos — e temos resposta</span>
@@ -297,7 +297,7 @@ src="https://www.facebook.com/tr?id=985629873942366&ev=PageView&noscript=1"
 <span class="back" onclick="go(5)">← Voltar</span>
 </div>
 
-<!-- === STEP 7 — NICHO === -->
+<!-- STEP 7 -->
 <div class="step" id="s7">
 <div class="card">
   <span class="eyebrow">Pergunta 4 de 5 · Quase lá!</span>
@@ -314,7 +314,7 @@ src="https://www.facebook.com/tr?id=985629873942366&ev=PageView&noscript=1"
 <span class="back" onclick="go(6)">← Voltar</span>
 </div>
 
-<!-- === STEP 8 — MICRO-COMPROMISSO === -->
+<!-- STEP 8 -->
 <div class="step" id="s8">
 <div class="card">
   <span class="eyebrow">Última pergunta · Passo 5 de 5</span>
@@ -330,7 +330,18 @@ src="https://www.facebook.com/tr?id=985629873942366&ev=PageView&noscript=1"
 <span class="back" onclick="go(7)">← Voltar</span>
 </div>
 
-<!-- === STEP 9 — RESULTADO + OFERTA === -->
+<!-- STEP 8.5 (GAMIFICATION/LOADER) -->
+<div class="step" id="s-load">
+<div class="card">
+  <div class="loader-wrap">
+    <div class="spinner"></div>
+    <h3 class="q">Analisando o seu Ateliê...</h3>
+    <p class="qsub">Preparando o seu diagnóstico e oferta personalizada com base nas suas respostas.</p>
+  </div>
+</div>
+</div>
+
+<!-- STEP 9 -->
 <div class="step" id="s9">
 <div class="card">
   <span class="eyebrow">✨ O seu diagnóstico está pronto</span>
@@ -359,7 +370,7 @@ src="https://www.facebook.com/tr?id=985629873942366&ev=PageView&noscript=1"
   <div class="stats">
     <div class="stat"><div class="stat-n">+500</div><div class="stat-d">artesãs já usam</div></div>
     <div class="stat"><div class="stat-n">€0</div><div class="stat-d">gasto em fotógrafo</div></div>
-    <div class="stat"><div class="stat-n">7 dias</div><div class="stat-d">garantia total</div></div>
+    <div class="stat"><div class="stat-n">15 dias</div><div class="stat-d">garantia total</div></div>
   </div>
 
   <div class="urgency">
@@ -375,10 +386,10 @@ src="https://www.facebook.com/tr?id=985629873942366&ev=PageView&noscript=1"
       </div>
     </a>
     <a class="pc best" id="checkout_anual_card" href="https://pay.hotmart.com/Y105492438A?off=ff49t67u" style="text-decoration:none; display:block; color:inherit;">
-      <div class="pc-badge">⭐ Mais Popular — Poupa €55</div>
+      <div class="pc-badge">⭐ Mais Popular — Poupa 37%</div>
       <div class="pc-row" style="margin-top:8px;">
-        <div><div class="pc-name">Anual</div><div class="pc-sub">≈ €3,32/mês · melhor oferta</div></div>
-        <div class="pc-price"><div class="pc-old">€94,90/ano</div><div class="pc-val">€<span id="price_anual">39,90</span></div><div class="pc-period">/ano</div></div>
+        <div><div class="pc-name">Anual</div><div class="pc-sub">≈ €4,91/mês · melhor oferta</div></div>
+        <div class="pc-price"><div class="pc-old">€94,00/ano</div><div class="pc-val">€<span id="price_anual">59,00</span></div><div class="pc-period">/ano</div></div>
       </div>
     </a>
   </div>
@@ -386,7 +397,7 @@ src="https://www.facebook.com/tr?id=985629873942366&ev=PageView&noscript=1"
   <a class="cta-btn" id="checkout_anual" href="https://pay.hotmart.com/Y105492438A?off=ff49t67u" style="text-decoration:none;">
     Quero começar agora →
   </a>
-  <p class="cta-sub">🛡️ Garantia 7 dias · 💳 Hotmart · ✅ Acesso imediato</p>
+  <p class="cta-sub">🛡️ Garantia 15 dias · 💳 Hotmart · ✅ Acesso imediato</p>
 </div>
 <span class="back" onclick="go(8)">← Voltar</span>
 
@@ -423,24 +434,28 @@ let quizId = 'quiz-' + Date.now() + '-' + Math.floor(Math.random() * 1000000);
 let cur = 1;
 const total = 9;
 
-// Track step view on load
-supabaseClient.from('analytics_events').insert([{
-    event_type: 'quiz_step',
-    page_url: window.location.href,
-    user_agent: navigator.userAgent,
-    coordinates: { step: 1, session_id: quizId }
-}]);
-
 function go(n){
-  document.getElementById('s'+cur).classList.remove('on');
-  cur = n;
-  document.getElementById('s'+cur).classList.add('on');
+  if(n === 9 && cur === 8) {
+    // Show loader first
+    document.getElementById('s'+cur).classList.remove('on');
+    document.getElementById('s-load').classList.add('on');
+    setTimeout(() => {
+        document.getElementById('s-load').classList.remove('on');
+        document.getElementById('s9').classList.add('on');
+        window.scrollTo(0,0);
+    }, 2500);
+    cur = 9;
+  } else {
+    document.getElementById('s'+cur).classList.remove('on');
+    cur = n;
+    document.getElementById('s'+cur).classList.add('on');
+    window.scrollTo(0,0);
+  }
+  
   const pct = Math.round(((cur-1)/(total-1))*100);
   document.getElementById('pf').style.width = pct+'%';
   document.getElementById('pl').textContent = cur === 1 ? 'Início' : cur === total ? 'Concluído!' : 'Passo '+(cur-1)+' de '+(total-2);
-  window.scrollTo(0,0);
 
-  // Enviar evento Supabase
   supabaseClient.from('analytics_events').insert([{
       event_type: 'quiz_step',
       page_url: window.location.href,
@@ -453,7 +468,6 @@ async function loadQuizSettings() {
     try {
         const { data: settings } = await supabaseClient.from('site_settings').select('*').eq('id', 1).single();
         if (settings) {
-            // Atualiza vídeo
             if (settings.video_url) {
                 const videoIframe = document.getElementById('main-video-iframe');
                 if (videoIframe) {
@@ -468,67 +482,13 @@ async function loadQuizSettings() {
                     }
                 }
             }
-            
-            // Atualiza Preços
-            if (settings.price) document.getElementById('price_vitalicio').innerText = settings.price;
-            
-            // Atualiza Links de Checkout
-            if (settings.checkout_link) {
-                document.getElementById('checkout_vitalicio').href = settings.checkout_link;
-                document.getElementById('checkout_vitalicio_card').href = settings.checkout_link;
-            }
             if (settings.checkout_anual) document.getElementById('checkout_anual_card').href = settings.checkout_anual;
             if (settings.checkout_mensal) document.getElementById('checkout_mensal_card').href = settings.checkout_mensal;
-
-            // Injeta Pixels Numéricos (Pegamos o mesmo de Portugal)
-            if (settings.pixels && Array.isArray(settings.pixels)) {
-                settings.pixels.forEach(id => {
-                    if (id) {
-                        const script = document.createElement('script');
-                        script.innerHTML = `!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window, document,'script','https://connect.facebook.net/en_US/fbevents.js');fbq('init', '${id}');fbq('track', 'PageView');`;
-                        document.head.appendChild(script);
-                    }
-                });
-            }
-
-            // Injetar Pixel via Script HTML
-            if (settings.pixel_html) {
-                const container = document.createElement('div');
-                container.innerHTML = settings.pixel_html;
-                const scripts = container.querySelectorAll('script');
-                scripts.forEach(oldScript => {
-                    const newScript = document.createElement('script');
-                    Array.from(oldScript.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value));
-                    newScript.appendChild(document.createTextNode(oldScript.innerHTML));
-                    document.head.appendChild(newScript);
-                });
-            }
         }
     } catch(err) {
         console.error('Erro', err);
     }
 }
-async function sendCapiEvent(eventName, eventId, userData = {}) {
-    try {
-        await fetch('/api/meta-capi', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({
-                event_name: eventName,
-                event_id: eventId,
-                event_url: window.location.href,
-                user_data: userData
-            })
-        });
-    } catch (err) {
-        console.error('Erro CAPI:', err);
-    }
-}
-
-document.addEventListener('click', (e) => {
-  // Rastreio manual removido para evitar duplicação com CAPI Hotmart
-});
-
 document.addEventListener('DOMContentLoaded', loadQuizSettings);
 </script>
 </body>
