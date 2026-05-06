@@ -70,7 +70,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--ink);}
 .stat-n{font-family:'Playfair Display',serif;font-size:22px;font-weight:900;color:var(--rose);}
 .stat-d{font-size:11px;color:var(--ink-muted);margin-top:2px;line-height:1.3;}
 
-/* OBJEÃ‡ÃƒO BLOCK */
+/* OBJEÇÃO BLOCK */
 .obj-list{display:flex;flex-direction:column;gap:10px;margin:16px 0 22px;}
 .obj-item{display:flex;align-items:flex-start;gap:12px;padding:14px 16px;background:var(--cream);border-radius:12px;border-left:3px solid var(--rose);}
 .obj-icon{font-size:18px;flex-shrink:0;}
@@ -112,11 +112,11 @@ body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--ink);}
   width: 260px;
   height: 520px;
   margin: 30px auto;
-  background: #1a1a1a;
+  background: #333;
   border-radius: 44px;
   padding: 11px;
-  box-shadow: 0 50px 100px -20px rgba(0,0,0,0.4), 0 30px 60px -30px rgba(0,0,0,0.5);
-  border: 1px solid #444;
+  box-shadow: 0 50px 100px -20px rgba(0,0,0,0.4), 0 0 30px rgba(200,54,90,0.2);
+  border: 1px solid #555;
   z-index: 2;
   animation: float 6s ease-in-out infinite;
 }
@@ -164,7 +164,7 @@ t.src=v;s=b.getElementsByTagName(e)[0];
 s.parentNode.insertBefore(t,s)}(window, document,'script',
 'https://connect.facebook.net/en_US/fbevents.js');
 fbq('init', '985629873942366');
-// Gerar ID Ãšnico para DesduplicaÃ§Ã£o do PageView Inicial
+// Gerar ID Único para Desduplicação do PageView Inicial
 window.pageViewId = 'pv-' + Date.now() + '-' + Math.floor(Math.random() * 1000000);
 fbq('track', 'PageView', {}, { eventID: window.pageViewId });
 </script>
@@ -176,223 +176,241 @@ src="https://www.facebook.com/tr?id=985629873942366&ev=PageView&noscript=1"
 <body>
 
 <div class="wrap">
-<div class="logo">âœ¦ AteliÃª Criativo<small>ðŸ§¶ Artesanato Â· ðŸ“¦ Papelaria Â· ðŸ•¯ï¸ Velas Â· ðŸŽ€ AcessÃ³rios</small></div>
+<div class="logo">✧ Ateliê Criativo<small>🧵 Artesanato · 📦 Papelaria · 🕯️ Velas · 🎀 Acessórios</small></div>
 
 <div class="prog-wrap">
   <div class="prog-track"><div class="prog-fill" id="pf" style="width:0%"></div></div>
-  <div class="prog-label" id="pl">InÃ­cio</div>
+  <div class="prog-label" id="pl">Início</div>
 </div>
 
-<!-- â•â•â• STEP 1 â€” GANCHO / TOPO DE FUNIL â•â•â• -->
+<!-- === STEP 1 — GANCHO / TOPO DE FUNIL === -->
 <div class="step on" id="s1">
 <div class="card">
-  <span class="eyebrow">Quiz gratuito Â· 1 minuto</span>
-  <h2 class="q">As suas fotos estÃ£o a <em>afastar clientes</em> sem vocÃª perceber?</h2>
-  <p class="qsub">95% das artesÃ£s perde vendas por causa de fotos â€” mesmo tendo produtos lindos. Descubra em que situaÃ§Ã£o estÃ¡.</p>
+  <span class="eyebrow">Quiz gratuito · 1 minuto</span>
+  <h2 class="q">As suas fotos estão a <em>afastar clientes</em> sem você perceber?</h2>
+  <p class="qsub">95% das artesãs perde vendas por causa de fotos — mesmo tendo produtos lindos. Descubra em que situação está.</p>
   <div class="opts">
-    <button class="opt" onclick="go(2)">ðŸ“¸ Sim â€” as minhas fotos nÃ£o ficam como eu quero</button>
-    <button class="opt" onclick="go(2)">ðŸ˜¬ Ã€s vezes consigo, Ã s vezes nÃ£o</button>
-    <button class="opt" onclick="go(2)">ðŸ¤” Quero perceber o que posso melhorar no negÃ³cio</button>
+    <button class="opt" onclick="go(2)">📸 Sim — as minhas fotos não ficam como eu quero</button>
+    <button class="opt" onclick="go(2)">😫 Às vezes consigo, às vezes não</button>
+    <button class="opt" onclick="go(2)">🤔 Quero perceber o que posso melhorar no negócio</button>
   </div>
 </div>
 </div>
 
-<!-- â•â•â• STEP 2 â€” DOR ESPECÃFICA â•â•â• -->
+<!-- === STEP 2 — DOR ESPECÍFICA === -->
 <div class="step" id="s2">
 <div class="card">
   <span class="eyebrow">Pergunta 1 de 5</span>
-  <h2 class="q">Qual Ã© a sua <em>maior frustraÃ§Ã£o</em> agora?</h2>
-  <p class="qsub">Escolha a que mais lhe toca â€” sem julgamentos</p>
+  <h2 class="q">Qual é a sua <em>maior frustração</em> agora?</h2>
+  <p class="qsub">Escolha a que mais lhe toca — sem julgamentos</p>
   <div class="opts">
-    <button class="opt" onclick="go(3)">ðŸ˜“ Trabalho muito mas no fim do mÃªs nÃ£o sei se lucrei</button>
-    <button class="opt" onclick="go(3)">ðŸ“¸ As fotos ficam feias e o produto parece menos valioso</button>
-    <button class="opt" onclick="go(3)">ðŸ’¶ Dificuldade em cobrar o preÃ§o certo sem sentir culpa</button>
-    <button class="opt" onclick="go(3)">ðŸ“‹ OrÃ§amentos e encomendas â€” Ã© uma confusÃ£o constante</button>
+    <button class="opt" onclick="go(3)">😟 Trabalho muito mas no fim do mês não sei se lucrei</button>
+    <button class="opt" onclick="go(3)">📸 As fotos ficam feias e o produto parece menos valioso</button>
+    <button class="opt" onclick="go(3)">💸 Dificuldade em cobrar o preço certo sem sentir culpa</button>
+    <button class="opt" onclick="go(3)">📝 Orçamentos e encomendas — é uma confusão constante</button>
   </div>
 </div>
-<span class="back" onclick="go(1)">â† Voltar</span>
+<span class="back" onclick="go(1)">← Voltar</span>
 </div>
 
-<!-- â•â•â• STEP 3 â€” AMPLIAR DOR + FOTO ANTES â•â•â• -->
+<!-- === STEP 3 — AMPLIAR DOR + FOTO ANTES === -->
 <div class="step" id="s3">
 <div class="card">
   <span class="eyebrow">Olhe para esta foto</span>
-  <h2 class="q">Esta artesÃ£ tirou esta foto <em>na cozinha dela.</em></h2>
-  <p class="qsub">Com o telemÃ³vel. Sem preparaÃ§Ã£o. Em 30 segundos â€” o AteliÃª Criativo transformou assim:</p>
+  <h2 class="q">Esta artesã tirou esta foto <em>na cozinha dela.</em></h2>
+  <p class="qsub">Com o telemóvel. Sem preparação. Em 30 segundos — o Ateliê Criativo transformou assim:</p>
   <div class="ba">
     <div class="ba-half bef">
       <img src="img/vela_antes.jpeg" style="object-position:left center;" alt="antes">
       <span class="ba-tag">Antes</span>
     </div>
-    <div class="ba-sep"><div class="ba-sep-ico">â†”</div></div>
+    <div class="ba-sep"><div class="ba-sep-ico">↔</div></div>
     <div class="ba-half aft">
       <img src="img/vela_depois.jpeg" style="object-position:right center;" alt="depois">
-      <span class="ba-tag">âœ¨ Depois</span>
+      <span class="ba-tag">✨ Depois</span>
     </div>
   </div>
-  <p style="font-size:14px;color:var(--ink-soft);margin-bottom:22px;text-align:center;">Se pudesse fazer isto com <strong>todos os seus produtos</strong> â€” mudava as suas vendas?</p>
+  <p style="font-size:14px;color:var(--ink-soft);margin-bottom:22px;text-align:center;">Se pudesse fazer isto com <strong>todos os seus produtos</strong> — mudava as suas vendas?</p>
   <div class="opts">
-    <button class="opt" onclick="go(4)">ðŸ˜ Com certeza! Ã‰ exatamente o que preciso</button>
-    <button class="opt" onclick="go(4)">ðŸ˜Š Sim, parece incrÃ­vel â€” quero ver mais</button>
-    <button class="opt" onclick="go(4)">ðŸ¤” Talvez â€” mas tenho dÃºvidas se funciona para mim</button>
+    <button class="opt" onclick="go(4)">😍 Com certeza! É exatamente o que preciso</button>
+    <button class="opt" onclick="go(4)">😊 Sim, parece incrível — quero ver mais</button>
+    <button class="opt" onclick="go(4)">🤔 Talvez — mas tenho dúvidas se funciona para mim</button>
   </div>
 </div>
-<span class="back" onclick="go(2)">â† Voltar</span>
+<span class="back" onclick="go(2)">← Voltar</span>
 </div>
 
-<!-- â•â•â• STEP 4 â€” DESEJO + GALERIA â•â•â• -->
+<!-- === STEP 4 — DESEJO + GALERIA === -->
 <div class="step" id="s4">
 <div class="card">
   <span class="eyebrow">Pergunta 2 de 5</span>
-  <h2 class="q">Veja mais transformaÃ§Ãµes â€” <em>produtos como os seus</em></h2>
+  <h2 class="q">Veja mais transformações — <em>produtos como os seus</em></h2>
   <div class="gal">
-    <div class="gal-pair"><div class="gal-half gb">ðŸ§¶</div><div class="gal-half ga">âœ¨</div></div>
-    <div class="gal-pair"><div class="gal-half gb">ðŸ“¦</div><div class="gal-half ga">ðŸŒ¸</div></div>
-    <div class="gal-pair"><div class="gal-half gb">ðŸ•¯ï¸</div><div class="gal-half ga">â­</div></div>
-    <div class="gal-pair"><div class="gal-half gb">ðŸŽ€</div><div class="gal-half ga">ðŸ’«</div></div>
+    <div class="gal-pair"><div class="gal-half gb">🧶</div><div class="gal-half ga">✨</div></div>
+    <div class="gal-pair"><div class="gal-half gb">📦</div><div class="gal-half ga">🌸</div></div>
+    <div class="gal-pair"><div class="gal-half gb">🕯️</div><div class="gal-half ga">⭐</div></div>
+    <div class="gal-pair"><div class="gal-half gb">🎀</div><div class="gal-half ga">💫</div></div>
   </div>
-  <p style="font-size:14px;color:var(--ink-soft);margin-bottom:20px;">AlÃ©m das fotos â€” o que mais gostaria de ter no seu negÃ³cio?</p>
+  <p style="font-size:14px;color:var(--ink-soft);margin-bottom:20px;">Além das fotos — o que mais gostaria de ter no seu negócio?</p>
   <div class="opts">
-    <button class="opt" onclick="go(5)">ðŸ§® Saber o preÃ§o certo de cada peÃ§a â€” sem adivinhar</button>
-    <button class="opt" onclick="go(5)">ðŸ“„ OrÃ§amentos profissionais que fecham vendas</button>
-    <button class="opt" onclick="go(5)">ðŸ“¦ Gerir encomendas sem me perder</button>
-    <button class="opt" onclick="go(5)">ðŸ’° Perceber se estou realmente a lucrar</button>
+    <button class="opt" onclick="go(5)">🧮 Saber o preço certo de cada peça — sem adivinhar</button>
+    <button class="opt" onclick="go(5)">📄 Orçamentos profissionais que fecham vendas</button>
+    <button class="opt" onclick="go(5)">📦 Gerir encomendas sem me perder</button>
+    <button class="opt" onclick="go(5)">💰 Perceber se estou realmente a lucrar</button>
   </div>
 </div>
-<span class="back" onclick="go(3)">â† Voltar</span>
+<span class="back" onclick="go(3)">← Voltar</span>
 </div>
 
-<!-- â•â•â• STEP 5 â€” OBJEÃ‡ÃƒO â•â•â• -->
+<!-- === STEP 5 — OBJEÇÃO === -->
 <div class="step" id="s5">
 <div class="card">
   <span class="eyebrow">Pergunta 3 de 5</span>
-  <h2 class="q">O que mais <em>a impede</em> de dar o prÃ³ximo passo?</h2>
-  <p class="qsub">Queremos perceber para mostrar que jÃ¡ resolvemos isso</p>
+  <h2 class="q">O que mais <em>a impede</em> de dar o próximo passo?</h2>
+  <p class="qsub">Queremos perceber para mostrar que já resolvemos isso</p>
   <div class="opts">
-    <button class="opt" onclick="go(6)">ðŸ’» Tenho medo de nÃ£o perceber de tecnologia</button>
-    <button class="opt" onclick="go(6)">ðŸ”‘ Preocupa-me ter de dar acesso ao Google ou a contas</button>
-    <button class="opt" onclick="go(6)">ðŸ’¶ NÃ£o sei se vale o investimento para o meu negÃ³cio</button>
-    <button class="opt" onclick="go(6)">â±ï¸ NÃ£o tenho tempo para aprender uma ferramenta nova</button>
+    <button class="opt" onclick="go(6)">💻 Tenho medo de não perceber de tecnologia</button>
+    <button class="opt" onclick="go(6)">🔑 Preocupa-me ter de dar acesso ao Google ou a contas</button>
+    <button class="opt" onclick="go(6)">💸 Não sei se vale o investimento para o meu negócio</button>
+    <button class="opt" onclick="go(6)">⌛ Não tenho tempo para aprender uma ferramenta nova</button>
   </div>
 </div>
-<span class="back" onclick="go(4)">â† Voltar</span>
+<span class="back" onclick="go(4)">← Voltar</span>
 </div>
 
-<!-- â•â•â• STEP 6 â€” RESPONDER OBJEÃ‡Ã•ES â•â•â• -->
+<!-- === STEP 6 — RESPONDER OBJEÇÕES === -->
 <div class="step" id="s6">
 <div class="card">
-  <span class="eyebrow">JÃ¡ percebemos â€” e temos resposta</span>
-  <h2 class="q">Essas dÃºvidas sÃ£o <em>normais.</em> E jÃ¡ estÃ£o resolvidas.</h2>
+  <span class="eyebrow">Já percebemos — e temos resposta</span>
+  <h2 class="q">Essas dúvidas são <em>normais.</em> E já estão resolvidas.</h2>
   <div class="obj-list">
-    <div class="obj-item"><span class="obj-icon">ðŸ’»</span><div class="obj-text"><strong>Tecnologia difÃ­cil?</strong>Se sabe usar o WhatsApp, sabe usar o AteliÃª Criativo. Foi testado por senhoras de 55+ anos â€” todas conseguiram sozinhas.</div></div>
-    <div class="obj-item"><span class="obj-icon">ðŸ”‘</span><div class="obj-text"><strong>Autorizar Google?</strong>NÃ£o precisa de nada. A nossa IA corre nos nossos servidores. Entra com e-mail e password â€” como qualquer app. Simples assim.</div></div>
-    <div class="obj-item"><span class="obj-icon">ðŸ’¶</span><div class="obj-text"><strong>Vale o investimento?</strong>Uma sessÃ£o de fotÃ³grafo custa â‚¬80â€“120. O app custa â‚¬7,90 por mÃªs e faz fotos ilimitadas. Paga-se na primeira foto.</div></div>
-    <div class="obj-item"><span class="obj-icon">â±ï¸</span><div class="obj-text"><strong>Sem tempo para aprender?</strong>Em 5 minutos jÃ¡ estÃ¡ a tirar a primeira foto profissional. NÃ£o hÃ¡ curva de aprendizagem â€” hÃ¡ resultado imediato.</div></div>
+    <div class="obj-item"><span class="obj-icon">💻</span><div class="obj-text"><strong>Tecnologia difícil?</strong> Se sabe usar o WhatsApp, sabe usar o Ateliê Criativo. Foi testado por senhoras de 55+ anos — todas conseguiram sozinhas.</div></div>
+    <div class="obj-item"><span class="obj-icon">🔑</span><div class="obj-text"><strong>Autorizar Google?</strong> Não precisa de nada. A nossa IA corre nos nossos servidores. Entra com e-mail e password — como qualquer app. Simples assim.</div></div>
+    <div class="obj-item"><span class="obj-icon">💸</span><div class="obj-text"><strong>Vale o investimento?</strong> Uma sessão de fotógrafo custa €80–120. O app custa €7,90 por mês e faz fotos ilimitadas. Paga-se na primeira foto.</div></div>
+    <div class="obj-item"><span class="obj-icon">⌛</span><div class="obj-text"><strong>Sem tempo para aprender?</strong> Em 5 minutos já está a tirar a primeira foto profissional. Não há curva de aprendizagem — há resultado imediato.</div></div>
   </div>
   <div class="opts">
-    <button class="opt" onclick="go(7)">âœ… Faz sentido â€” quero ver a oferta</button>
-    <button class="opt" onclick="go(7)">ðŸ¤” Tenho mais dÃºvidas mas quero continuar</button>
+    <button class="opt" onclick="go(7)">✅ Faz sentido — quero ver a oferta</button>
+    <button class="opt" onclick="go(7)">🤔 Tenho mais dúvidas mas quero continuar</button>
   </div>
 </div>
-<span class="back" onclick="go(5)">â† Voltar</span>
+<span class="back" onclick="go(5)">← Voltar</span>
 </div>
 
-<!-- â•â•â• STEP 7 â€” NICHO â•â•â• -->
+<!-- === STEP 7 — NICHO === -->
 <div class="step" id="s7">
 <div class="card">
-  <span class="eyebrow">Pergunta 4 de 5 Â· Quase lÃ¡!</span>
-  <h2 class="q">Que tipo de produto <em>faz com as suas mÃ£os?</em></h2>
-  <p class="qsub">Para lhe mostrar exemplos do seu nicho especÃ­fico</p>
+  <span class="eyebrow">Pergunta 4 de 5 · Quase lá!</span>
+  <h2 class="q">Que tipo de produto <em>faz com as suas mãos?</em></h2>
+  <p class="qsub">Para lhe mostrar exemplos do seu nicho específico</p>
   <div class="opts">
-    <button class="opt" onclick="go(8)">ðŸ§¶ CrochÃª, tricot, bordados, macramÃª, amigurumi</button>
-    <button class="opt" onclick="go(8)">ðŸ“¦ Papelaria, sousplats, caixinhas, MDF, presentes</button>
-    <button class="opt" onclick="go(8)">ðŸ•¯ï¸ Velas, sabonetes, aromas, cosmÃ©ticos artesanais</button>
-    <button class="opt" onclick="go(8)">ðŸŽ€ Bijuteria, joias, acessÃ³rios personalizados</button>
-    <button class="opt" onclick="go(8)">ðŸº Outro produto feito Ã  mÃ£o com amor</button>
+    <button class="opt" onclick="go(8)">🧶 Crochê, tricot, bordados, macramê, amigurumi</button>
+    <button class="opt" onclick="go(8)">📦 Papelaria, sousplats, caixinhas, MDF, presentes</button>
+    <button class="opt" onclick="go(8)">🕯️ Velas, sabonetes, aromas, cosméticos artesanais</button>
+    <button class="opt" onclick="go(8)">🎀 Bijuteria, joias, acessórios personalizados</button>
+    <button class="opt" onclick="go(8)">🍵 Outro produto feito à mão com amor</button>
   </div>
 </div>
-<span class="back" onclick="go(6)">â† Voltar</span>
+<span class="back" onclick="go(6)">← Voltar</span>
 </div>
 
-<!-- â•â•â• STEP 8 â€” MICRO-COMPROMISSO â•â•â• -->
+<!-- === STEP 8 — MICRO-COMPROMISSO === -->
 <div class="step" id="s8">
 <div class="card">
-  <span class="eyebrow">Ãšltima pergunta Â· Passo 5 de 5</span>
-  <h2 class="q">Se tivesse tudo organizado amanhÃ£ â€” <em>o que mudava?</em></h2>
-  <p class="qsub">Imagine o negÃ³cio funcionando como deve</p>
+  <span class="eyebrow">Última pergunta · Passo 5 de 5</span>
+  <h2 class="q">Se tivesse tudo organizado amanhã — <em>o que mudava?</em></h2>
+  <p class="qsub">Imagine o negócio funcionando como deve</p>
   <div class="opts">
-    <button class="opt" onclick="go(9)">ðŸ’ª Cobrava mais e com mais confianÃ§a</button>
-    <button class="opt" onclick="go(9)">ðŸ“± Publicava mais e atraÃ­a mais clientes</button>
-    <button class="opt" onclick="go(9)">ðŸ˜Œ Trabalhava mais descansada, sem confusÃ£o</button>
-    <button class="opt" onclick="go(9)">ðŸš€ Finalmente via o negÃ³cio crescer de verdade</button>
+    <button class="opt" onclick="go(9)">💪 Cobrava mais e com mais confiança</button>
+    <button class="opt" onclick="go(9)">📱 Publicava mais e atraía mais clientes</button>
+    <button class="opt" onclick="go(9)">😌 Trabalhava mais descansada, sem confusão</button>
+    <button class="opt" onclick="go(9)">🚀 Finalmente via o negócio crescer de verdade</button>
   </div>
 </div>
-<span class="back" onclick="go(7)">â† Voltar</span>
+<span class="back" onclick="go(7)">← Voltar</span>
 </div>
 
-<!-- â•â•â• STEP 9 â€” RESULTADO + OFERTA â•â•â• -->
+<!-- === STEP 9 — RESULTADO + OFERTA === -->
 <div class="step" id="s9">
 <div class="card">
-  <span class="eyebrow">âœ¨ O seu diagnÃ³stico estÃ¡ pronto</span>
-  <h2 class="q">O seu negÃ³cio estÃ¡ pronto para <em>dar o salto.</em></h2>
-  <p class="qsub">Com base nas suas respostas â€” o AteliÃª Criativo resolve exatamente o que precisa.</p>
+  <span class="eyebrow">✨ O seu diagnóstico está pronto</span>
+  <h2 class="q">O seu negócio está pronto para <em>dar o salto.</em></h2>
+  <p class="qsub">Com base nas suas respostas — o Ateliê Criativo resolve exatamente o que precisa.</p>
 
-  
   <div class="iphone-frame">
     <div class="iphone-screen">
       <iframe id="main-video-iframe"
         src="https://www.youtube.com/embed/mEOoLSFqcsM?autoplay=1&loop=1&playlist=mEOoLSFqcsM&controls=0&showinfo=0&rel=0&modestbranding=1" 
-        title="DemonstraÃ§Ã£o AteliÃª Criativo" 
+        title="Demonstração Ateliê Criativo" 
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
         allowfullscreen>
       </iframe>
     </div>
   </div>
-<div class="result-box">
-    <p>âœ¦ Fotos profissionais com IA â€” sem fotÃ³grafo, sem estÃºdio<br>
-    âœ¦ Calculadora de preÃ§o justo â€” cobra com seguranÃ§a<br>
-    âœ¦ OrÃ§amentos PDF com a sua marca â€” em 1 clique<br>
-    âœ¦ GestÃ£o de encomendas + financeiro completo<br>
-    <strong>Tudo num sÃ³ app. Acesso imediato. Hoje.</strong></p>
+
+  <div class="result-box">
+    <p>✧ Fotos profissionais com IA — sem fotógrafo, sem estúdio<br>
+    ✧ Calculadora de preço justo — cobra com segurança<br>
+    ✧ Orçamentos PDF com a sua marca — em 1 clique<br>
+    ✧ Gestão de encomendas + financeiro completo<br>
+    <strong>Tudo num só app. Acesso imediato. Hoje.</strong></p>
   </div>
 
   <div class="stats">
-    <div class="stat"><div class="stat-n">+500</div><div class="stat-d">artesÃ£s jÃ¡ usam</div></div>
-    <div class="stat"><div class="stat-n">â‚¬0</div><div class="stat-d">gasto em fotÃ³grafo</div></div>
+    <div class="stat"><div class="stat-n">+500</div><div class="stat-d">artesãs já usam</div></div>
+    <div class="stat"><div class="stat-n">€0</div><div class="stat-d">gasto em fotógrafo</div></div>
     <div class="stat"><div class="stat-n">7 dias</div><div class="stat-d">garantia total</div></div>
   </div>
 
   <div class="urgency">
-    <p>ðŸŽ <strong>Oferta especial por ter feito o quiz</strong><br>
-    PreÃ§o de lanÃ§amento disponÃ­vel <strong>apenas hoje</strong> para quem chegou por aqui.</p>
+    <p>🎁 <strong>Oferta especial por ter feito o quiz</strong><br>
+    Preço de lançamento disponível <strong>apenas hoje</strong> para quem chegou por aqui.</p>
   </div>
 
   <div class="price-cards">
     <a class="pc" id="checkout_mensal_card" href="https://pay.hotmart.com/Y105492438A?off=lufkir3m" style="text-decoration:none; display:block; color:inherit;">
       <div class="pc-row">
         <div><div class="pc-name">Mensal</div><div class="pc-sub">Cancela quando quiser</div></div>
-        <div class="pc-price"><div class="pc-old">â‚¬14,90/mÃªs</div><div class="pc-val">â‚¬<span id="price_mensal">7,90</span></div><div class="pc-period">/mÃªs</div></div>
+        <div class="pc-price"><div class="pc-old">€14,90/mês</div><div class="pc-val">€<span id="price_mensal">7,90</span></div><div class="pc-period">/mês</div></div>
       </div>
     </a>
     <a class="pc best" id="checkout_anual_card" href="https://pay.hotmart.com/Y105492438A?off=ff49t67u" style="text-decoration:none; display:block; color:inherit;">
-      <div class="pc-badge">â­ Mais Popular â€” Poupa â‚¬55</div>
+      <div class="pc-badge">⭐ Mais Popular — Poupa €55</div>
       <div class="pc-row" style="margin-top:8px;">
-        <div><div class="pc-name">Anual</div><div class="pc-sub">â‰ˆ â‚¬3,32/mÃªs Â· melhor oferta</div></div>
-        <div class="pc-price"><div class="pc-old">â‚¬94,90/ano</div><div class="pc-val">â‚¬<span id="price_anual">39,90</span></div><div class="pc-period">/ano</div></div>
+        <div><div class="pc-name">Anual</div><div class="pc-sub">≈ €3,32/mês · melhor oferta</div></div>
+        <div class="pc-price"><div class="pc-old">€94,90/ano</div><div class="pc-val">€<span id="price_anual">39,90</span></div><div class="pc-period">/ano</div></div>
       </div>
     </a>
   </div>
 
   <a class="cta-btn" id="checkout_anual" href="https://pay.hotmart.com/Y105492438A?off=ff49t67u" style="text-decoration:none;">
-    Quero comeÃ§ar agora â†’
+    Quero começar agora →
   </a>
-  <p class="cta-sub">ðŸ›¡ï¸ Garantia 7 dias Â· ðŸ’³ Hotmart Â· âœ… Acesso imediato</p>
+  <p class="cta-sub">🛡️ Garantia 7 dias · 💳 Hotmart · ✅ Acesso imediato</p>
 </div>
-<span class="back" onclick="go(8)">â† Voltar</span>
+<span class="back" onclick="go(8)">← Voltar</span>
+
+<!-- TESTEMUNHOS WHATSAPP (IGUAL PV) -->
+<div style="margin-top:40px; border-top:1px solid rgba(200,54,90,0.1); padding-top:40px;">
+    <p style="text-align:center; font-family:'Playfair Display',serif; font-size:24px; font-weight:700; margin-bottom:10px;">O que as artesãs dizem</p>
+    <p style="text-align:center; color:#4A3F38; font-size:14px; margin-bottom:24px;">Veja os resultados reais no WhatsApp</p>
+    
+    <div style="display:grid; grid-template-columns:1fr; gap:20px;">
+      <div style="border-radius:12px; overflow:hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
+        <img src="Img depoimentos whats/01 Depoimento ana sophia atelie lucrativo potugal.webp" alt="Depoimento 1" loading="lazy" decoding="async" style="width:100%; display:block;">
+      </div>
+      <div style="border-radius:12px; overflow:hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
+        <img src="Img depoimentos whats/02 depimento joana silva organização.png" alt="Depoimento 2" loading="lazy" decoding="async" style="width:100%; display:block;">
+      </div>
+      <div style="border-radius:12px; overflow:hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
+        <img src="Img depoimentos whats/03 depoimento carla mendes precificação.png" alt="Depoimento 3" loading="lazy" decoding="async" style="width:100%; display:block;">
+      </div>
+    </div>
+</div>
+
 </div>
 
 </div><!-- /wrap -->
-
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
@@ -419,7 +437,7 @@ function go(n){
   document.getElementById('s'+cur).classList.add('on');
   const pct = Math.round(((cur-1)/(total-1))*100);
   document.getElementById('pf').style.width = pct+'%';
-  document.getElementById('pl').textContent = cur === 1 ? 'InÃ­cio' : cur === total ? 'ConcluÃ­do!' : 'Passo '+(cur-1)+' de '+(total-2);
+  document.getElementById('pl').textContent = cur === 1 ? 'Início' : cur === total ? 'Concluído!' : 'Passo '+(cur-1)+' de '+(total-2);
   window.scrollTo(0,0);
 
   // Enviar evento Supabase
@@ -435,7 +453,7 @@ async function loadQuizSettings() {
     try {
         const { data: settings } = await supabaseClient.from('site_settings').select('*').eq('id', 1).single();
         if (settings) {
-            // Atualiza vÃ­deo
+            // Atualiza vídeo
             if (settings.video_url) {
                 const videoIframe = document.getElementById('main-video-iframe');
                 if (videoIframe) {
@@ -451,7 +469,7 @@ async function loadQuizSettings() {
                 }
             }
             
-            // Atualiza PreÃ§os
+            // Atualiza Preços
             if (settings.price) document.getElementById('price_vitalicio').innerText = settings.price;
             
             // Atualiza Links de Checkout
@@ -462,7 +480,7 @@ async function loadQuizSettings() {
             if (settings.checkout_anual) document.getElementById('checkout_anual_card').href = settings.checkout_anual;
             if (settings.checkout_mensal) document.getElementById('checkout_mensal_card').href = settings.checkout_mensal;
 
-            // Injeta Pixels NumÃ©ricos (Pegamos o mesmo de Portugal)
+            // Injeta Pixels Numéricos (Pegamos o mesmo de Portugal)
             if (settings.pixels && Array.isArray(settings.pixels)) {
                 settings.pixels.forEach(id => {
                     if (id) {
@@ -513,5 +531,5 @@ document.addEventListener('click', (e) => {
 
 document.addEventListener('DOMContentLoaded', loadQuizSettings);
 </script>
-
-
+</body>
+</html>
