@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="pt">
+<html lang="pt-br">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -113,11 +113,11 @@ body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--ink);}
   width: 260px;
   height: 520px;
   margin: 30px auto;
-  background: #1a1a1a;
+  background: #333;
   border-radius: 44px;
   padding: 11px;
-  box-shadow: 0 50px 100px -20px rgba(0,0,0,0.4), 0 30px 60px -30px rgba(0,0,0,0.5);
-  border: 1px solid #444;
+  box-shadow: 0 50px 100px -20px rgba(0,0,0,0.4), 0 0 30px rgba(200,54,90,0.2);
+  border: 1px solid #555;
   z-index: 2;
   animation: float 6s ease-in-out infinite;
 }
@@ -165,7 +165,6 @@ t.src=v;s=b.getElementsByTagName(e)[0];
 s.parentNode.insertBefore(t,s)}(window, document,'script',
 'https://connect.facebook.net/en_US/fbevents.js');
 fbq('init', '985629873942366');
-// Gerar ID Único para Desduplicação do PageView Inicial
 window.pageViewId = 'pv-' + Date.now() + '-' + Math.floor(Math.random() * 1000000);
 fbq('track', 'PageView', {}, { eventID: window.pageViewId });
 </script>
@@ -184,11 +183,11 @@ src="https://www.facebook.com/tr?id=985629873942366&ev=PageView&noscript=1"
   <div class="prog-label" id="pl">Início</div>
 </div>
 
-<!-- ═══ STEP 1 — GANCHO / TOPO DE FUNIL ═══ -->
+<!-- STEP 1 -->
 <div class="step on" id="s1">
 <div class="card">
   <span class="eyebrow">Quiz gratuito · 1 minuto</span>
-  <h2 class="q">As suas fotos estão a <em>afastar clientes</em> sem você perceber?</h2>
+  <h2 class="q">Suas fotos estão <em>afastando clientes</em> sem você perceber?</h2>
   <p class="qsub">95% das artesãs perdem vendas por causa de fotos — mesmo tendo produtos lindos. Descubra em que situação você está.</p>
   <div class="opts">
     <button class="opt" onclick="go(2)">📸 Sim — minhas fotos não ficam como eu quero</button>
@@ -198,7 +197,7 @@ src="https://www.facebook.com/tr?id=985629873942366&ev=PageView&noscript=1"
 </div>
 </div>
 
-<!-- ═══ STEP 2 — DOR ESPECÍFICA ═══ -->
+<!-- STEP 2 -->
 <div class="step" id="s2">
 <div class="card">
   <span class="eyebrow">Pergunta 1 de 5</span>
@@ -207,13 +206,14 @@ src="https://www.facebook.com/tr?id=985629873942366&ev=PageView&noscript=1"
   <div class="opts">
     <button class="opt" onclick="go(3)">😓 Trabalho muito mas no fim do mês não sei se lucrei</button>
     <button class="opt" onclick="go(3)">📸 As fotos ficam feias e o produto parece menos valioso</button>
-    <button class="opt" onclick="go(3)">💶 Dificuldade em cobrar o preço certo sem sentir culpa</button>
+    <button class="opt" onclick="go(3)">💸 Dificuldade em cobrar o preço certo sem sentir culpa</button>
     <button class="opt" onclick="go(3)">📋 Orçamentos e encomendas — é uma confusão constante</button>
   </div>
 </div>
+<span class="back" onclick="go(1)">← Voltar</span>
 </div>
 
-<!-- ═══ STEP 3 — AMPLIAR DOR + FOTO ANTES ═══ -->
+<!-- STEP 3 -->
 <div class="step" id="s3">
 <div class="card">
   <span class="eyebrow">Olhe para esta foto</span>
@@ -237,9 +237,10 @@ src="https://www.facebook.com/tr?id=985629873942366&ev=PageView&noscript=1"
     <button class="opt" onclick="go(4)">🤔 Talvez — mas tenho dúvidas se funciona pra mim</button>
   </div>
 </div>
+<span class="back" onclick="go(2)">← Voltar</span>
 </div>
 
-<!-- ═══ STEP 4 — DESEJO + GALERIA ═══ -->
+<!-- STEP 4 -->
 <div class="step" id="s4">
 <div class="card">
   <span class="eyebrow">Pergunta 2 de 5</span>
@@ -258,9 +259,10 @@ src="https://www.facebook.com/tr?id=985629873942366&ev=PageView&noscript=1"
     <button class="opt" onclick="go(5)">💰 Entender se estou realmente lucrando</button>
   </div>
 </div>
+<span class="back" onclick="go(3)">← Voltar</span>
 </div>
 
-<!-- ═══ STEP 5 — OBJEÇÃO ═══ -->
+<!-- STEP 5 -->
 <div class="step" id="s5">
 <div class="card">
   <span class="eyebrow">Pergunta 3 de 5</span>
@@ -269,31 +271,33 @@ src="https://www.facebook.com/tr?id=985629873942366&ev=PageView&noscript=1"
   <div class="opts">
     <button class="opt" onclick="go(6)">💻 Tenho medo de não entender de tecnologia</button>
     <button class="opt" onclick="go(6)">🔑 Me preocupa ter que dar acesso ao Google ou a contas</button>
-    <button class="opt" onclick="go(6)">💶 Não sei se vale o investimento para o meu negócio</button>
+    <button class="opt" onclick="go(6)">💸 Não sei se vale o investimento para o meu negócio</button>
     <button class="opt" onclick="go(6)">⏱️ Não tenho tempo para aprender uma ferramenta nova</button>
   </div>
 </div>
+<span class="back" onclick="go(4)">← Voltar</span>
 </div>
 
-<!-- ═══ STEP 6 — RESPONDER OBJEÇÕES ═══ -->
+<!-- STEP 6 -->
 <div class="step" id="s6">
 <div class="card">
   <span class="eyebrow">Já percebemos — e temos resposta</span>
   <h2 class="q">Essas dúvidas são <em>normais.</em> E já estão resolvidas.</h2>
   <div class="obj-list">
-    <div class="obj-item"><span class="obj-icon">💻</span><div class="obj-text"><strong>Tecnologia difícil?</strong>Se você sabe usar o WhatsApp, sabe usar o Ateliê Criativo. Foi testado por senhoras de 55+ anos — todas conseguiram sozinhas.</div></div>
-    <div class="obj-item"><span class="obj-icon">🔑</span><div class="obj-text"><strong>Autorizar Google?</strong>Não precisa de nada. A nossa IA roda nos nossos servidores. Você entra com e-mail e senha — como qualquer aplicativo. Simples assim.</div></div>
-    <div class="obj-item"><span class="obj-icon">💶</span><div class="obj-text"><strong>Vale o investimento?</strong>Uma sessão de fotógrafo custa R$80–120. O aplicativo custa R$7,90 por mês e faz fotos ilimitadas. Paga-se na primeira foto.</div></div>
-    <div class="obj-item"><span class="obj-icon">⏱️</span><div class="obj-text"><strong>Sem tempo para aprender?</strong>Em 5 minutos você já está tirando a primeira foto profissional. Não tem curva de aprendizado — o resultado é imediato.</div></div>
+    <div class="obj-item"><span class="obj-icon">💻</span><div class="obj-text"><strong>Tecnologia difícil?</strong> Se você sabe usar o WhatsApp, sabe usar o Ateliê Criativo. Foi testado por senhoras de 55+ anos — todas conseguiram sozinhas.</div></div>
+    <div class="obj-item"><span class="obj-icon">🔑</span><div class="obj-text"><strong>Autorizar Google?</strong> Não precisa de nada. A nossa IA roda nos nossos servidores. Você entra com e-mail e senha — como qualquer aplicativo. Simples assim.</div></div>
+    <div class="obj-item"><span class="obj-icon">💸</span><div class="obj-text"><strong>Vale o investimento?</strong> Uma sessão de fotógrafo custa R$80–120. O aplicativo custa R$7,90 por mês e faz fotos ilimitadas. Paga-se na primeira foto.</div></div>
+    <div class="obj-item"><span class="obj-icon">⏱️</span><div class="obj-text"><strong>Sem tempo para aprender?</strong> Em 5 minutos você já está tirando a primeira foto profissional. Não tem curva de aprendizado — o resultado é imediato.</div></div>
   </div>
   <div class="opts">
     <button class="opt" onclick="go(7)">✅ Faz sentido — quero ver a oferta</button>
     <button class="opt" onclick="go(7)">🤔 Tenho mais dúvidas mas quero continuar</button>
   </div>
 </div>
+<span class="back" onclick="go(5)">← Voltar</span>
 </div>
 
-<!-- ═══ STEP 7 — NICHO ═══ -->
+<!-- STEP 7 -->
 <div class="step" id="s7">
 <div class="card">
   <span class="eyebrow">Pergunta 4 de 5 · Quase lá!</span>
@@ -307,9 +311,10 @@ src="https://www.facebook.com/tr?id=985629873942366&ev=PageView&noscript=1"
     <button class="opt" onclick="go(8)">🏺 Outro produto feito à mão com amor</button>
   </div>
 </div>
+<span class="back" onclick="go(6)">← Voltar</span>
 </div>
 
-<!-- ═══ STEP 8 — MICRO-COMPROMISSO ═══ -->
+<!-- STEP 8 -->
 <div class="step" id="s8">
 <div class="card">
   <span class="eyebrow">Última pergunta · Passo 5 de 5</span>
@@ -322,31 +327,32 @@ src="https://www.facebook.com/tr?id=985629873942366&ev=PageView&noscript=1"
     <button class="opt" onclick="go(9)">🚀 Finalmente veria o negócio crescer de verdade</button>
   </div>
 </div>
+<span class="back" onclick="go(7)">← Voltar</span>
 </div>
 
-<!-- ═══ STEP 9 — RESULTADO + OFERTA ═══ -->
+<!-- STEP 9 -->
 <div class="step" id="s9">
 <div class="card">
   <span class="eyebrow">✨ Seu diagnóstico está pronto</span>
   <h2 class="q">Seu negócio está pronto para <em>dar o salto.</em></h2>
   <p class="qsub">Com base nas suas respostas — o Ateliê Criativo resolve exatamente o que você precisa.</p>
 
-  
   <div class="iphone-frame">
     <div class="iphone-screen">
       <iframe id="main-video-iframe"
-        src="https://www.youtube.com/embed/mEOoLSFqcsM?autoplay=1&mute=1&loop=1&playlist=mEOoLSFqcsM&controls=0&showinfo=0&rel=0&modestbranding=1" 
+        src="https://www.youtube.com/embed/mEOoLSFqcsM?autoplay=1&loop=1&playlist=mEOoLSFqcsM&controls=0&showinfo=0&rel=0&modestbranding=1" 
         title="Demonstração Ateliê Criativo" 
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
         allowfullscreen>
       </iframe>
     </div>
   </div>
-<div class="result-box">
-    <p>✦ Fotos profissionais com IA — sem fotógrafo, sem estúdio<br>
-    ✦ Calculadora de preço justo — cobra com segurança<br>
-    ✦ Orçamentos PDF com a sua marca — em 1 clique<br>
-    ✦ Gestão de encomendas + financeiro completo<br>
+
+  <div class="result-box">
+    <p>✧ Fotos profissionais com IA — sem fotógrafo, sem estúdio<br>
+    ✧ Calculadora de preço justo — cobra com segurança<br>
+    ✧ Orçamentos PDF com a sua marca — em 1 clique<br>
+    ✧ Gestão de encomendas + financeiro completo<br>
     <strong>Tudo num só aplicativo. Acesso imediato. Hoje.</strong></p>
   </div>
 
@@ -375,23 +381,35 @@ src="https://www.facebook.com/tr?id=985629873942366&ev=PageView&noscript=1"
         <div class="pc-price"><div class="pc-old">R$94,90/ano</div><div class="pc-val">R$<span id="price_anual">39,90</span></div><div class="pc-period">/ano</div></div>
       </div>
     </a>
-    <a class="pc" id="checkout_vitalicio_card" href="https://pay.hotmart.com/Y105490525B" style="text-decoration:none; display:block; color:inherit;">
-      <div class="pc-row">
-        <div><div class="pc-name">Vitalício ⚡</div><div class="pc-sub">Paga uma vez · para sempre</div></div>
-        <div class="pc-price"><div class="pc-old">R$197</div><div class="pc-val">R$<span id="price_vitalicio">97</span></div><div class="pc-period">única vez</div></div>
-      </div>
-    </a>
   </div>
 
-  <a class="cta-btn" id="checkout_vitalicio" href="https://pay.hotmart.com/Y105490525B" style="text-decoration:none;">
+  <a class="cta-btn" id="checkout_anual" href="https://pay.hotmart.com/Y105492438A?off=ff49t67u" style="text-decoration:none;">
     Quero começar agora →
   </a>
   <p class="cta-sub">🛡️ Garantia 7 dias · 💳 Hotmart · ✅ Acesso imediato</p>
 </div>
+<span class="back" onclick="go(8)">← Voltar</span>
+
+<!-- TESTEMUNHOS WHATSAPP (IGUAL PV) -->
+<div style="margin-top:40px; border-top:1px solid rgba(200,54,90,0.1); padding-top:40px;">
+    <p style="text-align:center; font-family:'Playfair Display',serif; font-size:24px; font-weight:700; margin-bottom:10px;">O que as artesãs dizem</p>
+    <p style="text-align:center; color:#4A3F38; font-size:14px; margin-bottom:24px;">Veja os resultados reais no WhatsApp</p>
+    
+    <div style="display:grid; grid-template-columns:1fr; gap:20px;">
+      <div style="border-radius:12px; overflow:hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
+        <img src="Img depoimentos whats/01 Depoimento ana sophia atelie lucrativo potugal.webp" alt="Depoimento 1" loading="lazy" decoding="async" style="width:100%; display:block;">
+      </div>
+      <div style="border-radius:12px; overflow:hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
+        <img src="Img depoimentos whats/02 depimento joana silva organização.png" alt="Depoimento 2" loading="lazy" decoding="async" style="width:100%; display:block;">
+      </div>
+      <div style="border-radius:12px; overflow:hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
+        <img src="Img depoimentos whats/03 depoimento carla mendes precificação.png" alt="Depoimento 3" loading="lazy" decoding="async" style="width:100%; display:block;">
+      </div>
+    </div>
 </div>
 
-</div><!-- /wrap -->
-
+</div>
+</div>
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
@@ -404,7 +422,6 @@ let quizId = 'quiz-' + Date.now() + '-' + Math.floor(Math.random() * 1000000);
 let cur = 1;
 const total = 9;
 
-// Track step view on load
 supabaseClient.from('analytics_events').insert([{
     event_type: 'quiz_step',
     page_url: window.location.href,
@@ -421,7 +438,6 @@ function go(n){
   document.getElementById('pl').textContent = cur === 1 ? 'Início' : cur === total ? 'Concluído!' : 'Passo '+(cur-1)+' de '+(total-2);
   window.scrollTo(0,0);
 
-  // Enviar evento Supabase
   supabaseClient.from('analytics_events').insert([{
       event_type: 'quiz_step',
       page_url: window.location.href,
@@ -434,7 +450,6 @@ async function loadQuizSettings() {
     try {
         const { data: settings } = await supabaseClient.from('site_settings').select('*').eq('id', 2).single();
         if (settings) {
-            // Atualiza vídeo
             if (settings.video_url) {
                 const videoIframe = document.getElementById('main-video-iframe');
                 if (videoIframe) {
@@ -445,15 +460,11 @@ async function loadQuizSettings() {
                     else if (url.includes('be/')) videoId = url.split('be/')[1].split('?')[0];
                     
                     if (videoId) {
-                        videoIframe.src = `https://www.youtube.com/embed/${videoId}?autoplay=1&mute=1&loop=1&playlist=${videoId}&controls=0&showinfo=0&rel=0&modestbranding=1`;
+                        videoIframe.src = `https://www.youtube.com/embed/${videoId}?autoplay=1&loop=1&playlist=${videoId}&controls=0&showinfo=0&rel=0&modestbranding=1`;
                     }
                 }
             }
-            
-            // Atualiza Preços
             if (settings.price) document.getElementById('price_vitalicio').innerText = settings.price;
-            
-            // Atualiza Links de Checkout
             if (settings.checkout_link) {
                 document.getElementById('checkout_vitalicio').href = settings.checkout_link;
                 document.getElementById('checkout_vitalicio_card').href = settings.checkout_link;
@@ -461,7 +472,6 @@ async function loadQuizSettings() {
             if (settings.checkout_anual) document.getElementById('checkout_anual_card').href = settings.checkout_anual;
             if (settings.checkout_mensal) document.getElementById('checkout_mensal_card').href = settings.checkout_mensal;
 
-            // Injeta Pixels Numéricos (Pegamos o mesmo de Portugal)
             if (settings.pixels && Array.isArray(settings.pixels)) {
                 settings.pixels.forEach(id => {
                     if (id) {
@@ -469,19 +479,6 @@ async function loadQuizSettings() {
                         script.innerHTML = `!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window, document,'script','https://connect.facebook.net/en_US/fbevents.js');fbq('init', '${id}');fbq('track', 'PageView');`;
                         document.head.appendChild(script);
                     }
-                });
-            }
-
-            // Injetar Pixel via Script HTML
-            if (settings.pixel_html) {
-                const container = document.createElement('div');
-                container.innerHTML = settings.pixel_html;
-                const scripts = container.querySelectorAll('script');
-                scripts.forEach(oldScript => {
-                    const newScript = document.createElement('script');
-                    Array.from(oldScript.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value));
-                    newScript.appendChild(document.createTextNode(oldScript.innerHTML));
-                    document.head.appendChild(newScript);
                 });
             }
         }
@@ -512,4 +509,5 @@ document.addEventListener('click', (e) => {
 
 document.addEventListener('DOMContentLoaded', loadQuizSettings);
 </script>
-
+</body>
+</html>
