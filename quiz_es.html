@@ -100,7 +100,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--ink);-
 .cta-btn:hover{transform:translateY(-2px);}
 .cta-sub{font-size:11px;color:var(--ink-muted);text-align:center;margin-top:8px;}
 
-.back{display:block;text-align:center;margin-top:14px;font-size:12px;color:var(--ink-muted);cursor:pointer;text-decoration:underline;}
+.back{display:none;}
 
 /* MOCKUP IPHONE */
 .iphone-frame {
@@ -210,7 +210,6 @@ src="https://www.facebook.com/tr?id=985629873942366&ev=PageView&noscript=1"
     <button class="opt" onclick="go(3)">📋 Presupuestos y pedidos — es una confusión constante</button>
   </div>
 </div>
-<span class="back" onclick="go(1)">← Volver</span>
 </div>
 
 <!-- STEP 3 -->
@@ -232,12 +231,11 @@ src="https://www.facebook.com/tr?id=985629873942366&ev=PageView&noscript=1"
   </div>
   <p style="font-size:15px;color:var(--ink-soft);margin-bottom:22px;text-align:center;">Si pudieras hacer esto con <strong>todos tus productos</strong> — ¿cambiarían tus ventas?</p>
   <div class="opts">
-    <button class="opt" onclick="go(4)">😍 ¡Por supuesto! Es exactamente lo que necesito</button>
+    <button class="opt" onclick="go(4)">¡Por supuesto! Es exactamente lo que necesito</button>
     <button class="opt" onclick="go(4)">😊 Sí, suena increíble — quiero ver más</button>
     <button class="opt" onclick="go(4)">🤔 Tal vez — pero tengo dudas de si funciona para mí</button>
   </div>
 </div>
-<span class="back" onclick="go(2)">← Volver</span>
 </div>
 
 <!-- STEP 4 -->
@@ -259,7 +257,6 @@ src="https://www.facebook.com/tr?id=985629873942366&ev=PageView&noscript=1"
     <button class="opt" onclick="go(5)">💰 Entender si realmente estoy ganando dinero</button>
   </div>
 </div>
-<span class="back" onclick="go(3)">← Volver</span>
 </div>
 
 <!-- STEP 5 -->
@@ -275,7 +272,6 @@ src="https://www.facebook.com/tr?id=985629873942366&ev=PageView&noscript=1"
     <button class="opt" onclick="go(6)">⏱️ No tengo tiempo para aprender una herramienta nueva</button>
   </div>
 </div>
-<span class="back" onclick="go(4)">← Volver</span>
 </div>
 
 <!-- STEP 6 -->
@@ -284,17 +280,16 @@ src="https://www.facebook.com/tr?id=985629873942366&ev=PageView&noscript=1"
   <span class="eyebrow">Ya entendemos — y tenemos la respuesta</span>
   <h2 class="q">Esas dudas son <em>normales.</em> Y ya están resueltas.</h2>
   <div class="obj-list">
-    <div class="obj-item"><span class="obj-icon">💻</span><div class="obj-text"><strong>¿Tecnología difícil?</strong> Si sabes usar WhatsApp, sabes usar Ateliê Criativo. Fue probado por señoras de 55+ años — todas pudieron solas.</div></div>
-    <div class="obj-item"><span class="obj-icon">🔑</span><div class="obj-text"><strong>¿Autorizar Google?</strong> No necesitas nada. Nuestra IA corre en nuestros servidores. Entras con email y contraseña — como cualquier app. Así de simple.</div></div>
-    <div class="obj-item"><span class="obj-icon">💸</span><div class="obj-text"><strong>¿Vale la inversión?</strong> Una sesión de fotógrafo cuesta $80–120. La app cuesta $7,90 al mes y hace fotos ilimitadas. Se paga sola con la primera foto.</div></div>
-    <div class="obj-item"><span class="obj-icon">⏱️</span><div class="obj-text"><strong>¿Sin tiempo para aprender?</strong> En 5 minutos ya estarás tomando tu primera foto profesional. No hay curva de aprendizaje — hay resultado inmediato.</div></div>
+    <div class="obj-item"><span class="obj-icon">💻</span><div class="obj-text">¿Tecnología difícil? Si sabes usar WhatsApp, sabes usar Ateliê Criativo. Fue probado por señoras de 55+ años — todas pudieron solas.</div></div>
+    <div class="obj-item"><span class="obj-icon">🔑</span><div class="obj-text">¿Autorizar Google? No necesitas nada. Nuestra IA corre en nuestros servidores. Entras con email y contraseña — como cualquier app. Así de simple.</div></div>
+    <div class="obj-item"><span class="obj-icon">💸</span><div class="obj-text">¿Vale la inversión? Una sesión de fotógrafo cuesta $80–120. La app cuesta $7,90 al mes y hace fotos ilimitadas. Se paga sola con la primera foto.</div></div>
+    <div class="obj-item"><span class="obj-icon">⏱️</span><div class="obj-text">¿Sin tiempo para aprender? En 5 minutos ya estarás tomando tu primera foto profesional. No hay curva de aprendizaje — hay resultado inmediato.</div></div>
   </div>
   <div class="opts">
     <button class="opt" onclick="go(7)">✅ Tiene sentido — quiero ver la oferta</button>
     <button class="opt" onclick="go(7)">🤔 Tengo más dudas pero quiero continuar</button>
   </div>
 </div>
-<span class="back" onclick="go(5)">← Volver</span>
 </div>
 
 <!-- STEP 7 -->
@@ -304,14 +299,13 @@ src="https://www.facebook.com/tr?id=985629873942366&ev=PageView&noscript=1"
   <h2 class="q">¿Qué tipo de producto <em>haces con tus manos?</em></h2>
   <p class="qsub">Para mostrarte ejemplos de tu nicho específico</p>
   <div class="opts">
-    <button class="opt" onclick="go(8)">🧶 Crochet, tejido, bordados, macramé, amigurumi</button>
+    <button class="opt" onclick="go(8)">🧶 Crochet, tejido, bordados, macramê, amigurumi</button>
     <button class="opt" onclick="go(8)">📦 Papelería, sousplats, cajitas, MDF, regalos</button>
     <button class="opt" onclick="go(8)">🕯️ Velas, jabones, aromas, cosmética artesanal</button>
     <button class="opt" onclick="go(8)">🎀 Bisutería, joyas, accesorios personalizados</button>
     <button class="opt" onclick="go(8)">🏺 Otro producto hecho a mano con amor</button>
   </div>
 </div>
-<span class="back" onclick="go(6)">← Volver</span>
 </div>
 
 <!-- STEP 8 -->
@@ -327,7 +321,6 @@ src="https://www.facebook.com/tr?id=985629873942366&ev=PageView&noscript=1"
     <button class="opt" onclick="go(9)">🚀 Finalmente vería mi negocio crecer de verdad</button>
   </div>
 </div>
-<span class="back" onclick="go(7)">← Volver</span>
 </div>
 
 <!-- STEP 8.5 (GAMIFICATION/LOADER) -->
@@ -343,15 +336,22 @@ src="https://www.facebook.com/tr?id=985629873942366&ev=PageView&noscript=1"
 
 <!-- STEP 9 -->
 <div class="step" id="s9">
+<div class="urgency-bar" style="margin: -32px -24px 24px; border-radius: 16px 16px 0 0; background: linear-gradient(90deg, var(--rose-dark), var(--rose)); padding: 12px; font-size: 13px; color: white; text-align: center;">
+    🔥 <strong>Oferta Especial:</strong> Expira en <span id="timer">15:00</span>
+</div>
 <div class="card">
   <span class="eyebrow">✨ Tu diagnóstico está listo</span>
   <h2 class="q">Tu negocio está listo para <em>dar el salto.</em></h2>
   <p class="qsub">Basado en tus respuestas — Ateliê Criativo resuelve exactamente lo que necesitas.</p>
 
   <div class="iphone-frame">
-    <div class="iphone-screen">
+    <div class="iphone-screen" onclick="toggleMute()">
+      <div id="video-overlay" style="position:absolute; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.4); display:flex; flex-direction:column; align-items:center; justify-content:center; z-index:10; cursor:pointer; color:white;">
+        <span style="font-size:40px; margin-bottom:10px;">🔊</span>
+        <span style="font-size:12px; font-weight:700; text-transform:uppercase; letter-spacing:1px;">Haz clic para escuchar</span>
+      </div>
       <iframe id="main-video-iframe"
-        src="https://www.youtube.com/embed/mEOoLSFqcsM?autoplay=1&loop=1&playlist=mEOoLSFqcsM&controls=0&showinfo=0&rel=0&modestbranding=1" 
+        src="https://www.youtube.com/embed/mEOoLSFqcsM?autoplay=1&mute=1&loop=1&playlist=mEOoLSFqcsM&controls=0&showinfo=0&rel=0&modestbranding=1" 
         title="Demonstración Ateliê Criativo" 
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
         allowfullscreen>
@@ -399,7 +399,6 @@ src="https://www.facebook.com/tr?id=985629873942366&ev=PageView&noscript=1"
   </a>
   <p class="cta-sub">🛡️ Garantía 15 dias · 💳 Hotmart · ✅ Acceso inmediato</p>
 </div>
-<span class="back" onclick="go(8)">← Voltar</span>
 
 <!-- TESTIMONIOS WHATSAPP (IGUAL PV) -->
 <div style="margin-top:40px; border-top:1px solid rgba(200,54,90,0.1); padding-top:40px;">
@@ -442,6 +441,7 @@ function go(n){
         document.getElementById('s-load').classList.remove('on');
         document.getElementById('s9').classList.add('on');
         window.scrollTo(0,0);
+        startTimer(900, document.getElementById('timer'));
     }, 2500);
     cur = 9;
   } else {
@@ -463,6 +463,31 @@ function go(n){
   }]);
 }
 
+function startTimer(duration, display) {
+    let timer = duration, minutes, seconds;
+    setInterval(function () {
+        minutes = parseInt(timer / 60, 10);
+        seconds = parseInt(timer % 60, 10);
+        minutes = minutes < 10 ? "0" + minutes : minutes;
+        seconds = seconds < 10 ? "0" + seconds : seconds;
+        display.textContent = minutes + ":" + seconds;
+        if (--timer < 0) timer = 0;
+    }, 1000);
+}
+
+function toggleMute() {
+    const iframe = document.getElementById('main-video-iframe');
+    const overlay = document.getElementById('video-overlay');
+    const currentSrc = iframe.src;
+    if (currentSrc.includes('mute=1')) {
+        iframe.src = currentSrc.replace('mute=1', 'mute=0');
+        overlay.style.display = 'none';
+    } else {
+        iframe.src = currentSrc.replace('mute=0', 'mute=1');
+        overlay.style.display = 'flex';
+    }
+}
+
 async function loadQuizSettings() {
     try {
         const { data: settings } = await supabaseClient.from('site_settings').select('*').eq('id', 3).single();
@@ -477,7 +502,7 @@ async function loadQuizSettings() {
                     else if (url.includes('be/')) videoId = url.split('be/')[1].split('?')[0];
                     
                     if (videoId) {
-                        videoIframe.src = `https://www.youtube.com/embed/${videoId}?autoplay=1&loop=1&playlist=${videoId}&controls=0&showinfo=0&rel=0&modestbranding=1`;
+                        videoIframe.src = `https://www.youtube.com/embed/${videoId}?autoplay=1&mute=1&loop=1&playlist=${videoId}&controls=0&showinfo=0&rel=0&modestbranding=1`;
                     }
                 }
             }
